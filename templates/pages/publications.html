@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Publications - Laterite{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero min-h-[40vh] bg-base-200">
+    <div class="hero-content text-center">
+        <div class="max-w-2xl">
+            <h1 class="text-5xl font-bold">Publications</h1>
+            <p class="py-6 text-xl">Explore our research papers, policy briefs, and reports.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Publications Carousel -->
+{% if featured_publications %}
+<div class="py-12 bg-base-100">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-8">Featured Publications</h2>
+        <div class="carousel w-full rounded-box">
+            {% for pub in featured_publications %}
+            <div id="slide{{ forloop.counter }}" class="carousel-item relative w-full">
+                <div class="flex flex-col md:flex-row items-center gap-8 p-8 w-full bg-base-200">
+                    {% if pub.cover_image %}
+                    <img src="{{ pub.cover_image.url }}" class="max-w-sm rounded-lg shadow-2xl" alt="{{ pub.title }}">
+                    {% endif %}
+                    <div>
+                        <h3 class="text-2xl font-bold">{{ pub.title }}</h3>
+                        <p class="py-4">{{ pub.abstract|truncatewords:50 }}</p>
+                        <a href="{% url 'core:publication_detail' pub.slug %}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide{% if forloop.first %}{{ featured_publications|length }}{% else %}{{ forloop.counter0 }}{% endif %}" class="btn btn-circle">❮</a> 
+                    <a href="#slide{% if forloop.last %}1{% else %}{{ forloop.counter|add:1 }}{% endif %}" class="btn btn-circle">❯</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Main Content -->
+<div class="container mx-auto px-4 py-12">
+    <!-- Search and Filters -->
+    <div class="flex flex-col lg:flex-row gap-4 mb-8">
+        <div class="flex-1">
+            <form method="get" class="join w-full">
+                <input type="text" name="search" placeholder="Search publications..." class="input input-bordered join-item flex-1" value="{{ request.GET.search }}">
+                <button type="submit" class="btn btn-primary join-item">Search</button>
+            </form>
+        </div>
+        <div class="flex gap-4 flex-wrap">
+            <select name="category" class="select select-bordered w-full max-w-xs" onchange="this.form.submit()">
+                <option value="">All Categories</option>
+                {% for cat_value, cat_label in categories %}
+                <option value="{{ cat_value }}" {% if request.GET.category == cat_value %}selected{% endif %}>
+                    {{ cat_label }}
+                </option>
+                {% endfor %}
+            </select>
+            <select name="year" class="select select-bordered w-full max-w-xs" onchange="this.form.submit()">
+                <option value="">All Years</option>
+                {% for year in years %}
+                <option value="{{ year|date:'Y' }}" {% if request.GET.year == year|date:'Y' %}selected{% endif %}>
+                    {{ year|date:'Y' }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <!-- Publications Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for publication in publications %}
+        <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+            {% if publication.cover_image %}
+            <figure>
+                <img src="{{ publication.cover_image.url }}" alt="{{ publication.title }}" class="h-48 w-full object-cover">
+            </figure>
+            {% endif %}
+            <div class="card-body">
+                <div class="flex justify-between items-start">
+                    <div class="badge badge-primary">{{ publication.get_category_display }}</div>
+                    <div class="text-sm opacity-70">{{ publication.publication_date|date:"M Y" }}</div>
+                </div>
+                <h2 class="card-title">{{ publication.title }}</h2>
+                <p class="text-sm opacity-70">{{ publication.authors }}</p>
+                <p class="line-clamp-3">{{ publication.abstract }}</p>
+                <div class="card-actions justify-between items-center mt-4">
+                    <div class="flex gap-2 flex-wrap">
+                        {% for keyword in publication.get_keywords_list|slice:":3" %}
+                        <div class="badge badge-outline">{{ keyword }}</div>
+                        {% endfor %}
+                    </div>
+                    <a href="{% url 'core:publication_detail' publication.slug %}" class="btn btn-primary btn-sm">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full text-center py-12">
+            <div class="max-w-md mx-auto">
+                <h3 class="text-2xl font-bold mb-4">No publications found</h3>
+                <p class="mb-4">Try adjusting your search criteria or browse all publications.</p>
+                <a href="{% url 'core:publications' %}" class="btn btn-primary">View All Publications</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <div class="flex justify-center mt-12">
+        <div class="join">
+            {% if page_obj.has_previous %}
+            <a href="?page=1{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}" class="join-item btn">«</a>
+            <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}" class="join-item btn">‹</a>
+            {% endif %}
+            
+            <button class="join-item btn">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</button>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}" class="join-item btn">›</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}" class="join-item btn">»</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

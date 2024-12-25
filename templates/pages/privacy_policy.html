@@ -1,0 +1,131 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Privacy Policy -
+Laterite{% endblock %} {% block content %}
+<!-- Hero Section -->
+<div class="hero min-h-[30vh] bg-base-200">
+  <div class="hero-content text-center">
+    <div class="max-w-2xl">
+      <h1 class="text-4xl font-bold">Privacy Policy</h1>
+      <p class="py-6">Last updated: {% now "F j, Y" %}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="container mx-auto px-4 py-12">
+  <div class="max-w-4xl mx-auto prose">
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h2>Our Commitment to Privacy</h2>
+        <p>
+          At Laterite, we take your privacy seriously. This privacy policy
+          describes how we collect, use, and protect your personal information.
+        </p>
+
+        <h2>Information We Collect</h2>
+        <ul>
+          <li>Contact information (name, email, phone number)</li>
+          <li>Professional information (organization, role)</li>
+          <li>Website usage data</li>
+          <li>Newsletter subscription preferences</li>
+        </ul>
+
+        <h2>How We Use Your Information</h2>
+        <p>We use the information we collect to:</p>
+        <ul>
+          <li>Provide and improve our services</li>
+          <li>Communicate with you about our work</li>
+          <li>Send newsletters and updates (with your consent)</li>
+          <li>Analyze and improve our website performance</li>
+        </ul>
+
+        <h2>Data Protection</h2>
+        <p>
+          We implement appropriate technical and organizational measures to
+          protect your personal data against unauthorized access, alteration,
+          disclosure, or destruction.
+        </p>
+
+        <h2>Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+          <li>Access your personal data</li>
+          <li>Correct inaccurate data</li>
+          <li>Request deletion of your data</li>
+          <li>Withdraw consent for data processing</li>
+          <li>Object to data processing</li>
+          <li>Request data portability</li>
+        </ul>
+
+        <h2>Cookies and Tracking</h2>
+        <p>
+          We use cookies and similar tracking technologies to improve your
+          browsing experience on our website. You can manage your cookie
+          preferences through your browser settings.
+        </p>
+
+        <h2>Third-Party Services</h2>
+        <p>
+          We may use third-party services that collect, monitor and analyze
+          website usage data. These third parties have their own privacy
+          policies addressing how they use such information.
+        </p>
+
+        <h2>Updates to This Policy</h2>
+        <p>
+          We may update this privacy policy from time to time. We will notify
+          you of any changes by posting the new policy on this page and updating
+          the "last updated" date.
+        </p>
+
+        <h2>Contact Us</h2>
+        <p>
+          If you have any questions about this privacy policy or our data
+          practices, please contact us:
+        </p>
+        <div class="not-prose">
+          <div class="alert alert-info">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="stroke-current shrink-0 w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+            <div>
+              <p class="font-semibold">Email: privacy@laterite.com</p>
+              <p>Phone: +1 (234) 567-890</p>
+              <p>Address: 123 Research Street, Data City, DC 12345</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Information -->
+    <div class="mt-8 space-y-4 text-center">
+      <p class="text-sm text-base-content/70">
+        For additional information about our data protection practices, please
+        <a href="{% url 'core:contact' %}" class="link link-primary"
+          >contact us</a
+        >.
+      </p>
+
+      <div class="flex justify-center gap-4">
+        <a href="{% url 'core:terms' %}" class="link link-primary"
+          >Terms of Service</a
+        >
+        <span class="text-base-content/30">|</span>
+        <a href="{% url 'core:cookie-policy' %}" class="link link-primary"
+          >Cookie Policy</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

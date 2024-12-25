@@ -1,0 +1,314 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Cookie Policy -
+Laterite{% endblock %} {% block content %}
+<!-- Hero Section -->
+<div class="hero min-h-[30vh] bg-base-200">
+  <div class="hero-content text-center">
+    <div class="max-w-2xl">
+      <h1 class="text-4xl font-bold">Cookie Policy</h1>
+      <p class="py-6">Last updated: {% now "F j, Y" %}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="container mx-auto px-4 py-12">
+  <div class="max-w-4xl mx-auto prose">
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h2>What Are Cookies</h2>
+        <p>
+          Cookies are small pieces of text sent by your web browser by a website
+          you visit. A cookie file is stored in your web browser and allows the
+          website or a third-party to recognize you and make your next visit
+          easier and more useful to you.
+        </p>
+
+        <h2>How We Use Cookies</h2>
+        <p>We use cookies for the following purposes:</p>
+        <ul>
+          <li>To understand and save user's preferences for future visits</li>
+          <li>
+            To compile aggregate data about site traffic and site interactions
+          </li>
+          <li>To enhance and personalize your user experience</li>
+          <li>To help us offer you the most relevant content</li>
+        </ul>
+
+        <h2>Types of Cookies We Use</h2>
+        <div class="overflow-x-auto not-prose">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Purpose</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Essential Cookies</td>
+                <td>
+                  Necessary for the website to function properly. These cookies
+                  ensure basic functionalities and security features of the
+                  website.
+                </td>
+                <td>Session</td>
+              </tr>
+              <tr>
+                <td>Functionality Cookies</td>
+                <td>
+                  Enable the website to remember choices you make (such as your
+                  language or the region you are in) and provide enhanced
+                  features.
+                </td>
+                <td>1 year</td>
+              </tr>
+              <tr>
+                <td>Analytics Cookies</td>
+                <td>
+                  Help us understand how visitors interact with our website by
+                  collecting and reporting information anonymously.
+                </td>
+                <td>2 years</td>
+              </tr>
+              <tr>
+                <td>Marketing Cookies</td>
+                <td>
+                  Used to track visitors across websites to enable us to display
+                  relevant advertisements.
+                </td>
+                <td>30 days</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Third-Party Cookies</h2>
+        <p>
+          In addition to our own cookies, we may also use various third-party
+          cookies to report usage statistics of the website and deliver
+          advertisements on and through the website.
+        </p>
+
+        <div class="not-prose">
+          <div class="alert alert-warning mt-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="stroke-current shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              />
+            </svg>
+            <span
+              >Please note that third-party services may use cookies that we
+              have no control over.</span
+            >
+          </div>
+        </div>
+
+        <h2>Your Cookie Choices</h2>
+        <p>You have several choices regarding cookies:</p>
+        <ul>
+          <li>Accept all cookies</li>
+          <li>Only accept essential cookies</li>
+          <li>Reject all cookies (may affect site functionality)</li>
+          <li>Modify your specific cookie preferences</li>
+        </ul>
+
+        <h2>How to Control Cookies</h2>
+        <p>You can control cookies through your browser settings:</p>
+        <div class="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div class="card bg-base-200">
+            <div class="card-body">
+              <h3 class="card-title">Chrome</h3>
+              <ol class="list-decimal list-inside">
+                <li>Go to Settings</li>
+                <li>Click on Privacy and Security</li>
+                <li>Select Cookies and other site data</li>
+              </ol>
+            </div>
+          </div>
+          <div class="card bg-base-200">
+            <div class="card-body">
+              <h3 class="card-title">Firefox</h3>
+              <ol class="list-decimal list-inside">
+                <li>Open Menu</li>
+                <li>Select Options</li>
+                <li>Choose Privacy & Security</li>
+              </ol>
+            </div>
+          </div>
+          <div class="card bg-base-200">
+            <div class="card-body">
+              <h3 class="card-title">Safari</h3>
+              <ol class="list-decimal list-inside">
+                <li>Go to Preferences</li>
+                <li>Select Privacy tab</li>
+                <li>Manage Website Data</li>
+              </ol>
+            </div>
+          </div>
+          <div class="card bg-base-200">
+            <div class="card-body">
+              <h3 class="card-title">Edge</h3>
+              <ol class="list-decimal list-inside">
+                <li>Open Settings</li>
+                <li>Click on Privacy & services</li>
+                <li>Manage cookies</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <h2>Managing Your Preferences</h2>
+        <div class="not-prose">
+          <div class="card bg-base-100 border mt-4">
+            <div class="card-body">
+              <h3 class="card-title">Cookie Preferences</h3>
+              <p>You can update your cookie preferences at any time:</p>
+              <div class="form-control">
+                <label class="label cursor-pointer">
+                  <span class="label-text">Essential Cookies (Required)</span>
+                  <input
+                    type="checkbox"
+                    checked="checked"
+                    disabled
+                    class="checkbox checkbox-primary"
+                  />
+                </label>
+              </div>
+              <div class="form-control">
+                <label class="label cursor-pointer">
+                  <span class="label-text">Functionality Cookies</span>
+                  <input
+                    type="checkbox"
+                    class="checkbox checkbox-primary"
+                    id="functionality-cookies"
+                  />
+                </label>
+              </div>
+              <div class="form-control">
+                <label class="label cursor-pointer">
+                  <span class="label-text">Analytics Cookies</span>
+                  <input
+                    type="checkbox"
+                    class="checkbox checkbox-primary"
+                    id="analytics-cookies"
+                  />
+                </label>
+              </div>
+              <div class="form-control">
+                <label class="label cursor-pointer">
+                  <span class="label-text">Marketing Cookies</span>
+                  <input
+                    type="checkbox"
+                    class="checkbox checkbox-primary"
+                    id="marketing-cookies"
+                  />
+                </label>
+              </div>
+              <div class="card-actions justify-end mt-4">
+                <button
+                  class="btn btn-primary"
+                  onclick="saveCookiePreferences()"
+                >
+                  Save Preferences
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Updates to This Policy</h2>
+        <p>
+          We may update our Cookie Policy from time to time. Any changes will be
+          posted on this page with an updated revision date.
+        </p>
+
+        <h2>Contact Us</h2>
+        <div class="not-prose">
+          <div class="alert alert-info">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="stroke-current shrink-0 w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+            <div>
+              <p class="font-semibold">
+                If you have any questions about our Cookie Policy, please
+                contact us:
+              </p>
+              <p>Email: privacy@laterite.com</p>
+              <p>Phone: +1 (234) 567-890</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Links -->
+    <div class="mt-8 space-y-4 text-center">
+      <div class="flex justify-center gap-4">
+        <a href="{% url 'core:privacy' %}" class="link link-primary"
+          >Privacy Policy</a
+        >
+        <span class="text-base-content/30">|</span>
+        <a href="{% url 'core:terms' %}" class="link link-primary"
+          >Terms of Service</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block extra_js %}
+<script>
+  function saveCookiePreferences() {
+    // Get preferences
+    const functionality = document.getElementById(
+      "functionality-cookies"
+    ).checked;
+    const analytics = document.getElementById("analytics-cookies").checked;
+    const marketing = document.getElementById("marketing-cookies").checked;
+
+    // Save preferences to localStorage
+    const preferences = {
+      functionality,
+      analytics,
+      marketing,
+      lastUpdated: new Date().toISOString(),
+    };
+    localStorage.setItem("cookiePreferences", JSON.stringify(preferences));
+
+    // Show success message
+    alert("Your cookie preferences have been saved!");
+  }
+
+  // Load saved preferences
+  document.addEventListener("DOMContentLoaded", function () {
+    const savedPreferences = localStorage.getItem("cookiePreferences");
+    if (savedPreferences) {
+      const preferences = JSON.parse(savedPreferences);
+      document.getElementById("functionality-cookies").checked =
+        preferences.functionality;
+      document.getElementById("analytics-cookies").checked =
+        preferences.analytics;
+      document.getElementById("marketing-cookies").checked =
+        preferences.marketing;
+    }
+  });
+</script>
+{% endblock %}

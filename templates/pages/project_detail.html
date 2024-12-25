@@ -1,0 +1,286 @@
+{% extends 'base.html' %} {% load static %} {% block title %}{{ project.title }}
+- Projects - Laterite{% endblock %} {% block content %}
+<!-- Hero Section -->
+<div class="relative min-h-[60vh]">
+  {% if project.image %}
+  <div class="absolute inset-0">
+    <img
+      src="{{ project.image.url }}"
+      alt="{{ project.title }}"
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+  </div>
+  {% endif %}
+  <div class="relative container mx-auto px-4 flex items-end h-full pb-12">
+    <div class="text-white max-w-3xl">
+      <nav class="text-sm mb-6">
+        <div class="breadcrumbs">
+          <ul class="text-white/70">
+            <li>
+              <a href="{% url 'core:home' %}" class="hover:text-white">Home</a>
+            </li>
+            <li>
+              <a href="{% url 'core:projects' %}" class="hover:text-white"
+                >Projects</a
+              >
+            </li>
+            <li>{{ project.title|truncatechars:40 }}</li>
+          </ul>
+        </div>
+      </nav>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <div class="badge badge-primary">{{ project.location }}</div>
+        <div class="badge badge-outline text-white">
+          {{ project.date_completed|date:"Y" }}
+        </div>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ project.title }}</h1>
+      <p class="text-xl text-white/90">{{ project.client }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="container mx-auto px-4 py-16">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+    <!-- Project Details -->
+    <div class="lg:col-span-2">
+      <div class="prose max-w-none">
+        <h2 class="text-3xl font-bold mb-6">Project Overview</h2>
+        <p class="text-lg">{{ project.description }}</p>
+
+        {% if project.methodology %}
+        <h2 class="text-3xl font-bold mb-6 mt-12">Methodology</h2>
+        <div class="text-lg">{{ project.methodology|safe }}</div>
+        {% endif %} {% if project.results %}
+        <h2 class="text-3xl font-bold mb-6 mt-12">Results and Impact</h2>
+        <div class="text-lg">{{ project.results|safe }}</div>
+        {% endif %} {% if project.challenges %}
+        <h2 class="text-3xl font-bold mb-6 mt-12">Challenges and Solutions</h2>
+        <div class="text-lg">{{ project.challenges|safe }}</div>
+        {% endif %}
+      </div>
+
+      {% if project.gallery.exists %}
+      <!-- Project Gallery -->
+      <div class="mt-16">
+        <h2 class="text-3xl font-bold mb-8">Project Gallery</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {% for image in project.gallery.all %}
+          <div class="card bg-base-100 shadow-xl">
+            <figure>
+              <img
+                src="{{ image.image.url }}"
+                alt="{{ image.caption }}"
+                class="w-full h-64 object-cover"
+              />
+            </figure>
+            {% if image.caption %}
+            <div class="card-body py-4">
+              <p class="text-base text-base-content/70">{{ image.caption }}</p>
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %} {% if related_projects %}
+      <!-- Related Projects -->
+      <div class="mt-16">
+        <h2 class="text-3xl font-bold mb-8">Related Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {% for related in related_projects %}
+          <div class="card bg-base-100 shadow-xl">
+            {% if related.image %}
+            <figure>
+              <img
+                src="{{ related.image.url }}"
+                alt="{{ related.title }}"
+                class="h-48 w-full object-cover"
+              />
+            </figure>
+            {% endif %}
+            <div class="card-body">
+              <h3 class="card-title">{{ related.title }}</h3>
+              <p class="text-sm text-base-content/70">{{ related.client }}</p>
+              <p>{{ related.description|truncatewords:25 }}</p>
+              <div class="card-actions justify-end mt-4">
+                <a
+                  href="{% url 'core:project_detail' related.slug %}"
+                  class="btn btn-primary"
+                >
+                  Learn More
+                </a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Sidebar -->
+    <div class="lg:col-span-1">
+      <div class="sticky top-24 space-y-8">
+        <!-- Project Stats -->
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h3 class="card-title mb-4">Project Details</h3>
+            <div class="space-y-4">
+              <div>
+                <div class="text-sm font-semibold text-base-content/70">
+                  Location
+                </div>
+                <div class="text-lg">{{ project.location }}</div>
+              </div>
+              <div>
+                <div class="text-sm font-semibold text-base-content/70">
+                  Client
+                </div>
+                <div class="text-lg">{{ project.client }}</div>
+              </div>
+              <div>
+                <div class="text-sm font-semibold text-base-content/70">
+                  Date Completed
+                </div>
+                <div class="text-lg">
+                  {{ project.date_completed|date:"F Y" }}
+                </div>
+              </div>
+              {% if project.duration %}
+              <div>
+                <div class="text-sm font-semibold text-base-content/70">
+                  Duration
+                </div>
+                <div class="text-lg">{{ project.duration }}</div>
+              </div>
+              {% endif %} {% if project.team_size %}
+              <div>
+                <div class="text-sm font-semibold text-base-content/70">
+                  Team Size
+                </div>
+                <div class="text-lg">{{ project.team_size }} members</div>
+              </div>
+              {% endif %} {% if project.keywords %}
+              <div>
+                <div class="text-sm font-semibold text-base-content/70 mb-2">
+                  Keywords
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  {% for keyword in project.get_keywords_list %}
+                  <div class="badge badge-outline">{{ keyword }}</div>
+                  {% endfor %}
+                </div>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Share Project -->
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h3 class="card-title mb-4">Share Project</h3>
+            <div class="flex gap-2">
+              <button
+                onclick="shareOnLinkedIn()"
+                class="btn btn-square btn-outline"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                  />
+                </svg>
+              </button>
+              <button
+                onclick="shareOnTwitter()"
+                class="btn btn-square btn-outline"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+                  />
+                </svg>
+              </button>
+              <button onclick="copyLink()" class="btn btn-square btn-outline">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact CTA -->
+        <div class="card bg-primary text-primary-content">
+          <div class="card-body">
+            <h3 class="card-title">Start Your Project</h3>
+            <p>Interested in working with us on a similar project?</p>
+            <div class="card-actions justify-end">
+              <a
+                href="{% url 'core:contact' %}"
+                class="btn btn-outline btn-white"
+              >
+                Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block extra_js %}
+<script>
+  function shareOnLinkedIn() {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent("{{ project.title }}");
+    const summary = encodeURIComponent(
+      "{{ project.description|truncatechars:250 }}"
+    );
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`);
+  }
+
+  function shareOnTwitter() {
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent(
+      "Check out this project by @LateriteAfrica: {{ project.title }}"
+    );
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`);
+  }
+
+  function copyLink() {
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        alert("Link copied to clipboard!");
+      })
+      .catch((err) => {
+        console.error("Failed to copy link: ", err);
+      });
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,377 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Our Services -
+Development Decision Support (DDS){% endblock %} {% block content %}
+<!-- Hero Section -->
+<div class="hero min-h-[40vh] bg-base-200">
+  <div class="hero-content text-center">
+    <div class="max-w-2xl">
+      <h1 class="text-5xl font-bold">Our Services</h1>
+      <p class="py-6 text-xl">
+        Comprehensive research and data solutions for development projects in
+        Africa
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Services Section -->
+<section class="py-20">
+  <div class="container mx-auto px-4">
+    <!-- Research & Analysis -->
+    <div class="mb-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="order-2 md:order-1">
+          <h2 class="text-3xl font-bold mb-6">Research & Analysis</h2>
+          <p class="mb-6">
+            Delivering in-depth research and analysis to uncover insights,
+            inform strategies, and drive impactful decisions.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <svg
+                class="h-6 w-6 text-primary mt-1 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+              Detailed economic, financial, and social analyses to assess the
+              viability and impact of projects and programs.
+            </li>
+            <li class="flex items-start">
+              <svg
+                class="h-6 w-6 text-primary mt-1 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+              Custom research to guide policy formulation and strategic
+              planning.
+            </li>
+          </ul>
+        </div>
+        <div class="order-1 md:order-2">
+          <img
+            src="{% static 'images/research_analysis.jpg' %}"
+            alt="Research & Analysis"
+            class="rounded-lg shadow-xl"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Policy Advisory & Position Papers -->
+    <div class="mb-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <img
+            src="{% static 'images/policy_advisory.jpg' %}"
+            alt="Policy Advisory"
+            class="rounded-lg shadow-xl"
+          />
+        </div>
+        <div>
+          <h2 class="text-3xl font-bold mb-6">
+            Policy Advisory & Position Papers
+          </h2>
+          <p class="mb-6">
+            Providing expert policy advice and comprehensive position papers to
+            guide informed decision-making and strategic planning.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <svg
+                class="h-6 w-6 text-primary mt-1 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+              Expert guidance in creating policies and frameworks that align
+              with national and international development goals.
+            </li>
+            <li class="flex items-start">
+              <svg
+                class="h-6 w-6 text-primary mt-1 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+              Well-researched position papers that offer clarity on complex
+              issues, supporting informed decision-making.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Strategic Planning -->
+    <div class="mb-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="order-2 md:order-1">
+          <h2 class="text-3xl font-bold mb-6">
+            Strategic Planning & Development Frameworks
+          </h2>
+          <p class="mb-6">
+            Comprehensive strategic planning and development framework services
+            aligned with global standards and local needs.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <svg
+                class="h-6 w-6 text-primary mt-1 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+              Assistance in developing tailored policies, strategies, and plans
+              that support organizational growth and achievement of key
+              objectives.
+            </li>
+            <li class="flex items-start">
+              <svg
+                class="h-6 w-6 text-primary mt-1 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+              Formulation of long-term development plans that integrate the UN
+              2030 Agenda, SDGs, AU Agenda 2063, and other global frameworks.
+            </li>
+          </ul>
+        </div>
+        <div class="order-1 md:order-2">
+          <img
+            src="{% static 'images/strategic_planning.jpg' %}"
+            alt="Strategic Planning"
+            class="rounded-lg shadow-xl"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Monitoring & Evaluation -->
+    <div class="mb-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <img
+            src="{% static 'images/services.jpg' %}"
+            alt="Monitoring & Evaluation"
+            class="rounded-lg shadow-xl"
+          />
+        </div>
+        <div>
+          <h2 class="text-3xl font-bold mb-6">Monitoring & Evaluation</h2>
+          <p class="mb-6">
+            Comprehensive monitoring and evaluation services to ensure project
+            success and impact measurement.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <svg
+                class="h-6 w-6 text-primary mt-1 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+              Design of robust monitoring and evaluation (M&E) systems to track
+              project progress and outcomes.
+            </li>
+            <li class="flex items-start">
+              <svg
+                class="h-6 w-6 text-primary mt-1 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+              Tailored evaluation services to ensure your projects are on track,
+              delivering results, and achieving their intended impact.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Capacity Building & Training -->
+    <div class="mb-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="order-2 md:order-1">
+          <h2 class="text-3xl font-bold mb-6">Capacity Building & Training</h2>
+          <p class="mb-6">
+            Empowering organizations through specialized training and capacity
+            development programs.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <svg
+                class="h-6 w-6 text-primary mt-1 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+              Specialized training in project planning, management, and
+              organizational development.
+            </li>
+            <li class="flex items-start">
+              <svg
+                class="h-6 w-6 text-primary mt-1 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+              Workshops designed to strengthen team capacity and ensure your
+              organization has the skills to implement successful projects.
+            </li>
+          </ul>
+        </div>
+        <div class="order-1 md:order-2">
+          <img
+            src="{% static 'images/about_us.jpg' %}"
+            alt="Capacity Building"
+            class="rounded-lg shadow-xl"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Project & Programme Design -->
+    <div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <img
+            src="{% static 'images/services.jpg' %}"
+            alt="Project Design"
+            class="rounded-lg shadow-xl"
+          />
+        </div>
+        <div>
+          <h2 class="text-3xl font-bold mb-6">Project & Programme Design</h2>
+          <p class="mb-6">
+            Expert project and programme design services aligned with
+            development goals and community needs.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <svg
+                class="h-6 w-6 text-primary mt-1 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+              Expert support in the design and formulation of development
+              projects that meet organizational and community needs.
+            </li>
+            <li class="flex items-start">
+              <svg
+                class="h-6 w-6 text-primary mt-1 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+              Assistance in aligning project goals with broader societal
+              objectives, such as poverty reduction and sustainable development.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="bg-base-200 py-20">
+  <div class="container mx-auto px-4">
+    <div class="text-center max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6">Ready to start your project?</h2>
+      <p class="mb-8">
+        Contact us to discuss how we can help you achieve your research
+        objectives.
+      </p>
+      <a href="{% url 'core:contact' %}" class="btn btn-primary btn-lg"
+        >Get in touch</a
+      >
+    </div>
+  </div>
+</section>
+{% endblock %}

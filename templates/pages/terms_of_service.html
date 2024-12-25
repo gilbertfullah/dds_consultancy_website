@@ -1,0 +1,154 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Terms of Service -
+Laterite{% endblock %} {% block content %}
+<!-- Hero Section -->
+<div class="hero min-h-[30vh] bg-base-200">
+  <div class="hero-content text-center">
+    <div class="max-w-2xl">
+      <h1 class="text-4xl font-bold">Terms of Service</h1>
+      <p class="py-6">Last updated: {% now "F j, Y" %}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="container mx-auto px-4 py-12">
+  <div class="max-w-4xl mx-auto prose">
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h2>1. Acceptance of Terms</h2>
+        <p>
+          By accessing and using this website, you accept and agree to be bound
+          by the terms and provision of this agreement.
+        </p>
+
+        <h2>2. Description of Services</h2>
+        <p>
+          Laterite provides research, data collection, and analytics services.
+          Through our website, we offer information about our services,
+          publications, and research findings.
+        </p>
+
+        <h2>3. Use License</h2>
+        <ul>
+          <li>
+            Permission is granted to temporarily access materials on Laterite's
+            website.
+          </li>
+          <li>This is the grant of a license, not a transfer of title.</li>
+          <li>
+            You may not:
+            <ul>
+              <li>Modify or copy the materials</li>
+              <li>Use the materials for commercial purposes</li>
+              <li>Transfer the materials to another person</li>
+              <li>Remove any copyright or proprietary notations</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h2>4. User Content</h2>
+        <p>
+          Users may submit content or information through forms or other means.
+          By submitting content, you grant Laterite a non-exclusive license to
+          use, reproduce, and distribute that content.
+        </p>
+
+        <h2>5. Intellectual Property</h2>
+        <p>
+          All content, including but not limited to text, graphics, logos,
+          images, and software, is the property of Laterite and is protected by
+          intellectual property laws.
+        </p>
+
+        <h2>6. Disclaimer</h2>
+        <div class="alert alert-warning">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="stroke-current shrink-0 h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+            />
+          </svg>
+          <div>
+            <p>
+              The materials on Laterite's website are provided on an 'as is'
+              basis. Laterite makes no warranties, expressed or implied, and
+              hereby disclaims and negates all other warranties including,
+              without limitation, implied warranties or conditions of
+              merchantability, fitness for a particular purpose, or
+              non-infringement of intellectual property or other violation of
+              rights.
+            </p>
+          </div>
+        </div>
+
+        <h2>7. Limitations</h2>
+        <p>
+          In no event shall Laterite or its suppliers be liable for any damages
+          arising out of the use or inability to use the materials on Laterite's
+          website.
+        </p>
+
+        <h2>8. Revisions</h2>
+        <p>
+          Laterite may revise these terms of service at any time without notice.
+          By using this website, you agree to be bound by the current version of
+          these terms of service.
+        </p>
+
+        <h2>9. Governing Law</h2>
+        <p>
+          These terms and conditions are governed by and construed in accordance
+          with the laws of [Your Jurisdiction] and you irrevocably submit to the
+          exclusive jurisdiction of the courts in that location.
+        </p>
+
+        <h2>10. Contact Information</h2>
+        <div class="not-prose">
+          <div class="alert alert-info">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="stroke-current shrink-0 w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+            <div>
+              <p class="font-semibold">
+                Questions about the Terms of Service should be sent to:
+              </p>
+              <p>Email: legal@laterite.com</p>
+              <p>Phone: +1 (234) 567-890</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Links -->
+    <div class="mt-8 space-y-4 text-center">
+      <div class="flex justify-center gap-4">
+        <a href="{% url 'core:privacy' %}" class="link link-primary"
+          >Privacy Policy</a
+        >
+        <span class="text-base-content/30">|</span>
+        <a href="{% url 'core:cookie-policy' %}" class="link link-primary"
+          >Cookie Policy</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
