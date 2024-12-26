@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% load static %} {% block title %}{{ project.title }}
-- Projects - Laterite{% endblock %} {% block content %}
+- Projects - Development Decision Support (DDS){% endblock %} {% block content
+%}
 <!-- Hero Section -->
 <div class="relative min-h-[60vh]">
   {% if project.image %}
@@ -267,7 +268,7 @@
   function shareOnTwitter() {
     const url = encodeURIComponent(window.location.href);
     const text = encodeURIComponent(
-      "Check out this project by @LateriteAfrica: {{ project.title }}"
+      "Check out this project by @DDSAfrica: {{ project.title }}"
     );
     window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`);
   }
