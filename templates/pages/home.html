@@ -1,6 +1,8 @@
-{% extends 'base.html' %} {% load static %} {% block title %}Development
-Decision Support (DDS) - Research and Consulting Firm{% endblock %} {% block
-content %}
+{% extends 'base.html' %} {% load static %} {% load tailwind_tags %} {% block
+title %}Development Decision Support (DDS) - Research and Consulting Firm{%
+endblock title %} {% block extra_css %}
+<!-- Add any page-specific CSS here -->
+{% endblock %} {% block content %}
 <!-- Hero Section -->
 <div class="relative min-h-[80vh] w-full overflow-hidden">
   <!-- Background Image with Overlay -->
@@ -715,4 +717,6 @@ content %}
     >
   </div>
 </section>
-{% endblock content %}
+{% endblock %} {% block extra_js %}
+<!-- Add any page-specific JavaScript here -->
+{% endblock %}
