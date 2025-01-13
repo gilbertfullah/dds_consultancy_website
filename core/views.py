@@ -18,18 +18,19 @@ class HomeView(TemplateView):
         context['services'] = Service.objects.all()[:3]
         context['featured_projects'] = Project.objects.filter(featured=True)[:3]
         context['latest_posts'] = BlogPost.objects.filter(published=True).order_by('-created_at')[:3]
-        
+
         # Define image paths and verify they exist
         carousel_images = []
         for i in range(1, 6):  # Assuming you have 5 images named Picture1.jpg to Picture5.jpg
             image_path = f'carousel/Picture{i}.jpg'  # Use forward slashes for compatibility
-            full_path = os.path.join(settings.STATIC_ROOT, 'images', image_path)
+            
+            if settings.STATIC_ROOT:
+                full_path = os.path.join(settings.STATIC_ROOT, 'images', image_path)
+            else:
+                # Check in STATICFILES_DIRS if STATIC_ROOT is not set
+                full_path = os.path.join(settings.STATICFILES_DIRS[0], 'images', image_path)
+            
             static_url = f'images/{image_path}'
-            
-            # Debug print
-            print(f"Checking image path: {full_path}")
-            print(f"File exists: {os.path.exists(full_path)}")
-            
             carousel_images.append({
                 'url': static_url,
                 'alt': f'Slide {i}',
