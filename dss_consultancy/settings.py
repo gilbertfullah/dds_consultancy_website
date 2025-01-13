@@ -88,19 +88,13 @@ WSGI_APPLICATION = 'dss_consultancy.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-
-
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-else:
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-    DATABASES['default'] = dj_database_url.config(default=config('DATABASE_URL'))
-
+DATABASES = {
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://dds_database_go3k_user:lSIQdzqnEzHMGvZ2plWopd7bI6QpUnm6@dpg-cu1r2jogph6c73eknscg-a.frankfurt-postgres.render.com/dds_database_go3k',
+        conn_max_age=600
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -141,8 +135,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+if not DEBUG:
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 if os.environ["ENVIRONMENT"] == "PRODUCTION":
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage' 

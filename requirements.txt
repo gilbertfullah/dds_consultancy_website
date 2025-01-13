@@ -16,6 +16,7 @@ django-cloudinary-storage==0.3.0
 django-js-asset==3.0.1
 django-tailwind==3.8.0
 gunicorn==23.0.0
+h11==0.14.0
 idna==3.10
 Jinja2==3.1.4
 markdown-it-py==3.0.0
@@ -39,4 +40,5 @@ types-python-dateutil==2.9.0.20241206
 typing_extensions==4.12.2
 tzdata==2024.2
 urllib3==2.2.3
+uvicorn==0.34.0
 whitenoise==6.8.2
