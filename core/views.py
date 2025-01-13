@@ -8,6 +8,7 @@ from django.conf import settings
 from .forms import ContactForm
 from django.db.models import Q
 from .models import Publication
+import os
 
 class HomeView(TemplateView):
     template_name = 'pages/home.html'
@@ -17,6 +18,25 @@ class HomeView(TemplateView):
         context['services'] = Service.objects.all()[:3]
         context['featured_projects'] = Project.objects.filter(featured=True)[:3]
         context['latest_posts'] = BlogPost.objects.filter(published=True).order_by('-created_at')[:3]
+        
+        # Define image paths and verify they exist
+        carousel_images = []
+        for i in range(1, 6):  # Assuming you have 5 images named Picture1.jpg to Picture5.jpg
+            image_path = f'carousel/Picture{i}.jpg'  # Use forward slashes for compatibility
+            full_path = os.path.join(settings.STATIC_ROOT, 'images', image_path)
+            static_url = f'images/{image_path}'
+            
+            # Debug print
+            print(f"Checking image path: {full_path}")
+            print(f"File exists: {os.path.exists(full_path)}")
+            
+            carousel_images.append({
+                'url': static_url,
+                'alt': f'Slide {i}',
+                'exists': os.path.exists(full_path)
+            })
+        
+        context['carousel_images'] = carousel_images
         return context
 
 class AboutView(TemplateView):

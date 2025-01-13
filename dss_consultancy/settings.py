@@ -9,10 +9,6 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-cq4w*p30)2p%(jt!v)uvtqef6y3(xc@(q4t(yy=t_xv+@f@w!y'
 
@@ -42,6 +38,7 @@ INSTALLED_APPS = [
     'django_browser_reload',
     'cloudinary_storage',
     'cloudinary',
+    'ckeditor',
     
     # Local apps
     'theme', # your tailwind theme app
@@ -154,6 +151,33 @@ CLOUDINARY_STORAGE = {
     'CLOUD_NAME' : os.environ['CLOUD_NAME'],
     'API_KEY' : os.environ['API_KEY'],
     'API_SECRET' : os.environ['API_SECRET']
+}
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_CONFIGS = {
+    "default": {
+        "skin": "moono",
+        "toolbar": "full",
+        'height': 300,
+        'width': '100%',
+        "extraPlugins": ",".join(
+            [
+                'about',
+                'filetools',
+                'find',
+                'iframe',
+                'image',
+                'image2',
+                'link',
+                'smiley',
+                'table',
+                'tabletools',
+                'uploadimage',
+                'widget',
+                'dialog',
+            ]
+        ),
+    }
 }
 
 # Email settings

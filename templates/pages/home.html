@@ -4,74 +4,172 @@ endblock title %} {% block extra_css %}
 <!-- Add any page-specific CSS here -->
 {% endblock %} {% block content %}
 <!-- Hero Section -->
-<div class="relative min-h-[80vh] w-full overflow-hidden">
-  <!-- Background Image with Overlay -->
-  <div class="absolute inset-0">
-    <img
-      src="{% static 'images/hero-bg.png' %}"
-      alt="DDS Background"
-      class="w-full h-full object-cover"
-    />
-    <div
-      class="absolute inset-0 bg-gradient-to-b from-black/70 to-black/50"
-    ></div>
+{% load static %}
+
+<style>
+  .custom-carousel-height {
+    height: 860px;
+  }
+
+  .custom-carousel-height img {
+    height: 100%; /* Ensures images scale correctly */
+    object-fit: cover;
+  }
+</style>
+
+<!-- Hero Section with Carousel -->
+
+<div class="relative w-full custom-carousel-height overflow-hidden">
+  <!-- Dark overlay for better text contrast -->
+  <div class="absolute inset-0 bg-black/40 z-10"></div>
+
+  <!-- Carousel Container -->
+  <div id="carousel" class="flex transition-transform duration-700 ease-in-out">
+    {% for image in carousel_images %} {% if image.exists %}
+    <div class="w-full flex-shrink-0">
+      <img
+        src="{% static image.url %}"
+        alt="{{ image.alt }}"
+        class="w-full h-[75px] object-cover"
+      />
+    </div>
+    {% endif %} {% endfor %}
   </div>
 
-  <!-- Content -->
-  <div class="relative z-10 flex items-center justify-center min-h-[80vh] px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <!-- Main Heading -->
-      <h1
-        class="mb-6 text-4xl md:text-4xl font-bold text-white tracking-tight leading-tight"
-      >
-        Empowering Development Excellence through Research and Consulting
+  <!-- Navigation Arrows -->
+  <button
+    id="prevBtn"
+    class="absolute top-1/2 left-4 transform -translate-y-1/2 z-20 bg-blue-600 hover:bg-blue-700 text-white w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none"
+  >
+    ←
+  </button>
+  <button
+    id="nextBtn"
+    class="absolute top-1/2 right-4 transform -translate-y-1/2 z-20 bg-blue-600 hover:bg-blue-700 text-white w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none"
+  >
+    →
+  </button>
+
+  <!-- Indicators -->
+  <div
+    class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20"
+  >
+    {% for image in carousel_images %} {% if image.exists %}
+    <button
+      class="w-2 h-2 rounded-full transition-all duration-300 ease-in-out{% if forloop.first %} bg-white{% else %} bg-white/50 hover:bg-white/75{% endif %}"
+      data-index="{{ forloop.counter0 }}"
+    ></button>
+    {% endif %} {% endfor %}
+  </div>
+
+  <!-- Text Overlay - Adjusted vertical positioning -->
+  <div
+    class="absolute inset-y-0 left-0 z-20 flex items-center px-8 md:px-16 w-full md:w-2/3 lg:w-1/2"
+  >
+    <div
+      class="bg-gray-800 bg-opacity-90 p-4 rounded-lg transform -translate-y-1"
+    >
+      <h1 class="text-2xl md:text-3xl font-bold text-white mb-2">
+        Development Decision Support
       </h1>
-
-      <!-- Subtitle -->
-      <p
-        class="mb-8 text-lg md:text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed"
-      >
+      <p class="text-sm md:text-base text-gray-200 mb-4">
         Empowering organizations with actionable insights and strategic
-        expertise to drive impactful and sustainable development solutions.
+        expertise
       </p>
-
-      <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <div class="flex gap-3">
         <a
-          href="{% url 'core:about' %}"
-          class="inline-block px-8 py-3 text-lg font-medium text-white border-2 border-primary bg-primary rounded-lg hover:bg-primary/90 transition-colors duration-300"
+          href="#"
+          class="inline-block px-4 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300"
         >
-          More about us
+          Get Started
         </a>
         <a
-          href="{% url 'core:contact' %}"
-          class="inline-block px-8 py-3 text-lg font-medium text-white border-2 border-white rounded-lg hover:bg-white hover:text-gray-900 transition-colors duration-300"
+          href="#"
+          class="inline-block px-4 py-1.5 border border-white text-white text-sm rounded-lg hover:bg-white hover:text-gray-900 transition duration-300"
         >
-          Get in touch
+          Learn More
         </a>
-      </div>
-
-      <!-- Optional: Scroll Indicator -->
-      <div
-        class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block"
-      >
-        <svg
-          class="w-6 h-6 text-white"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 14l-7 7m0 0l-7-7m7 7V3"
-          />
-        </svg>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const carousel = document.getElementById("carousel");
+    const slides = document.querySelectorAll("#carousel > div");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const indicators = document.querySelectorAll("[data-index]");
+    let currentIndex = 0;
+    let isTransitioning = false;
+
+    function updateCarousel(newIndex) {
+      if (isTransitioning) return;
+      isTransitioning = true;
+
+      currentIndex = newIndex;
+      const offset = -currentIndex * 100;
+      carousel.style.transform = `translateX(${offset}%)`;
+
+      // Update indicators
+      indicators.forEach((indicator, index) => {
+        if (index === currentIndex) {
+          indicator.classList.remove("bg-white/50");
+          indicator.classList.add("bg-white");
+        } else {
+          indicator.classList.add("bg-white/50");
+          indicator.classList.remove("bg-white");
+        }
+      });
+
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 700);
+    }
+
+    // Previous button click
+    prevBtn.addEventListener("click", () => {
+      const newIndex = currentIndex > 0 ? currentIndex - 1 : slides.length - 1;
+      updateCarousel(newIndex);
+    });
+
+    // Next button click
+    nextBtn.addEventListener("click", () => {
+      const newIndex = currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
+      updateCarousel(newIndex);
+    });
+
+    // Indicator clicks
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener("click", () => {
+        if (currentIndex !== index) {
+          updateCarousel(index);
+        }
+      });
+    });
+
+    // Auto-play functionality
+    let autoplayInterval = setInterval(() => {
+      const newIndex = currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
+      updateCarousel(newIndex);
+    }, 5000);
+
+    // Pause on hover
+    carousel.parentElement.addEventListener("mouseenter", () => {
+      clearInterval(autoplayInterval);
+    });
+
+    // Resume on mouse leave
+    carousel.parentElement.addEventListener("mouseleave", () => {
+      autoplayInterval = setInterval(() => {
+        const newIndex =
+          currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
+        updateCarousel(newIndex);
+      }, 5000);
+    });
+  });
+</script>
 
 <!-- What We Offer Section -->
 <section class="w-full bg-base-200 py-20">
@@ -497,25 +595,56 @@ endblock title %} {% block extra_css %}
 <section class="py-20 bg-base-200">
   <div class="container mx-auto px-4">
     <div class="max-w-3xl mx-auto text-center mb-16">
-      <h2 class="text-4xl font-bold text-gray-900 mb-6">Featured Projects</h2>
+      <h2 class="text-4xl font-bold text-gray-900 mb-6">
+        Transformative Solutions in Action
+      </h2>
       <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {% for project in featured_projects %}
-      <div class="card bg-base-100 shadow-xl image-full">
+      <div
+        class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+      >
+        {% if project.image %}
         <figure>
-          <img src="{{ project.image.url }}" alt="{{ project.title }}" />
+          <img
+            src="{{ project.image.url }}"
+            alt="{{ project.title }}"
+            class="h-56 w-full object-cover"
+          />
         </figure>
+        {% endif %}
         <div class="card-body">
+          <div class="flex justify-between items-start mb-2">
+            <div class="badge badge-primary">{{ project.location }}</div>
+            <div class="text-sm text-base-content/70">
+              {{ project.date_completed|date:"Y" }}
+            </div>
+          </div>
           <h3 class="card-title">{{ project.title }}</h3>
-          <p>{{ project.description|truncatewords:30 }}</p>
-          <div class="card-actions justify-end">
+          <p class="text-sm text-base-content/70 mb-2">{{ project.client }}</p>
+          <p>{{ project.description|truncatewords:25 }}</p>
+          <div class="card-actions justify-end mt-4">
             <a
               href="{% url 'core:project_detail' project.slug %}"
               class="btn btn-primary"
-              >Read more</a
             >
+              View Project
+            </a>
           </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-span-full text-center py-12">
+        <div class="max-w-md mx-auto">
+          <h3 class="text-2xl font-bold mb-4">No projects found</h3>
+          <p class="mb-4">
+            Try adjusting your search criteria or browse all projects.
+          </p>
+          <a href="{% url 'core:projects' %}" class="btn btn-primary"
+            >View All Projects</a
+          >
         </div>
       </div>
       {% endfor %}
@@ -718,5 +847,17 @@ endblock title %} {% block extra_css %}
   </div>
 </section>
 {% endblock %} {% block extra_js %}
-<!-- Add any page-specific JavaScript here -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const carouselElement = document.getElementById("default-carousel");
+    if (carouselElement) {
+      const options = {
+        indicators: true,
+        ride: "carousel",
+        interval: 5000,
+      };
+      const carousel = new Carousel(carouselElement, options);
+    }
+  });
+</script>
 {% endblock %}

@@ -13,6 +13,16 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <!-- In your base.html, before closing body tag -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- Add Heroicons for better arrows -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/heroicons/1.0.6/outline/chevron-left.svg"
+      rel="stylesheet"
+    />
 
     {% block extra_css %}{% endblock %}
   </head>
