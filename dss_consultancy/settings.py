@@ -21,7 +21,7 @@ DEBUG = os.getenv('DEBUG', default=False)
 port = int(os.environ.get('PORT', 8000))
 
 ENV_ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS') or None
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['ddsconsultancy.org', 'www.ddsconsultancy.org']
 
 # Application definition
 
