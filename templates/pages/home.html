@@ -74,14 +74,8 @@ endblock title %} {% block extra_css %}
       </p>
       <div class="flex gap-3">
         <a
-          href="#"
-          class="inline-block px-4 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300"
-        >
-          Get Started
-        </a>
-        <a
-          href="#"
-          class="inline-block px-4 py-1.5 border border-white text-white text-sm rounded-lg hover:bg-white hover:text-gray-900 transition duration-300"
+          href="{% url 'core:about' %}"
+          class="inline-block px-5 py-2.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300"
         >
           Learn More
         </a>
@@ -89,83 +83,6 @@ endblock title %} {% block extra_css %}
     </div>
   </div>
 </div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const carousel = document.getElementById("carousel");
-    const slides = document.querySelectorAll("#carousel > div");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const indicators = document.querySelectorAll("[data-index]");
-    let currentIndex = 0;
-    let isTransitioning = false;
-
-    function updateCarousel(newIndex) {
-      if (isTransitioning) return;
-      isTransitioning = true;
-
-      currentIndex = newIndex;
-      const offset = -currentIndex * 100;
-      carousel.style.transform = `translateX(${offset}%)`;
-
-      // Update indicators
-      indicators.forEach((indicator, index) => {
-        if (index === currentIndex) {
-          indicator.classList.remove("bg-white/50");
-          indicator.classList.add("bg-white");
-        } else {
-          indicator.classList.add("bg-white/50");
-          indicator.classList.remove("bg-white");
-        }
-      });
-
-      setTimeout(() => {
-        isTransitioning = false;
-      }, 700);
-    }
-
-    // Previous button click
-    prevBtn.addEventListener("click", () => {
-      const newIndex = currentIndex > 0 ? currentIndex - 1 : slides.length - 1;
-      updateCarousel(newIndex);
-    });
-
-    // Next button click
-    nextBtn.addEventListener("click", () => {
-      const newIndex = currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
-      updateCarousel(newIndex);
-    });
-
-    // Indicator clicks
-    indicators.forEach((indicator, index) => {
-      indicator.addEventListener("click", () => {
-        if (currentIndex !== index) {
-          updateCarousel(index);
-        }
-      });
-    });
-
-    // Auto-play functionality
-    let autoplayInterval = setInterval(() => {
-      const newIndex = currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
-      updateCarousel(newIndex);
-    }, 5000);
-
-    // Pause on hover
-    carousel.parentElement.addEventListener("mouseenter", () => {
-      clearInterval(autoplayInterval);
-    });
-
-    // Resume on mouse leave
-    carousel.parentElement.addEventListener("mouseleave", () => {
-      autoplayInterval = setInterval(() => {
-        const newIndex =
-          currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
-        updateCarousel(newIndex);
-      }, 5000);
-    });
-  });
-</script>
 
 <!-- What We Offer Section -->
 <section class="w-full bg-base-200 py-20">
@@ -613,7 +530,11 @@ endblock title %} {% block extra_css %}
         {% endif %}
         <div class="card-body">
           <div class="flex justify-between items-start mb-2">
-            <div class="badge badge-primary">{{ project.location }}</div>
+            <div
+              class="badge py-4 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300"
+            >
+              {{ project.location }}
+            </div>
             <div class="text-sm text-base-content/70">
               {{ project.date_completed|date:"Y" }}
             </div>
@@ -624,7 +545,7 @@ endblock title %} {% block extra_css %}
           <div class="card-actions justify-end mt-4">
             <a
               href="{% url 'core:project_detail' project.slug %}"
-              class="btn btn-primary"
+              class="btn bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300"
             >
               View Project
             </a>
@@ -837,7 +758,9 @@ endblock title %} {% block extra_css %}
       Let's discuss how we can help you with your research and data collection
       needs.
     </p>
-    <a href="{% url 'core:contact' %}" class="btn btn-primary btn-lg"
+    <a
+      href="{% url 'core:contact' %}"
+      class="btn px-5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 btn-lg"
       >Contact us</a
     >
   </div>
@@ -854,6 +777,83 @@ endblock title %} {% block extra_css %}
       };
       const carousel = new Carousel(carouselElement, options);
     }
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const carousel = document.getElementById("carousel");
+    const slides = document.querySelectorAll("#carousel > div");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const indicators = document.querySelectorAll("[data-index]");
+    let currentIndex = 0;
+    let isTransitioning = false;
+
+    function updateCarousel(newIndex) {
+      if (isTransitioning) return;
+      isTransitioning = true;
+
+      currentIndex = newIndex;
+      const offset = -currentIndex * 100;
+      carousel.style.transform = `translateX(${offset}%)`;
+
+      // Update indicators
+      indicators.forEach((indicator, index) => {
+        if (index === currentIndex) {
+          indicator.classList.remove("bg-white/50");
+          indicator.classList.add("bg-white");
+        } else {
+          indicator.classList.add("bg-white/50");
+          indicator.classList.remove("bg-white");
+        }
+      });
+
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 700);
+    }
+
+    // Previous button click
+    prevBtn.addEventListener("click", () => {
+      const newIndex = currentIndex > 0 ? currentIndex - 1 : slides.length - 1;
+      updateCarousel(newIndex);
+    });
+
+    // Next button click
+    nextBtn.addEventListener("click", () => {
+      const newIndex = currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
+      updateCarousel(newIndex);
+    });
+
+    // Indicator clicks
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener("click", () => {
+        if (currentIndex !== index) {
+          updateCarousel(index);
+        }
+      });
+    });
+
+    // Auto-play functionality
+    let autoplayInterval = setInterval(() => {
+      const newIndex = currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
+      updateCarousel(newIndex);
+    }, 5000);
+
+    // Pause on hover
+    carousel.parentElement.addEventListener("mouseenter", () => {
+      clearInterval(autoplayInterval);
+    });
+
+    // Resume on mouse leave
+    carousel.parentElement.addEventListener("mouseleave", () => {
+      autoplayInterval = setInterval(() => {
+        const newIndex =
+          currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
+        updateCarousel(newIndex);
+      }, 5000);
+    });
   });
 </script>
 {% endblock %}

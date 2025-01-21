@@ -3,6 +3,10 @@ import dj_database_url
 from decouple import config
 from dotenv import load_dotenv
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import cloudinary_storage
 
 load_dotenv()
 
@@ -21,7 +25,7 @@ DEBUG = os.getenv('DEBUG', default=False)
 port = int(os.environ.get('PORT', 8000))
 
 ENV_ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS') or None
-ALLOWED_HOSTS = ['ddsconsultancy.org', 'www.ddsconsultancy.org']
+ALLOWED_HOSTS = ['ddsconsultancy.org', 'www.ddsconsultancy.org', '127.0.0.1']
 
 # Application definition
 
