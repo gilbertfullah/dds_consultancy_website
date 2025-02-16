@@ -575,7 +575,7 @@ endblock title %} {% block extra_css %}
           </div>
           <h3 class="card-title">{{ project.title }}</h3>
           <p class="text-sm text-base-content/70 mb-2">{{ project.client }}</p>
-          <p>{{ project.description|truncatewords:25 }}</p>
+          <p>{{ project.description|truncatewords:25|safe }}</p>
           <div class="card-actions justify-end mt-4">
             <a
               href="{% url 'core:project_detail' project.slug %}"

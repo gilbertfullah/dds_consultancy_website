@@ -49,7 +49,7 @@ endblock %} {% block content %}
     <div class="lg:col-span-2">
       <div class="prose max-w-none">
         <h2 class="text-3xl font-bold mb-6">Project Overview</h2>
-        <p class="text-lg">{{ project.description }}</p>
+        <p class="text-lg">{{ project.description|safe }}</p>
 
         {% if project.methodology %}
         <h2 class="text-3xl font-bold mb-6 mt-12">Methodology</h2>
@@ -105,7 +105,7 @@ endblock %} {% block content %}
             <div class="card-body">
               <h3 class="card-title">{{ related.title }}</h3>
               <p class="text-sm text-base-content/70">{{ related.client }}</p>
-              <p>{{ related.description|truncatewords:25 }}</p>
+              <p>{{ related.description|truncatewords:25|safe }}</p>
               <div class="card-actions justify-end mt-4">
                 <a
                   href="{% url 'core:project_detail' related.slug %}"
