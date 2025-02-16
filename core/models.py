@@ -1,9 +1,10 @@
 from django.db import models
 from django.utils.text import slugify
+from ckeditor.fields import RichTextField
 
 class Service(models.Model):
     title = models.CharField(max_length=200)
-    description = models.TextField()
+    description = RichTextField()
     icon = models.ImageField(upload_to='services/', blank=True)
     slug = models.SlugField(unique=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -17,24 +18,31 @@ class Service(models.Model):
     def __str__(self):
         return self.title
 
+# models.py - Updated TeamMember model
 class TeamMember(models.Model):
     name = models.CharField(max_length=100)
     position = models.CharField(max_length=100)
-    bio = models.TextField()
+    bio = RichTextField()
     image = models.ImageField(upload_to='team/')
     email = models.EmailField(blank=True)
     linkedin = models.URLField(blank=True)
     order = models.IntegerField(default=0)
+    
+    professional_experience = RichTextField(blank=True)
+    skills = RichTextField(blank=True)
+    certifications = RichTextField(blank=True)
+    education = RichTextField(blank=True)
+    publications = RichTextField(blank=True)
 
     class Meta:
-        ordering = ['order', 'name']
+        ordering = ['order']
 
     def __str__(self):
         return self.name
 
 class Project(models.Model):
     title = models.CharField(max_length=200)
-    description = models.TextField()
+    description = RichTextField()
     image = models.ImageField(upload_to='projects/')
     client = models.CharField(max_length=100)
     date_completed = models.DateField()
@@ -52,7 +60,7 @@ class Project(models.Model):
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=200)
-    content = models.TextField()
+    content = RichTextField()
     image = models.ImageField(upload_to='blog/')
     author = models.ForeignKey(TeamMember, on_delete=models.SET_NULL, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -80,7 +88,7 @@ class Publication(models.Model):
 
     title = models.CharField(max_length=255)
     authors = models.CharField(max_length=255)
-    abstract = models.TextField()
+    abstract = RichTextField()
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     publication_date = models.DateField()
     pdf_file = models.FileField(upload_to='publications/')
@@ -111,7 +119,7 @@ class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     subject = models.CharField(max_length=200)
-    message = models.TextField()
+    message = RichTextField()
     created_at = models.DateTimeField(auto_now_add=True)
     responded = models.BooleanField(default=False)
 

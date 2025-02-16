@@ -8,6 +8,7 @@ from django.conf import settings
 from .forms import ContactForm
 from django.db.models import Q
 from .models import Publication
+from django.views.generic import DetailView
 import os
 
 class HomeView(TemplateView):
@@ -62,6 +63,11 @@ class TeamView(ListView):
         context['operations_team'] = TeamMember.objects.filter(
             position__icontains='Operations').order_by('order')
         return context
+
+class TeamMemberDetailView(DetailView):
+    model = TeamMember
+    template_name = 'team_member_detail.html'
+    context_object_name = 'member'
 
 class ServicesView(ListView):
     template_name = 'pages/services.html'

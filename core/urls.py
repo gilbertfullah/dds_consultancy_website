@@ -1,4 +1,5 @@
 from django.urls import path
+from .views import TeamMemberDetailView
 from . import views
 
 app_name = 'core'
@@ -31,6 +32,9 @@ urlpatterns = [
     
     # Terms of Service
     path('terms-of-service/', views.TermsOfServiceView.as_view(), name='terms'),
+    
+    # Team
+    path('team/<int:pk>/', TeamMemberDetailView.as_view(), name='team_member_detail'),
     
     # Cookie Policy
     path('cookie-policy/', views.CookiePolicyView.as_view(), name='cookie-policy'),

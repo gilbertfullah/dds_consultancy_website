@@ -56,7 +56,7 @@ Decision Support (DDS){% endblock %} {% block content %}
             </div>
             <div class="stat">
               <div class="stat-title">Projects Completed</div>
-              <div class="stat-value">500+</div>
+              <div class="stat-value">10+</div>
             </div>
           </div>
         </div>
@@ -744,71 +744,76 @@ Decision Support (DDS){% endblock %} {% block content %}
         <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
       </div>
 
+      <!-- Team Members Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
         {% for member in team_members %}
-        <div class="text-center group">
-          <!-- Image Container with Bio Dropdown -->
-          <div class="relative mb-6">
+        <!-- Member Card -->
+        <div class="text-center group relative">
+          <div class="mb-6">
             <img
               src="{{ member.image.url }}"
               alt="{{ member.name }}"
-              class="w-full aspect-square object-cover transition-all duration-300 mb-6 rounded-lg"
-              id="member-image-{{ forloop.counter }}"
+              class="w-64 h-64 object-cover transition-all duration-300 mb-6 rounded-lg shadow-md mx-auto"
             />
-
-            <!-- Bio Dropdown -->
-            <div
-              id="member-bio-{{ forloop.counter }}"
-              class="hidden absolute left-0 right-0 top-full mt-2 p-4 bg-white shadow-lg rounded-lg z-10 text-left"
-            >
-              <p class="text-gray-600">{{ member.bio }}</p>
-
-              <!-- Read Less Button -->
-              <div class="flex items-center justify-center mt-4">
-                <button
-                  onclick="toggleBio('{{ forloop.counter }}')"
-                  class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-200 cursor-pointer"
-                >
-                  <span>Show less</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-4 w-4 ml-1 transform rotate-180 transition-transform duration-200"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
           </div>
-
-          <!-- Member Info -->
-          <h3 class="text-2xl font-semibold text-gray-900 mb-2">
+          <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-2">
             {{ member.name }}
           </h3>
-          <p class="text-lg uppercase tracking-wider text-gray-600 mb-4">
+          <p
+            class="text-base md:text-lg uppercase tracking-wider text-gray-600 mb-4"
+          >
             {{ member.position }}
           </p>
-
-          <!-- Show More Button -->
           <div class="flex items-center justify-center">
             <button
-              onclick="toggleBio('{{ forloop.counter }}')"
+              onclick="toggleModal('{{ forloop.counter }}')"
               class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-200 cursor-pointer"
               id="read-more-btn-{{ forloop.counter }}"
             >
               <span id="button-text-{{ forloop.counter }}">Show more</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-4 w-4 ml-1 transform transition-transform duration-200"
-                id="arrow-{{ forloop.counter }}"
+                class="h-4 w-4 ml-1 transition-transform duration-200"
+                id="icon-{{ forloop.counter }}"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                fill="none"
+              >
+                <!-- Plus Icon by default -->
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 5v14M5 12h14"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Modal for Member Info -->
+        <div
+          class="fixed inset-0 flex items-center justify-center z-50 hidden"
+          id="member-modal-{{ forloop.counter }}"
+        >
+          <!-- Modal Overlay -->
+          <div
+            class="absolute inset-0 bg-black opacity-50 transition-opacity duration-300"
+            onclick="toggleModal('{{ forloop.counter }}')"
+          ></div>
+          <!-- Modal Content -->
+          <div
+            class="bg-white rounded-lg shadow-lg relative p-8 max-w-lg w-full z-10 overflow-y-auto max-h-[80vh] transition-all duration-300 transform scale-0 opacity-0"
+            id="modal-content-{{ forloop.counter }}"
+          >
+            <!-- Close Button -->
+            <button
+              onclick="toggleModal('{{ forloop.counter }}')"
+              class="absolute top-2 right-2 text-gray-600 hover:text-gray-900 transition-colors duration-200"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -817,35 +822,97 @@ Decision Support (DDS){% endblock %} {% block content %}
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M19 9l-7 7-7-7"
+                  d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
             </button>
-          </div>
-
-          {% if member.linkedin %}
-          <div class="mt-4">
-            <a
-              href="{{ member.linkedin }}"
-              target="_blank"
-              class="text-gray-600 hover:text-blue-600 transition-colors duration-200"
+            <!-- Modal Header -->
+            <h2 class="text-xl md:text-2xl font-semibold mb-4">
+              {{ member.name }}
+            </h2>
+            <p
+              class="text-base md:text-lg uppercase tracking-wider text-gray-600 mb-4"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 mx-auto"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                />
-              </svg>
-            </a>
+              {{ member.position }}
+            </p>
+            <!-- Member Details -->
+            {% if member.bio %}
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">Bio</h4>
+              <p class="text-gray-600">{{ member.bio }}</p>
+            </div>
+            {% endif %} {% if member.professional_experience %}
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">Professional Experience</h4>
+              <p class="text-gray-600">{{ member.professional_experience }}</p>
+            </div>
+            {% endif %} {% if member.skills %}
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">Skills</h4>
+              <p class="text-gray-600">{{ member.skills }}</p>
+            </div>
+            {% endif %} {% if member.certifications %}
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">Certifications</h4>
+              <p class="text-gray-600">{{ member.certifications }}</p>
+            </div>
+            {% endif %} {% if member.education %}
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">Education</h4>
+              <p class="text-gray-600">{{ member.education }}</p>
+            </div>
+            {% endif %} {% if member.publications %}
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">Publications</h4>
+              <p class="text-gray-600">{{ member.publications }}</p>
+            </div>
+            {% endif %}
           </div>
-          {% endif %}
         </div>
         {% endfor %}
       </div>
+
+      <!-- JavaScript to Toggle the Modal -->
+      <script>
+        function toggleModal(memberId) {
+          const modal = document.getElementById(`member-modal-${memberId}`);
+          const modalContent = document.getElementById(
+            `modal-content-${memberId}`
+          );
+          const buttonText = document.getElementById(`button-text-${memberId}`);
+          const icon = document.getElementById(`icon-${memberId}`);
+          const iconPath = icon.querySelector("path");
+
+          if (modal.classList.contains("hidden")) {
+            // Show modal: Remove hidden and animate content in
+            modal.classList.remove("hidden");
+            setTimeout(() => {
+              modalContent.classList.remove("scale-0", "opacity-0");
+              modalContent.classList.add("scale-100", "opacity-100");
+            }, 20);
+            // Update button text and icon to indicate "close"
+            buttonText.textContent = "Show less";
+            iconPath.setAttribute("d", "M5 12h14"); // minus icon
+          } else {
+            // Hide modal: Animate content out then add hidden class
+            modalContent.classList.remove("scale-100", "opacity-100");
+            modalContent.classList.add("scale-0", "opacity-0");
+            setTimeout(() => {
+              modal.classList.add("hidden");
+            }, 300);
+            // Reset button text and icon to indicate "open"
+            buttonText.textContent = "Show more";
+            iconPath.setAttribute("d", "M12 5v14M5 12h14"); // plus icon
+          }
+        }
+      </script>
+
+      <script>
+        function toggleModal(memberId) {
+          const modal = document.getElementById(`member-modal-${memberId}`);
+          modal.classList.toggle("hidden");
+        }
+      </script>
 
       <!-- View Full Team Button -->
       <div class="text-center mt-16">
