@@ -18,181 +18,204 @@ Development Decision Support (DDS){% endblock %} {% block content %}
   <!-- Leadership Team -->
   {% if leadership_team %}
   <div class="mb-20">
-    <h2 class="text-3xl font-bold text-center mb-12">Leadership Team</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {% for member in leadership_team %}
+    <h2 class="text-3xl font-bold text-center mb-12">Team Members</h2>
+
+    <!-- Team Members Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+      {% for member in team_members %}
+      <!-- Member Card -->
+      <div class="text-center group relative">
+        <div class="mb-6">
+          <img
+            src="{{ member.image.url }}"
+            alt="{{ member.name }}"
+            class="w-64 h-64 object-cover transition-all duration-300 mb-6 rounded-lg shadow-md mx-auto"
+          />
+        </div>
+        <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-2">
+          {{ member.name }}
+        </h3>
+        <p
+          class="text-base md:text-lg uppercase tracking-wider text-gray-600 mb-4"
+        >
+          {{ member.position }}
+        </p>
+        {% if member.email or member.linkedin %}
+        <div class="flex items-center justify-center space-x-4 mb-4">
+          {% if member.email %}
+          <a
+            href="mailto:{{ member.email }}"
+            class="flex items-center text-blue-600 hover:underline"
+          >
+            <!-- Envelope Icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5 mr-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+          </a>
+          {% endif %} {% if member.linkedin %}
+          <a
+            href="{{ member.linkedin }}"
+            target="_blank"
+            class="flex items-center text-blue-600 hover:underline"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5 mr-1"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+              />
+            </svg>
+          </a>
+          {% endif %}
+        </div>
+        {% endif %}
+        <button
+          onclick="toggleModal('{{ forloop.counter }}')"
+          class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-200 cursor-pointer"
+        >
+          <span id="button-text-{{ forloop.counter }}">Show more</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 ml-1 transition-transform duration-200"
+            id="icon-{{ forloop.counter }}"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            fill="none"
+          >
+            <!-- Plus Icon (Default) -->
+            <path
+              d="M12 5v14M5 12h14"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal for Member Info -->
       <div
-        class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+        id="modal-{{ forloop.counter }}"
+        class="fixed inset-0 z-50 hidden overflow-y-auto"
+        aria-labelledby="modal-title-{{ forloop.counter }}"
+        role="dialog"
+        aria-modal="true"
       >
-        <figure class="px-6 pt-6">
-          {% if member.image %}
-          <img
-            src="{{ member.image.url }}"
-            alt="{{ member.name }}"
-            class="rounded-xl h-64 w-64 object-cover"
-          />
-          {% else %}
-          <div class="avatar placeholder">
-            <div
-              class="bg-neutral-focus text-neutral-content rounded-xl w-64 h-64"
-            >
-              <span class="text-3xl">{{ member.name|make_list|first }}</span>
+        <!-- Modal Overlay -->
+        <div
+          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+          onclick="toggleModal('{{ forloop.counter }}')"
+        ></div>
+        <!-- Modal Content Container -->
+        <div
+          class="flex items-center justify-center min-h-screen px-4 text-center"
+        >
+          <!-- This element is to trick the browser into centering the modal contents. -->
+          <span
+            class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+            >&#8203;</span
+          >
+          <div
+            class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+          >
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <div class="sm:flex sm:items-start">
+                <div
+                  class="mt-3 text-center sm:mt-0 sm:text-left w-full overflow-y-auto"
+                >
+                  <h3
+                    class="text-xl md:text-2xl font-semibold text-gray-900"
+                    id="modal-title-{{ forloop.counter }}"
+                  >
+                    {{ member.name }}
+                  </h3>
+                  <p class="mt-1 text-base md:text-lg text-gray-600">
+                    {{ member.position }}
+                  </p>
+                  <!-- Member Details -->
+                  <div class="mt-4 space-y-4">
+                    {% if member.bio %}
+                    <div class="prose">
+                      <h4 class="font-bold text-gray-800">Bio</h4>
+                      <p class="text-gray-600">{{ member.bio|safe }}</p>
+                    </div>
+                    {% endif %} {% if member.professional_experience %}
+                    <div class="prose">
+                      <h4 class="font-bold text-gray-800">
+                        Professional Experience
+                      </h4>
+                      <p class="text-gray-600">
+                        {{ member.professional_experience|safe }}
+                      </p>
+                    </div>
+                    {% endif %} {% if member.skills %}
+                    <div class="prose">
+                      <h4 class="font-bold text-gray-800">Skills</h4>
+                      <p class="text-gray-600">{{ member.skills|safe }}</p>
+                    </div>
+                    {% endif %} {% if member.certifications %}
+                    <div class="prose">
+                      <h4 class="font-bold text-gray-800">Certifications</h4>
+                      <p class="text-gray-600">
+                        {{ member.certifications|safe }}
+                      </p>
+                    </div>
+                    {% endif %} {% if member.education %}
+                    <div class="prose">
+                      <h4 class="font-bold text-gray-800">Education</h4>
+                      <p class="text-gray-600">{{ member.education|safe }}</p>
+                    </div>
+                    {% endif %} {% if member.publications %}
+                    <div class="prose">
+                      <h4 class="font-bold text-gray-800">Publications</h4>
+                      <p class="text-gray-600">
+                        {{ member.publications|safe }}
+                      </p>
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          {% endif %}
-        </figure>
-        <div class="card-body text-center">
-          <h3 class="card-title justify-center text-xl">{{ member.name }}</h3>
-          <p class="text-primary font-medium">{{ member.position }}</p>
-          <p class="text-sm text-base-content/70">
-            {{ member.bio|truncatewords:30 }}
-          </p>
-          <div class="card-actions justify-center mt-4">
-            {% if member.email %}
-            <a
-              href="mailto:{{ member.email }}"
-              class="btn btn-circle btn-ghost"
+            <div
+              class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
+              <button
+                onclick="toggleModal('{{ forloop.counter }}')"
+                type="button"
+                class="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-200 sm:ml-3 sm:w-auto sm:text-sm"
               >
-                <path
-                  d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                />
-                <path
-                  d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                />
-              </svg>
-            </a>
-            {% endif %} {% if member.linkedin %}
-            <a
-              href="{{ member.linkedin }}"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-circle btn-ghost"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                />
-              </svg>
-            </a>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-  {% endif %}
-
-  <!-- Research Team -->
-  {% if research_team %}
-  <div class="mb-20">
-    <h2 class="text-3xl font-bold text-center mb-12">Research Team</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {% for member in research_team %}
-      <div class="card bg-base-100 shadow-xl">
-        <figure class="px-4 pt-4">
-          {% if member.image %}
-          <img
-            src="{{ member.image.url }}"
-            alt="{{ member.name }}"
-            class="rounded-xl h-48 w-48 object-cover"
-          />
-          {% else %}
-          <div class="avatar placeholder">
-            <div
-              class="bg-neutral-focus text-neutral-content rounded-xl w-48 h-48"
-            >
-              <span class="text-3xl">{{ member.name|make_list|first }}</span>
+                Close
+              </button>
             </div>
           </div>
-          {% endif %}
-        </figure>
-        <div class="card-body text-center pt-4">
-          <h3 class="font-bold">{{ member.name }}</h3>
-          <p class="text-sm text-primary">{{ member.position }}</p>
         </div>
       </div>
       {% endfor %}
     </div>
-  </div>
-  {% endif %}
 
-  <!-- Data Team -->
-  {% if data_team %}
-  <div class="mb-20">
-    <h2 class="text-3xl font-bold text-center mb-12">Data Team</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {% for member in data_team %}
-      <div class="card bg-base-100 shadow-xl">
-        <figure class="px-4 pt-4">
-          {% if member.image %}
-          <img
-            src="{{ member.image.url }}"
-            alt="{{ member.name }}"
-            class="rounded-xl h-48 w-48 object-cover"
-          />
-          {% else %}
-          <div class="avatar placeholder">
-            <div
-              class="bg-neutral-focus text-neutral-content rounded-xl w-48 h-48"
-            >
-              <span class="text-3xl">{{ member.name|make_list|first }}</span>
-            </div>
-          </div>
-          {% endif %}
-        </figure>
-        <div class="card-body text-center pt-4">
-          <h3 class="font-bold">{{ member.name }}</h3>
-          <p class="text-sm text-primary">{{ member.position }}</p>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-  {% endif %}
-
-  <!-- Operations Team -->
-  {% if operations_team %}
-  <div class="mb-20">
-    <h2 class="text-3xl font-bold text-center mb-12">Operations Team</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {% for member in operations_team %}
-      <div class="card bg-base-100 shadow-xl">
-        <figure class="px-4 pt-4">
-          {% if member.image %}
-          <img
-            src="{{ member.image.url }}"
-            alt="{{ member.name }}"
-            class="rounded-xl h-48 w-48 object-cover"
-          />
-          {% else %}
-          <div class="avatar placeholder">
-            <div
-              class="bg-neutral-focus text-neutral-content rounded-xl w-48 h-48"
-            >
-              <span class="text-3xl">{{ member.name|make_list|first }}</span>
-            </div>
-          </div>
-          {% endif %}
-        </figure>
-        <div class="card-body text-center pt-4">
-          <h3 class="font-bold">{{ member.name }}</h3>
-          <p class="text-sm text-primary">{{ member.position }}</p>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
+    <!-- JavaScript to Toggle the Modal -->
+    <script>
+      function toggleModal(modalId) {
+        const modal = document.getElementById("modal-" + modalId);
+        modal.classList.toggle("hidden");
+      }
+    </script>
   </div>
   {% endif %}
 
