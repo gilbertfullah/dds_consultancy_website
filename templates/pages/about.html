@@ -1,750 +1,397 @@
-{% extends 'base.html' %} {% load static %} {% block title %}About Development
+{% extends 'base.html' %} {% load static %} {% block title %}About — Development
 Decision Support (DDS){% endblock %} {% block content %}
 
-<!-- Hero Section -->
-<section class="relative bg-base-200 w-full">
+<!-- ========================================================= -->
+<!-- HERO  -->
+<!-- ========================================================= -->
+<section class="relative isolate overflow-hidden bg-slate-900 text-white">
+  <!-- subtle animated gradient -->
+  <div
+    class="absolute inset-0 -z-10 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=60')] bg-cover bg-center opacity-30"
+  ></div>
+  <div
+    class="absolute inset-0 -z-10 bg-gradient-to-t from-slate-900 via-transparent to-transparent"
+  ></div>
+
+  <div class="container mx-auto px-4 py-24 md:py-32 text-center">
+    <h1
+      class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight"
+      data-aos="fade-up"
+    >
+      About <span class="text-emerald-400">DDS</span>
+    </h1>
+    <p
+      class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-slate-300"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      Learn about our mission, values, and commitment to excellence in
+      development research.
+    </p>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- WHO WE ARE – Modern Asymmetric Section                    -->
+<!-- ========================================================= -->
+<section class="relative isolate overflow-hidden py-20 md:py-28 bg-slate-50">
+  <div
+    class="absolute top-0 right-0 -z-0 w-96 h-96 bg-emerald-400/10 blur-3xl rounded-full translate-x-1/3 -translate-y-1/3"
+  ></div>
+
   <div class="container mx-auto px-4">
-    <div class="hero min-h-[40vh]">
-      <div class="hero-content text-center">
-        <div class="max-w-2xl">
-          <h1 class="text-5xl font-bold">
-            About Development Decision Support (DDS)
-          </h1>
-          <p class="py-6 text-xl">
-            Learn about our mission, values, and commitment to excellence in
-            development research.
-          </p>
+    <div class="grid lg:grid-cols-12 gap-10 items-center">
+      <!-- Image: overlaps left on large, stacks on small -->
+      <div class="lg:col-span-5 order-1 lg:order-2" data-aos="fade-right">
+        <div class="relative group">
+          <img
+            src="{% static 'images/about_us.jpg' %}"
+            alt="DDS history"
+            class="rounded-2xl shadow-xl w-full h-full object-cover aspect-[4/3]"
+          />
+          <!-- subtle hover overlay -->
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-emerald-500/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Copy + Stats -->
+      <div class="lg:col-span-7 order-2 lg:order-1" data-aos="fade-left">
+        <h2
+          class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-slate-900 mb-6"
+        >
+          Empowering
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-sky-500"
+            >Development</span
+          >
+          Excellence
+        </h2>
+
+        <p class="text-lg text-slate-600 leading-relaxed mb-4">
+          Development Decision Support (DDS) is a premier research and
+          consultancy firm delivering actionable insights and strategic guidance
+          to public, private and community actors.
+        </p>
+        <p class="text-lg text-slate-600 leading-relaxed mb-8">
+          We merge academic rigour with field-tested pragmatism to ensure
+          informed decisions, maximised impact and sustainable outcomes.
+        </p>
+
+        <!-- stat cards -->
+        <div class="flex flex-wrap gap-6">
+          <div
+            class="flex items-center gap-3 bg-white/60 backdrop-blur-sm border border-slate-200 rounded-xl px-5 py-3 shadow-sm hover:shadow-md transition"
+          >
+            <span class="text-3xl font-bold text-emerald-600">10+</span>
+            <span class="text-sm text-slate-600">Years of Experience</span>
+          </div>
+          <div
+            class="flex items-center gap-3 bg-white/60 backdrop-blur-sm border border-slate-200 rounded-xl px-5 py-3 shadow-sm hover:shadow-md transition"
+          >
+            <span class="text-3xl font-bold text-emerald-600">100+</span>
+            <span class="text-sm text-slate-600">Projects Completed</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Main Content -->
-<div class="w-full">
-  <!-- About Section -->
-  <section class="py-20 w-full">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div>
-          <img
-            src="{% static 'images/about_us.jpg' %}"
-            alt="Our History"
-            class="rounded-lg shadow-xl w-full"
-          />
-        </div>
-        <div>
-          <h2 class="text-3xl font-bold mb-6">
-            Empowering Development Excellence through Research and Consulting
-          </h2>
-          <p class="mb-4">
-            Development Decision Support (DDS) is a premier research and
-            consultancy firm that provides actionable insights and strategic
-            guidance to help organizations achieve their development objectives.
-            Specializing in policy analysis, strategic planning, monitoring, and
-            evaluation, we support public, private, and community sectors in
-            designing and implementing impactful development initiatives.
-          </p>
-          <p class="mb-4">
-            We combine academic rigor with practical experience to ensure that
-            your organization makes informed decisions, maximizes its impact,
-            and drives sustainable development outcomes.
-          </p>
-          <div class="stats shadow mt-8">
-            <div class="stat">
-              <div class="stat-title">Years of Experience</div>
-              <div class="stat-value">10+</div>
-            </div>
-            <div class="stat">
-              <div class="stat-title">Projects Completed</div>
-              <div class="stat-value">10+</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- ========================================================= -->
+<!-- MISSION / VISION – Split-Glass Section                    -->
+<!-- ========================================================= -->
+<section class="relative isolate overflow-hidden py-24 md:py-36 bg-slate-900">
+  <!-- animated background blobs -->
+  <div
+    class="absolute top-0 left-0 -z-10 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl -translate-x-1/3 -translate-y-1/3"
+  ></div>
+  <div
+    class="absolute bottom-0 right-0 -z-10 w-96 h-96 bg-sky-500/20 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"
+  ></div>
 
-  <!-- Mission & Vision Section -->
-  <section class="w-full bg-gray-50 py-20">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-4xl font-bold text-gray-900 mb-6">Mission & Vision</h2>
-        <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-        <!-- Mission Card -->
-        <div
-          class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
+  <div class="container mx-auto px-4">
+    <!-- headline -->
+    <div class="text-center mb-14" data-aos="fade-up">
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+        Mission &
+        <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-sky-400"
+          >Vision</span
         >
-          <div class="border-l-4 border-blue-500 pl-4 mb-6">
-            <h2 class="text-3xl font-bold text-gray-900">Our Mission</h2>
-          </div>
-          <p class="text-xl font-bold text-blue-600 mb-6">
-            Catalyzing Growth, One Decision at a Time
-          </p>
-          <p class="text-lg text-gray-600 leading-relaxed">
-            DDS is driven by a commitment to serve as a catalyst for the success
-            of development initiatives. We offer high-quality research, policy
-            development, and strategic support services, ensuring that our
-            clients make data-driven, effective decisions. We provide tailored
-            solutions that address unique challenges, promote efficient resource
-            allocation, and create long-lasting change.
-          </p>
-        </div>
-
-        <!-- Vision Card -->
-        <div
-          class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
-        >
-          <div class="border-l-4 border-green-500 pl-4 mb-6">
-            <h2 class="text-3xl font-bold text-gray-900">Our Vision</h2>
-          </div>
-          <p class="text-xl font-bold text-green-600 mb-6">
-            Shaping the Future of Development
-          </p>
-          <p class="text-lg text-gray-600 leading-relaxed">
-            To become the leading center of development research and policy
-            advisory, known for facilitating transformational change and helping
-            organizations realize their development goals. We are committed to
-            fostering innovation and excellence in development practices,
-            building capacity, and supporting the achievement of both local and
-            global development targets.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Core Values Section -->
-  <section class="w-full bg-white py-20">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-4xl font-bold text-gray-900 mb-6">Our Core Values</h2>
-        <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-      </div>
-      <div class="max-w-4xl mx-auto">
-        <img
-          src="{% static 'images/core_values.png' %}"
-          alt="DDS Core Values Diagram"
-          class="w-full h-auto"
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- What We Offer Section -->
-  <section class="w-full bg-base-200 py-20">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-4xl font-bold text-gray-900 mb-6">What We Offer</h2>
-        <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-      </div>
-      <p class="text-xl text-center max-w-3xl mx-auto mb-16">
-        DDS provides comprehensive development consulting services tailored to
-        meet the evolving needs of organizations and communities across Africa.
+      </h2>
+      <p class="mt-3 max-w-xl mx-auto text-slate-400 text-lg">
+        Catalysing growth today, shaping the future of development tomorrow.
       </p>
+    </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Research & Analysis -->
-        <div
-          class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300"
-        >
-          <div class="card-body">
-            <div class="flex items-center gap-4 mb-6">
-              <div class="bg-primary/10 p-3 rounded-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-8 w-8 text-primary"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  />
-                </svg>
-              </div>
-              <h3 class="card-title text-2xl">Research & Analysis</h3>
-            </div>
-            <ul class="space-y-3">
-              <li class="flex items-start">
-                <svg
-                  class="h-6 w-6 text-primary mt-1 mr-2 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span
-                  >Detailed economic, financial, and social analyses for
-                  projects and programs</span
-                >
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="h-6 w-6 text-primary mt-1 mr-2 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span
-                  >Custom research for policy formulation and strategic
-                  planning</span
-                >
-              </li>
-            </ul>
-          </div>
+    <!-- split glass cards -->
+    <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+      <!-- Mission -->
+      <div
+        class="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-10 text-white hover:bg-white/20 transition-all duration-500"
+        data-aos="fade-right"
+      >
+        <div class="flex items-center gap-4 mb-5">
+          <span class="w-10 h-1 bg-emerald-400 rounded-full"></span>
+          <h3 class="text-2xl font-bold">Mission</h3>
         </div>
+        <p class="text-slate-200 leading-relaxed text-lg">
+          Serve as a catalyst for the success of development initiatives by
+          offering high-quality research, policy and strategic support that
+          drive data-driven, effective decisions.
+        </p>
+      </div>
 
-        <!-- Policy Advisory -->
-        <div
-          class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300"
-        >
-          <div class="card-body">
-            <div class="flex items-center gap-4 mb-6">
-              <div class="bg-primary/10 p-3 rounded-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-8 w-8 text-primary"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-              </div>
-              <h3 class="card-title text-2xl">Policy Advisory</h3>
-            </div>
-            <ul class="space-y-3">
-              <li class="flex items-start">
-                <svg
-                  class="h-6 w-6 text-primary mt-1 mr-2 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span
-                  >Expert guidance in creating policies aligned with development
-                  goals</span
-                >
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="h-6 w-6 text-primary mt-1 mr-2 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span
-                  >Well-researched position papers for informed
-                  decision-making</span
-                >
-              </li>
-            </ul>
-          </div>
+      <!-- Vision -->
+      <div
+        class="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-10 text-white hover:bg-white/20 transition-all duration-500"
+        data-aos="fade-left"
+      >
+        <div class="flex items-center gap-4 mb-5">
+          <span class="w-10 h-1 bg-sky-400 rounded-full"></span>
+          <h3 class="text-2xl font-bold">Vision</h3>
         </div>
-
-        <!-- Strategic Planning -->
-        <div
-          class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300"
-        >
-          <div class="card-body">
-            <div class="flex items-center gap-4 mb-6">
-              <div class="bg-primary/10 p-3 rounded-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-8 w-8 text-primary"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                  />
-                </svg>
-              </div>
-              <h3 class="card-title text-2xl">Strategic Planning</h3>
-            </div>
-            <ul class="space-y-3">
-              <li class="flex items-start">
-                <svg
-                  class="h-6 w-6 text-primary mt-1 mr-2 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span
-                  >Development of tailored policies and strategies for
-                  organizational growth</span
-                >
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="h-6 w-6 text-primary mt-1 mr-2 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span
-                  >Long-term plans integrating UN 2030 Agenda, SDGs, and AU
-                  Agenda 2063</span
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Monitoring & Evaluation -->
-        <div
-          class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300"
-        >
-          <div class="card-body">
-            <div class="flex items-center gap-4 mb-6">
-              <div class="bg-primary/10 p-3 rounded-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-8 w-8 text-primary"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"
-                  />
-                </svg>
-              </div>
-              <h3 class="card-title text-2xl">M&E Services</h3>
-            </div>
-            <ul class="space-y-3">
-              <li class="flex items-start">
-                <svg
-                  class="h-6 w-6 text-primary mt-1 mr-2 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span
-                  >Design of robust M&E systems to track project progress</span
-                >
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="h-6 w-6 text-primary mt-1 mr-2 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span
-                  >Tailored evaluation services for result tracking and impact
-                  assessment</span
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Capacity Building -->
-        <div
-          class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300"
-        >
-          <div class="card-body">
-            <div class="flex items-center gap-4 mb-6">
-              <div class="bg-primary/10 p-3 rounded-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-8 w-8 text-primary"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                  />
-                </svg>
-              </div>
-              <h3 class="card-title text-2xl">Capacity Building</h3>
-            </div>
-            <ul class="space-y-3">
-              <li class="flex items-start">
-                <svg
-                  class="h-6 w-6 text-primary mt-1 mr-2 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span
-                  >Specialized training in project planning and management</span
-                >
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="h-6 w-6 text-primary mt-1 mr-2 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span>Workshops designed to strengthen team capacity</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Project Design -->
-        <div
-          class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300"
-        >
-          <div class="card-body">
-            <div class="flex items-center gap-4 mb-6">
-              <div class="bg-primary/10 p-3 rounded-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-8 w-8 text-primary"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                  />
-                </svg>
-              </div>
-              <h3 class="card-title text-2xl">Project Design</h3>
-            </div>
-            <ul class="space-y-3">
-              <li class="flex items-start">
-                <svg
-                  class="h-6 w-6 text-primary mt-1 mr-2 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span
-                  >Expert support in the design and formulation of development
-                  projects that meet organizational and community needs.</span
-                >
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="h-6 w-6 text-primary mt-1 mr-2 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span
-                  >Assistance in aligning project goals with broader societal
-                  objectives, such as poverty reduction and sustainable
-                  development.</span
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
+        <p class="text-slate-200 leading-relaxed text-lg">
+          Become the leading centre for development research and advisory,
+          facilitating transformational change that helps clients achieve local
+          and global development targets.
+        </p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Our Approach Section -->
-  <section class="w-full bg-white py-20">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-4xl font-bold text-gray-900 mb-6">Our Approach</h2>
-        <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-      </div>
+<!-- ========================================================= -->
+<!-- CORE VALUES – Orbital Glass Cards                         -->
+<!-- ========================================================= -->
+<section class="relative isolate overflow-hidden py-20 md:py-28 bg-slate-50">
+  <!-- animated background -->
+  <div class="absolute inset-0 -z-10 opacity-20">
+    <div
+      class="absolute top-0 left-0 w-96 h-96 bg-emerald-500 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"
+    ></div>
+    <div
+      class="absolute bottom-0 right-0 w-96 h-96 bg-sky-500 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"
+    ></div>
+  </div>
 
-      <div class="max-w-6xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <!-- Left Side: Content -->
-          <div class="space-y-6">
-            <p class="text-lg text-gray-600 leading-relaxed">
-              At DDS, we believe in a collaborative, client-centered approach.
-              We work closely with you to understand your goals, challenges, and
-              opportunities. Our team then applies a blend of research,
-              strategic insight, and technical expertise to craft solutions that
-              meet your needs.
-            </p>
-            <p class="text-lg text-gray-600 leading-relaxed">
-              Every project is tailored to ensure relevance, sustainability, and
-              measurable success.
-            </p>
+  <div class="container mx-auto px-4">
+    <!-- headline -->
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2
+        class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-slate-900 mb-6"
+      >
+        Our
+        <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-sky-400"
+          >Core Values</span
+        >
+      </h2>
+      <p class="text-lg text-slate-600 leading-relaxed mb-4">
+        Guiding principles that shape every decision we make.
+      </p>
+    </div>
+    <div class="max-w-4xl mx-auto" data-aos="zoom-in">
+      <img
+        src="{% static 'images/core_values.png' %}"
+        alt="DDS Core Values Diagram"
+        class="rounded-xl shadow-xl w-full"
+      />
+    </div></section>
 
-            <!-- Key Features -->
-            <div class="grid grid-cols-2 gap-6 mt-8">
-              <div class="flex items-start space-x-3">
-                <svg
-                  class="w-6 h-6 text-blue-500 mt-1 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <span class="text-gray-700 font-medium">Client-Centered</span>
-              </div>
-              <div class="flex items-start space-x-3">
-                <svg
-                  class="w-6 h-6 text-blue-500 mt-1 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <span class="text-gray-700 font-medium">Collaborative</span>
-              </div>
-              <div class="flex items-start space-x-3">
-                <svg
-                  class="w-6 h-6 text-blue-500 mt-1 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <span class="text-gray-700 font-medium">Research-Driven</span>
-              </div>
-              <div class="flex items-start space-x-3">
-                <svg
-                  class="w-6 h-6 text-blue-500 mt-1 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <span class="text-gray-700 font-medium">Results-Focused</span>
-              </div>
+<!-- ========================================================= -->
+<!-- WHAT WE OFFER – Cinematic Service Reveal                  -->
+<!-- ========================================================= -->
+<section class="relative isolate overflow-hidden py-24 md:py-36 bg-slate-900">
+  <!-- animated background -->
+  <div class="absolute inset-0 -z-10">
+    <div class="absolute top-0 left-0 w-96 h-96 bg-emerald-500/10 blur-3xl rounded-full -translate-x-1/3 -translate-y-1/3"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-sky-500/10 blur-3xl rounded-full translate-x-1/3 translate-y-1/3"></div>
+  </div>
+
+  <div class="container mx-auto px-4">
+    <!-- headline -->
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+        What <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-sky-400">We&nbsp;Deliver</span>
+      </h2>
+      <p class="mt-3 max-w-xl mx-auto text-slate-400 text-lg">
+        End-to-end development solutions forged for African realities.
+      </p>
+    </div>
+
+    <!-- cinematic grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      {% for service in services %}
+        <div
+          class="group relative"
+          data-aos="fade-up"
+          data-aos-delay="{{ forloop.counter0|add:100 }}"
+        >
+          <!-- 3-D glass card -->
+          <div
+            class="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8
+                   transform transition-all duration-500 hover:scale-105 hover:-rotate-1
+                   hover:border-emerald-400/50 hover:shadow-emerald-500/30 shadow-2xl"
+          >
+            <!-- floating icon -->
+            <div
+              class="absolute -top-6 left-8 w-16 h-16 rounded-full flex items-center justify-center
+                     bg-gradient-to-br from-emerald-400 to-sky-400 text-white shadow-xl"
+            >
+              {{ service.icon|safe }}
             </div>
-          </div>
 
-          <!-- Right Side: Process Steps -->
-          <div class="bg-gray-50 rounded-xl p-8">
-            <div class="space-y-6">
-              <div class="flex items-start space-x-4">
-                <div
-                  class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center flex-shrink-0"
-                >
-                  1
-                </div>
-                <div>
-                  <h3 class="font-semibold text-gray-900 mb-1">
-                    Understanding Your Needs
-                  </h3>
-                  <p class="text-gray-600">
-                    In-depth consultation to understand your objectives and
-                    challenges
-                  </p>
-                </div>
-              </div>
-              <div class="flex items-start space-x-4">
-                <div
-                  class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center flex-shrink-0"
-                >
-                  2
-                </div>
-                <div>
-                  <h3 class="font-semibold text-gray-900 mb-1">
-                    Research & Analysis
-                  </h3>
-                  <p class="text-gray-600">
-                    Comprehensive research and strategic analysis
-                  </p>
-                </div>
-              </div>
-              <div class="flex items-start space-x-4">
-                <div
-                  class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center flex-shrink-0"
-                >
-                  3
-                </div>
-                <div>
-                  <h3 class="font-semibold text-gray-900 mb-1">
-                    Solution Development
-                  </h3>
-                  <p class="text-gray-600">
-                    Tailored solutions crafted to meet your specific needs
-                  </p>
-                </div>
-              </div>
-              <div class="flex items-start space-x-4">
-                <div
-                  class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center flex-shrink-0"
-                >
-                  4
-                </div>
-                <div>
-                  <h3 class="font-semibold text-gray-900 mb-1">
-                    Implementation & Support
-                  </h3>
-                  <p class="text-gray-600">
-                    Continuous support and monitoring for sustainable success
-                  </p>
-                </div>
-              </div>
+            <!-- content -->
+            <div class="mt-8">
+              <h3 class="text-2xl font-bold text-white mb-3">{{ service.title }}</h3>
+              <ul class="space-y-2 text-sm text-slate-300">
+                {% for bullet in service.bullets %}
+                  <li class="flex items-start gap-2">
+                    <svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" stroke="currentColor"
+                         viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    {{ bullet }}
+                  </li>
+                {% endfor %}
+              </ul>
             </div>
           </div>
         </div>
-      </div>
+      {% empty %}
+      {% endfor %}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Who We Serve Section -->
-  <section class="w-full py-20">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-4xl font-bold text-gray-900 mb-6">Who We Serve</h2>
-        <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-      </div>
-      <div class="max-w-4xl mx-auto">
-        <img
-          src="{% static 'images/partnership.png' %}"
-          alt="Our Partnerships and Collaborations"
-          class="w-full h-auto"
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- Team Section -->
-  <section class="w-full bg-white py-20">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-4xl font-bold text-gray-900 mb-6">
-          Our Leadership Team
+<!-- ========================================================= -->
+<!-- OUR APPROACH  -->
+<!-- ========================================================= -->
+<section class="py-20 md:py-28">
+  <div class="container mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Left -->
+      <div data-aos="fade-right">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
+          Our Approach
         </h2>
-        <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
+        <p class="text-slate-600 leading-relaxed mb-6">
+          We believe in collaborative, client-centred engagements that combine
+          rigorous research with pragmatic delivery, ensuring every project is
+          relevant, sustainable and measurable.
+        </p>
+        <ul class="space-y-4 text-slate-700">
+          <li class="flex items-center gap-3">
+            <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+            Client-Centred
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+            Collaborative
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+            Research-Driven
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+            Results-Focused
+          </li>
+        </ul>
       </div>
 
+      <!-- Right - process steps -->
+      <div class="space-y-6" data-aos="fade-left">
+        {% for step in approach_steps %}
+        <div class="flex gap-4">
+          <div
+            class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold"
+          >
+            {{ forloop.counter }}
+          </div>
+          <div>
+            <h4 class="font-semibold text-slate-800">{{ step.title }}</h4>
+            <p class="text-sm text-slate-600">{{ step.desc }}</p>
+          </div>
+        </div>
+        {% empty %}
+        <!-- fallback static steps -->
+        <div class="flex gap-4">
+          <div
+            class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold"
+          >
+            1
+          </div>
+          <div>
+            <h4 class="font-semibold text-slate-800">Understand</h4>
+            <p class="text-sm text-slate-600">
+              Deep dive into your goals & constraints
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div
+            class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold"
+          >
+            2
+          </div>
+          <div>
+            <h4 class="font-semibold text-slate-800">Analyse</h4>
+            <p class="text-sm text-slate-600">
+              Evidence-based research & insights
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div
+            class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold"
+          >
+            3
+          </div>
+          <div>
+            <h4 class="font-semibold text-slate-800">Design</h4>
+            <p class="text-sm text-slate-600">
+              Tailor-made strategies & roadmaps
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div
+            class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold"
+          >
+            4
+          </div>
+          <div>
+            <h4 class="font-semibold text-slate-800">Support</h4>
+            <p class="text-sm text-slate-600">
+              Implementation, M&E, and capacity-building
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team Section -->
+  <section class="py-24 md:py-36 bg-slate-50">
+    <div class="container mx-auto px-4">
+      <!-- headline -->
+    <div class="max-w-3xl mx-auto text-center mb-14" data-aos="fade-up">
+      <h2
+          class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-slate-900 mb-6"
+        >
+          Leadership
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-sky-500"
+            >Team</span
+          >
+        </h2>
+    </div>
       <!-- Team Members Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
         {% for member in team_members %}
@@ -808,12 +455,11 @@ Decision Support (DDS){% endblock %} {% block content %}
             {% endif %}
           </div>
           {% endif %}
-          <button
-            onclick="toggleModal('{{ forloop.counter }}')"
-            class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-200 cursor-pointer"
-          >
-            <span id="button-text-{{ forloop.counter }}">Show more</span>
-            <svg
+          <label
+              for="modal-{{ member.id }}"
+              class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-200 cursor-pointer"
+            >
+              Read full profile <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-4 w-4 ml-1 transition-transform duration-200"
               id="icon-{{ forloop.counter }}"
@@ -829,108 +475,31 @@ Decision Support (DDS){% endblock %} {% block content %}
                 stroke-width="2"
               />
             </svg>
-          </button>
+            </label>
+          
         </div>
 
-        <!-- Modal for Member Info -->
-        <div
-          id="modal-{{ forloop.counter }}"
-          class="fixed inset-0 z-50 hidden overflow-y-auto"
-          aria-labelledby="modal-title-{{ forloop.counter }}"
-          role="dialog"
-          aria-modal="true"
-        >
-          <!-- Modal Overlay -->
-          <div
-            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-            onclick="toggleModal('{{ forloop.counter }}')"
-          ></div>
-          <!-- Modal Content Container -->
-          <div
-            class="flex items-center justify-center min-h-screen px-4 text-center"
-          >
-            <!-- This element is to trick the browser into centering the modal contents. -->
-            <span
-              class="hidden sm:inline-block sm:align-middle sm:h-screen"
-              aria-hidden="true"
-              >&#8203;</span
-            >
-            <div
-              class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-            >
-              <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div class="sm:flex sm:items-start">
-                  <div
-                    class="mt-3 text-center sm:mt-0 sm:text-left w-full overflow-y-auto"
-                  >
-                    <h3
-                      class="text-xl md:text-2xl font-semibold text-gray-900"
-                      id="modal-title-{{ forloop.counter }}"
-                    >
-                      {{ member.name }}
-                    </h3>
-                    <p class="mt-1 text-base md:text-lg text-gray-600">
-                      {{ member.position }}
-                    </p>
-                    <!-- Member Details -->
-                    <div class="mt-4 space-y-4">
-                      {% if member.bio %}
-                      <div class="prose">
-                        <h4 class="font-bold text-gray-800">Bio</h4>
-                        <p class="text-gray-600">{{ member.bio|safe }}</p>
-                      </div>
-                      {% endif %} {% if member.professional_experience %}
-                      <div class="prose">
-                        <h4 class="font-bold text-gray-800">
-                          Professional Experience
-                        </h4>
-                        <p class="text-gray-600">
-                          {{ member.professional_experience|safe }}
-                        </p>
-                      </div>
-                      {% endif %} {% if member.skills %}
-                      <div class="prose">
-                        <h4 class="font-bold text-gray-800">Skills</h4>
-                        <p class="text-gray-600">{{ member.skills|safe }}</p>
-                      </div>
-                      {% endif %} {% if member.certifications %}
-                      <div class="prose">
-                        <h4 class="font-bold text-gray-800">Certifications</h4>
-                        <p class="text-gray-600">
-                          {{ member.certifications|safe }}
-                        </p>
-                      </div>
-                      {% endif %} {% if member.education %}
-                      <div class="prose">
-                        <h4 class="font-bold text-gray-800">Education</h4>
-                        <p class="text-gray-600">{{ member.education|safe }}</p>
-                      </div>
-                      {% endif %} {% if member.publications %}
-                      <div class="prose">
-                        <h4 class="font-bold text-gray-800">Publications</h4>
-                        <p class="text-gray-600">
-                          {{ member.publications|safe }}
-                        </p>
-                      </div>
-                      {% endif %}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
-              >
-                <button
-                  onclick="toggleModal('{{ forloop.counter }}')"
-                  type="button"
-                  class="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-200 sm:ml-3 sm:w-auto sm:text-sm"
-                >
-                  Close
-                </button>
+        <input type="checkbox" id="modal-{{ member.id }}" class="modal-toggle">
+        <label for="modal-{{ member.id }}" class="modal cursor-pointer">
+          <label class="modal-box relative max-w-2xl bg-white">
+            <label for="modal-{{ member.id }}" class="btn btn-sm btn-circle absolute right-3 top-3">✕</label>
+
+            <div class="flex items-start gap-6 mb-4">
+              <img src="{{ member.image.url }}" alt="{{ member.name }}" class="w-20 h-20 rounded-full object-cover">
+              <div>
+                <h3 class="text-xl font-semibold text-slate-900">{{ member.name }}</h3>
+                <p class="text-sm text-emerald-600">{{ member.position }}</p>
               </div>
             </div>
-          </div>
-        </div>
+
+            <div class="prose prose-sm max-h-[60vh] overflow-y-auto">
+              {% if member.bio %}<h5 class="font-semibold mt-2">Bio</h5><p>{{ member.bio|safe }}</p>{% endif %}
+              {% if member.professional_experience %}<h5 class="font-semibold mt-2">Experience</h5><p>{{ member.professional_experience|safe }}</p>{% endif %}
+              {% if member.education %}<h5 class="font-semibold mt-2">Education</h5><p>{{ member.education|safe }}</p>{% endif %}
+            </div>
+          </label>
+        </label>
+
         {% endfor %}
       </div>
 
@@ -953,64 +522,42 @@ Decision Support (DDS){% endblock %} {% block content %}
       </div>
     </div>
   </section>
+<!-- ========================================================= -->
+<!-- CTA  -->
+<!-- ========================================================= -->
+<section
+  class="py-20 md:py-28 bg-gradient-to-r from-emerald-600 to-sky-600 text-white"
+>
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">
+      Ready to collaborate?
+    </h2>
+    <p class="max-w-xl mx-auto mb-6" data-aos="fade-up" data-aos-delay="100">
+      Let’s discuss how our expertise can accelerate your next development
+      initiative.
+    </p>
+    <a
+      href="{% url 'core:contact' %}"
+      class="btn btn-lg btn-accent text-white hover:scale-105 transition-transform"
+      data-aos="fade-up"
+      data-aos-delay="200"
+    >
+      Contact Us
+    </a>
+  </div>
+</section>
 
-  <!-- CTA Section -->
-  <section class="w-full bg-base-200 py-20">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl font-bold mb-6">Work With Us</h2>
-        <p class="mb-8 text-lg">
-          We would love to help you achieve your development goals. Get in touch
-          with us to discuss how we can support your initiatives.
-        </p>
-        <a
-          href="{% url 'core:contact' %}"
-          class="inline-block px-8 py-3 text-lg font-medium text-gray-900 border-2 border-gray-900 rounded-lg hover:bg-gray-900 hover:text-white transition-colors duration-300"
-        >
-          Contact Us
-        </a>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- JavaScript for Bio Toggle -->
-<script>
-  function toggleBio(memberId) {
-    const bio = document.getElementById(`member-bio-${memberId}`);
-    const arrow = document.getElementById(`arrow-${memberId}`);
-    const buttonText = document.getElementById(`button-text-${memberId}`);
-
-    if (bio.classList.contains("hidden")) {
-      bio.classList.remove("hidden");
-      bio.classList.add("animate-fade-in");
-      arrow.classList.add("rotate-180");
-      buttonText.textContent = "Show less";
-    } else {
-      bio.classList.add("hidden");
-      bio.classList.remove("animate-fade-in");
-      arrow.classList.remove("rotate-180");
-      buttonText.textContent = "Show more";
-    }
-  }
-
-  // Click outside handler remains the same
-</script>
-
+{% endblock %} {% block extra_css %}
 <style>
-  .animate-fade-in {
-    animation: fadeIn 0.3s ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+  /* tiny utility for animation delay in AOS */
+  /* (not needed if you use Tailwind JIT & data-aos-delay attributes) */
 </style>
+{% endblock %} {% block extra_js %}
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ once: true, offset: 100 });
+  function openModal(id) {
+    document.getElementById("modal-" + id).checked = true;
+  }
+</script>
 {% endblock %}

@@ -1,29 +1,41 @@
 {% load static %}
-<footer class="bg-base-200 pt-16 pb-6">
-  <div class="container mx-auto px-4">
+<footer
+  class="bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 text-white relative overflow-hidden"
+>
+  <!-- Decorative background elements -->
+  <div
+    class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]"
+  ></div>
+  <div
+    class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"
+  ></div>
+
+  <div class="container mx-auto px-4 relative z-10">
     <!-- Main Footer Content -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-16 pb-12"
+    >
       <!-- Company Info -->
-      <div class="space-y-4">
-        <a href="{% url 'core:home' %}" class="block">
+      <div class="space-y-6">
+        <a href="{% url 'core:home' %}" class="block group">
           <img
-            src="{% static 'images/logo.svg' %}"
+            src="{% static 'images/dds.jpg' %}"
             alt="Development Decision Support (DDS)"
-            class="h-8"
+            class="h-48 w-64 transition-all duration-300 group-hover:scale-105"
           />
         </a>
-        <p class="text-base-content/70">
+        <p class="text-gray-300 leading-relaxed text-sm">
           Leading research and data collection firm specializing in development
           projects across Africa.
         </p>
-        <div class="flex space-x-4">
+        <div class="flex space-x-3">
           <a
             href="https://twitter.com/DDSGlobal"
-            class="btn btn-circle btn-ghost btn-sm"
+            class="group relative p-3 bg-white/5 rounded-full backdrop-blur-sm border border-white/10 hover:bg-blue-500/20 hover:border-blue-400/50 transition-all duration-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              class="h-5 w-5 transition-colors duration-300 group-hover:text-blue-400"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -34,11 +46,11 @@
           </a>
           <a
             href="https://www.linkedin.com/company/ddsconsultancy"
-            class="btn btn-circle btn-ghost btn-sm"
+            class="group relative p-3 bg-white/5 rounded-full backdrop-blur-sm border border-white/10 hover:bg-blue-500/20 hover:border-blue-400/50 transition-all duration-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              class="h-5 w-5 transition-colors duration-300 group-hover:text-blue-400"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -52,151 +64,244 @@
 
       <!-- Quick Links -->
       <div>
-        <h3 class="footer-title mb-4">Quick Links</h3>
-        <ul class="space-y-2">
+        <h3 class="text-lg font-semibold mb-6 text-white relative">
+          Quick Links
+          <div
+            class="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"
+          ></div>
+        </h3>
+        <ul class="space-y-3">
           <li>
-            <a href="{% url 'core:about' %}" class="link link-hover"
-              >About Us</a
+            <a
+              href="{% url 'core:about' %}"
+              class="text-gray-300 hover:text-white transition-colors duration-300 text-sm flex items-center group"
             >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              About Us
+            </a>
           </li>
           <li>
-            <a href="{% url 'core:services' %}" class="link link-hover"
-              >Services</a
+            <a
+              href="{% url 'core:services' %}"
+              class="text-gray-300 hover:text-white transition-colors duration-300 text-sm flex items-center group"
             >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              Services
+            </a>
           </li>
           <li>
-            <a href="{% url 'core:projects' %}" class="link link-hover"
-              >Projects</a
+            <a
+              href="{% url 'core:projects' %}"
+              class="text-gray-300 hover:text-white transition-colors duration-300 text-sm flex items-center group"
             >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              Projects
+            </a>
           </li>
           <li>
-            <a href="{% url 'core:publications' %}" class="link link-hover"
-              >Publications</a
+            <a
+              href="{% url 'core:publications' %}"
+              class="text-gray-300 hover:text-white transition-colors duration-300 text-sm flex items-center group"
             >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              Publications
+            </a>
           </li>
         </ul>
       </div>
 
       <!-- Services -->
       <div>
-        <h3 class="footer-title mb-4">Our Services</h3>
-        <ul class="space-y-2">
+        <h3 class="text-lg font-semibold mb-6 text-white relative">
+          Our Services
+          <div
+            class="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"
+          ></div>
+        </h3>
+        <ul class="space-y-3">
           <li>
-            <a href="{% url 'core:services' %}#data" class="link link-hover"
-              >Data Collection</a
+            <a
+              href="{% url 'core:services' %}#data"
+              class="text-gray-300 hover:text-white transition-colors duration-300 text-sm flex items-center group"
             >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              Data Collection
+            </a>
           </li>
           <li>
-            <a href="{% url 'core:services' %}#research" class="link link-hover"
-              >Research Services</a
+            <a
+              href="{% url 'core:services' %}#research"
+              class="text-gray-300 hover:text-white transition-colors duration-300 text-sm flex items-center group"
             >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              Research Services
+            </a>
           </li>
           <li>
             <a
               href="{% url 'core:services' %}#analytics"
-              class="link link-hover"
-              >Analytics</a
+              class="text-gray-300 hover:text-white transition-colors duration-300 text-sm flex items-center group"
             >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              Analytics
+            </a>
           </li>
           <li>
-            <a href="{% url 'core:publications' %}" class="link link-hover"
-              >Research Papers</a
+            <a
+              href="{% url 'core:publications' %}"
+              class="text-gray-300 hover:text-white transition-colors duration-300 text-sm flex items-center group"
             >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              Research Papers
+            </a>
           </li>
           <li>
             <a
               href="{% url 'core:publications' %}?category=policy_brief"
-              class="link link-hover"
-              >Policy Briefs</a
+              class="text-gray-300 hover:text-white transition-colors duration-300 text-sm flex items-center group"
             >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              Policy Briefs
+            </a>
           </li>
         </ul>
       </div>
 
       <!-- Contact Info -->
       <div>
-        <h3 class="footer-title mb-4">Contact Us</h3>
+        <h3 class="text-lg font-semibold mb-6 text-white relative">
+          Contact Us
+          <div
+            class="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"
+          ></div>
+        </h3>
         <ul class="space-y-4">
-          <li class="flex items-start space-x-3">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 mt-1 shrink-0"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          <li class="flex items-start space-x-3 group">
+            <div
+              class="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:bg-blue-500/20 group-hover:border-blue-400/50 transition-all duration-300"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-              />
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-            </svg>
-            <span>58 Fort Street<br />Freetown, Sierra Leone</span>
-          </li>
-          <li class="flex items-center space-x-3">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 shrink-0"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              />
-            </svg>
-            <a href="mailto:info@ddsconsultancy.org" class="link link-hover"
-              >info@ddsconsultancy.org</a
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 text-blue-400 shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+            </div>
+            <span class="text-gray-300 text-sm leading-relaxed"
+              >58 Fort Street<br />Freetown, Sierra Leone</span
             >
           </li>
-          <li class="flex items-center space-x-3">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 shrink-0"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          <li class="flex items-center space-x-3 group">
+            <div
+              class="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:bg-blue-500/20 group-hover:border-blue-400/50 transition-all duration-300"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-              />
-            </svg>
-            <a href="tel:+1234567890" class="link link-hover"
-              >+(232) 76 567-890</a
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 text-blue-400 shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+            </div>
+            <a
+              href="mailto:info@ddsconsultancy.org"
+              class="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm"
             >
+              info@ddsconsultancy.org
+            </a>
+          </li>
+          <li class="flex items-center space-x-3 group">
+            <div
+              class="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:bg-blue-500/20 group-hover:border-blue-400/50 transition-all duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 text-blue-400 shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                />
+              </svg>
+            </div>
+            <a
+              href="tel:+1234567890"
+              class="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm"
+            >
+              +(232) 78 774-585
+            </a>
           </li>
         </ul>
       </div>
     </div>
 
     <!-- Newsletter Subscription -->
-    <div class="border-t border-base-300 pt-8 pb-12">
-      <div class="max-w-xl mx-auto text-center">
-        <h3 class="text-lg font-semibold mb-4">Subscribe to Our Newsletter</h3>
-        <p class="mb-4 text-base-content/70">
-          Stay updated with our latest research and insights
-        </p>
-        <form class="flex flex-col sm:flex-row gap-4 justify-center">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            class="input input-bordered w-full max-w-xs"
-          />
+    <div class="border-t border-white/10 pt-12 pb-12">
+      <div class="max-w-2xl mx-auto text-center">
+        <div class="mb-6">
+          <h3 class="text-2xl font-bold mb-3 text-white">Stay Connected</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            Subscribe to our newsletter for the latest research insights,
+            project updates, and industry developments across Africa.
+          </p>
+        </div>
+        <form
+          class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto"
+        >
+          <div class="relative flex-1">
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              class="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm transition-all duration-300"
+            />
+          </div>
           <button
-            class="btn bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300"
+            type="submit"
+            class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
           >
             Subscribe
           </button>
@@ -205,24 +310,42 @@
     </div>
 
     <!-- Bottom Footer -->
-    <div class="border-t border-base-300 pt-6">
+    <div class="border-t border-white/10 pt-8 pb-6">
       <div
         class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
       >
-        <div class="text-sm text-base-content/70">
+        <div class="text-sm text-gray-400">
           © {% now "Y" %} Development Decision Support (DDS). All rights
           reserved.
         </div>
-        <div class="flex flex-wrap justify-center gap-4 text-sm">
-          <a href="{% url 'core:privacy' %}" class="link link-hover"
-            >Privacy Policy</a
+        <div class="flex flex-wrap justify-center gap-6 text-sm">
+          <a
+            href="{% url 'core:privacy' %}"
+            class="text-gray-400 hover:text-white transition-colors duration-300 relative group"
           >
-          <a href="{% url 'core:terms' %}" class="link link-hover"
-            >Terms of Service</a
+            Privacy Policy
+            <span
+              class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+          <a
+            href="{% url 'core:terms' %}"
+            class="text-gray-400 hover:text-white transition-colors duration-300 relative group"
           >
-          <a href="{% url 'core:cookie-policy' %}" class="link link-hover"
-            >Cookie Policy</a
+            Terms of Service
+            <span
+              class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+          <a
+            href="{% url 'core:cookie-policy' %}"
+            class="text-gray-400 hover:text-white transition-colors duration-300 relative group"
           >
+            Cookie Policy
+            <span
+              class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
         </div>
       </div>
     </div>

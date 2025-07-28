@@ -27,6 +27,8 @@ urlpatterns = [
     path('publications/', views.PublicationListView.as_view(), name='publications'),
     path('publications/<slug:slug>/', views.PublicationDetailView.as_view(), name='publication_detail'),
     
+    path('news/', views.NewsListView.as_view(), name='news_list'),
+    path('news/<slug:slug>/', views.NewsDetailView.as_view(), name='news_detail'),
     # Privacy Policy
     path('privacy-policy/', views.PrivacyPolicyView.as_view(), name='privacy'),
     

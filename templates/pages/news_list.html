@@ -1,0 +1,115 @@
+{% extends 'base.html' %} {% load static %} {% block title %}News & Updates -
+DDS{% endblock title %} {% block content %}
+<!-- =================================================================== -->
+<!-- Page Header Section                                               -->
+<!-- =================================================================== -->
+<header class="bg-gray-800 text-white">
+  <div
+    class="container mx-auto px-4 py-16 text-center lg:py-24"
+    data-aos="fade-up"
+  >
+    <h1 class="text-4xl md:text-5xl font-bold tracking-tight">
+      News & Updates
+    </h1>
+    <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
+      Stay informed with our latest announcements, analysis, and company news.
+    </p>
+  </div>
+</header>
+
+<!-- =================================================================== -->
+<!-- Main Content: News Listing                                        -->
+<!-- =================================================================== -->
+<main class="py-16 lg:py-24 bg-white">
+  <div class="container mx-auto px-4">
+    <!-- Centered container for the list of articles -->
+    <div class="max-w-4xl mx-auto">
+      <div class="space-y-12">
+        <!-- Loop through the paginated news posts -->
+        {% for post in page_obj %}
+        <article
+          data-aos="fade-up"
+          data-aos-delay="{{ forloop.counter0|mult:'50' }}"
+        >
+          <!-- Post Metadata -->
+          <p class="text-sm text-gray-500 mb-2">
+            Published on {{ post.date|date:"F j, Y" }}
+          </p>
+
+          <!-- Post Title (as a link) -->
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+            <a
+              href="{{ post.get_absolute_url }}"
+              class="hover:text-primary transition-colors duration-300"
+            >
+              {{ post.title }}
+            </a>
+          </h2>
+
+          <!-- Post Excerpt from RichTextField -->
+          <div class="prose max-w-none text-gray-700">
+            {{ post.content|truncatewords_html:50|safe }}
+          </div>
+
+          <!-- "Read More" Link -->
+          <div class="mt-6">
+            <a
+              href="{{ post.get_absolute_url }}"
+              class="font-semibold text-primary hover:text-primary-focus"
+            >
+              Read More →
+            </a>
+          </div>
+        </article>
+        {% empty %}
+        <div class="text-center py-16">
+          <h2 class="text-2xl font-semibold text-gray-800">No News Yet</h2>
+          <p class="mt-2 text-gray-600">
+            Please check back later for our latest updates.
+          </p>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- Pagination Controls                                               -->
+      <!-- =================================================================== -->
+      {% if page_obj.has_other_pages %}
+      <nav
+        class="mt-16 pt-8 border-t border-gray-200 flex justify-between items-center"
+        aria-label="Pagination"
+      >
+        <!-- Previous Page Link -->
+        {% if page_obj.has_previous %}
+        <a
+          href="?page={{ page_obj.previous_page_number }}"
+          class="btn btn-outline btn-primary"
+        >
+          ← Previous
+        </a>
+        {% else %}
+        <span class="btn btn-outline btn-disabled">← Previous</span>
+        {% endif %}
+
+        <!-- Page Number Indicator -->
+        <div class="text-sm text-gray-600">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </div>
+
+        <!-- Next Page Link -->
+        {% if page_obj.has_next %}
+        <a
+          href="?page={{ page_obj.next_page_number }}"
+          class="btn btn-outline btn-primary"
+        >
+          Next →
+        </a>
+        {% else %}
+        <span class="btn btn-outline btn-disabled">Next →</span>
+        {% endif %}
+      </nav>
+      {% endif %}
+    </div>
+  </div>
+</main>
+{% endblock content %}

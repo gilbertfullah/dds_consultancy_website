@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Service, TeamMember, Project, BlogPost, Contact
+from .models import Service, TeamMember, Project, BlogPost, Contact, NewsPost
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
@@ -29,6 +29,14 @@ class BlogPostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ('title', 'content')
     raw_id_fields = ('author',)
+    
+@admin.register(NewsPost)
+class NewsPostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'status', 'date')
+    list_editable = ('status',)
+    list_filter = ('status', 'date')
+    prepopulated_fields = {'slug': ('title',)}
+    search_fields = ('title', 'content')
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):

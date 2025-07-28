@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, TemplateView
 from django.contrib import messages
 from django.core.mail import send_mail
-from .models import Service, TeamMember, Project, BlogPost, Contact
+from .models import Service, TeamMember, Project, BlogPost, Contact, NewsPost
 from django.db.models.functions import ExtractYear
 from django.conf import settings
 from .forms import ContactForm
@@ -16,37 +16,66 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
+        # --- Existing context data ---
         context['services'] = Service.objects.all()[:3]
         context['featured_projects'] = Project.objects.filter(featured=True)[:3]
         context['latest_posts'] = BlogPost.objects.filter(published=True).order_by('-created_at')[:3]
+        
+        # --- CORRECTED LINE FOR NEWS TICKER ---
+        # The news ticker template looks for the 'latest_news' variable.
+        # This line fetches the 5 latest published news posts and adds them to the context.
+        context['latest_news'] = NewsPost.objects.order_by('-date')[:5]
 
-        # Define image paths and verify they exist
+        # Add the services list for the template
+        context['services_list'] = [
+            "Research & Analysis",
+            "Policy Advisory", 
+            "Strategic Planning",
+            "M&E Services",
+            "Capacity Building",
+            "Project Design"
+        ]
+
+        # --- Your existing logic for carousel images ---
+        # This logic remains unchanged.
         carousel_images = []
         for i in range(1, 6):  # Assuming you have 5 images named Picture1.jpg to Picture5.jpg
             image_path = f'carousel/Picture{i}.jpg'  # Use forward slashes for compatibility
             
-            if settings.STATIC_ROOT:
-                full_path = os.path.join(settings.STATIC_ROOT, 'images', image_path)
-            else:
-                # Check in STATICFILES_DIRS if STATIC_ROOT is not set
-                full_path = os.path.join(settings.STATICFILES_DIRS[0], 'images', image_path)
+            # This check is good for development where STATIC_ROOT might not be set
+            full_path = None
+            for static_dir in settings.STATICFILES_DIRS:
+                potential_path = os.path.join(static_dir, 'images', image_path)
+                if os.path.exists(potential_path):
+                    full_path = potential_path
+                    break
             
             static_url = f'images/{image_path}'
             carousel_images.append({
                 'url': static_url,
                 'alt': f'Slide {i}',
-                'exists': os.path.exists(full_path)
+                'exists': full_path is not None
             })
         
         context['carousel_images'] = carousel_images
         return context
-
+    
 class AboutView(TemplateView):
     template_name = 'pages/about.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['team_members'] = TeamMember.objects.all().order_by('order')[:3]
+
+        # approach steps used by the spinning-ring section
+        context['approach_steps'] = [
+            {'title': 'Client-Centred',   'desc': 'Deep dive into your goals & constraints'},
+            {'title': 'Collaborative',    'desc': 'Co-create solutions with stakeholders'},
+            {'title': 'Research-Driven',  'desc': 'Evidence-based insights & analytics'},
+            {'title': 'Results-Focused',  'desc': 'Implementation, M&E, and capacity-building'},
+        ]
+
         return context
 
 class TeamView(ListView):
@@ -195,6 +224,36 @@ class PublicationDetailView(DetailView):
         ).exclude(id=self.object.id)[:3]
         context['related_publications'] = related
         return context
+    
+class NewsListView(ListView):
+    """
+    Displays a list of all published news posts with pagination.
+    """
+    model = NewsPost
+    template_name = 'pages/news_list.html' 
+    context_object_name = 'news_posts'    
+    paginate_by = 5                      
+
+    def get_queryset(self):
+        """
+        Override the default queryset to only return posts with 'published' status.
+        """
+        return NewsPost.objects.filter(status='published').order_by('-date')
+    
+class NewsDetailView(DetailView):
+    """
+    Displays a single news post.
+    """
+    model = NewsPost
+    template_name = 'pages/news_detail.html'
+    context_object_name = 'post'
+
+    def get_queryset(self):
+        """
+        Ensure that only published posts can be viewed on the live site.
+        """
+        return NewsPost.objects.filter(status='published')
+
 
 def contact_view(request):
     if request.method == 'POST':

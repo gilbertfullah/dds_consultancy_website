@@ -1,0 +1,42 @@
+/*
+File: static/css/styles.css
+*/
+
+/* Custom styles for Swiper.js Navigation */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #ffffff !important;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 18px !important;
+  font-weight: bold;
+}
+
+/* Custom styles for Swiper.js Pagination */
+.swiper-pagination-bullet {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  width: 10px !important;
+  height: 10px !important;
+  transition: background-color 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ffffff !important;
+}
+
+/* You might want to define your primary color in your tailwind.config.js
+   but if you use daisyUI, it should already be defined. This is just an example.
+   Make sure your daisyUI theme's "primary" color is set to a professional blue or similar.
+*/

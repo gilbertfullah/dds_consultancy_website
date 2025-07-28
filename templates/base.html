@@ -1,4 +1,4 @@
-{% load static %} {% load tailwind_tags %}
+{% comment %} File: templates/base.html {% endcomment %} {% load static %}
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
   <head>
@@ -9,35 +9,65 @@
       Consultancy Firm{% endblock %}
     </title>
 
-    {% tailwind_css %}
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- DaisyUI for additional components -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- Swiper.js for Modern Carousel -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <!-- AOS (Animate on Scroll) for dynamic effects -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <!-- In your base.html, before closing body tag -->
+
+    <!-- Heroicons for better icons -->
     <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
-    />
-    <!-- Add Heroicons for better arrows -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/heroicons/1.0.6/outline/chevron-left.svg"
-      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/heroicons/2.1.3/24/outline/css/heroicons.min.css"
     />
 
     {% block extra_css %}{% endblock %}
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="bg-white flex flex-col min-h-screen">
     <!-- Navbar -->
     {% include 'includes/header.html' %}
 
     <!-- Main Content -->
-    <main class="flex-grow">{% block content %}{% endblock %}</main>
+    <main class="flex-grow pt-32">
+      <!-- pt-16 is a spacer for the fixed navbar -->
+      {% block content %}{% endblock %}
+    </main>
 
     <!-- Footer -->
     {% include 'includes/footer.html' %}
 
     <!-- Scripts -->
+    <!-- Swiper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
+
+    <script>
+      // Initialize AOS on all pages
+      AOS.init({
+        duration: 800, // values from 0 to 3000, with step 50ms
+        once: true, // whether animation should happen only once - while scrolling down
+      });
+    </script>
+
     {% block extra_js %}{% endblock %} {% include "ckeditor/ckeditor_init.html"
     %}
   </body>

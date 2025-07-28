@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
+from django.urls import reverse
+from django.conf import settings
 
 class Service(models.Model):
     title = models.CharField(max_length=200)
@@ -115,6 +117,28 @@ class Publication(models.Model):
     def get_keywords_list(self):
         return [keyword.strip() for keyword in self.keywords.split(',')]
 
+class NewsPost(models.Model):
+    STATUS_CHOICES = (
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+    )
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, max_length=255)
+    date = models.DateField()
+    content = RichTextField(blank=True, null=True)
+
+    class Meta:
+        ordering = ['-date']
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        # Assumes you have a URL pattern named 'news_detail' that takes a slug
+        return reverse('core:news_detail', kwargs={'slug': self.slug})
+    
 class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()

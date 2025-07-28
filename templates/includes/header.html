@@ -1,133 +1,475 @@
-<div class="navbar bg-base-100 shadow-lg fixed top-0 z-50">
+{% comment %} File: templates/includes/header.html (MODERN PROFESSIONAL DESIGN)
+{% endcomment %} {% load static %}
+
+<div
+  id="navbar"
+  class="navbar bg-white/95 backdrop-blur-lg fixed top-0 z-50 transition-all duration-300"
+>
+  <!-- Decorative top border -->
+  <div
+    class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"
+  ></div>
+
+  <!-- ============================================= -->
+  <!-- NAVBAR-START: Hamburger Menu & Desktop Logo   -->
+  <!-- ============================================= -->
   <div class="navbar-start">
+    <!-- Modern hamburger menu for mobile -->
     <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+      <div
+        tabindex="0"
+        role="button"
+        class="btn btn-ghost lg:hidden group relative p-3"
+      >
+        <div class="flex flex-col space-y-1">
+          <span
+            class="block w-5 h-0.5 bg-gray-700 transition-all duration-300 group-hover:bg-blue-600"
+          ></span>
+          <span
+            class="block w-5 h-0.5 bg-gray-700 transition-all duration-300 group-hover:bg-blue-600"
+          ></span>
+          <span
+            class="block w-5 h-0.5 bg-gray-700 transition-all duration-300 group-hover:bg-blue-600"
+          ></span>
+        </div>
+      </div>
+
+      <!-- Enhanced mobile dropdown menu -->
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content mt-3 z-[1] p-0 shadow-2xl bg-white/95 backdrop-blur-lg rounded-2xl w-72 border border-gray-200/50 overflow-hidden"
+      >
+        <div
+          class="bg-gradient-to-r from-blue-50 to-purple-50 p-4 border-b border-gray-200/50"
+        >
+          <h3 class="font-semibold text-gray-900 text-sm">Navigation</h3>
+        </div>
+
+        <div class="p-2">
+          <li class="mb-2">
+            <div
+              class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider"
+            >
+              About
+            </div>
+          </li>
+          <li>
+            <a
+              href="{% url 'core:about' %}"
+              class="px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+            >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              About DDS
+            </a>
+          </li>
+          <li>
+            <a
+              href="{% url 'core:team' %}"
+              class="px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+            >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              Our Team
+            </a>
+          </li>
+
+          <li class="mt-4 mb-2">
+            <div
+              class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider"
+            >
+              Services
+            </div>
+          </li>
+          <li>
+            <a
+              href="{% url 'core:services' %}"
+              class="px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+            >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              All Services
+            </a>
+          </li>
+          <li>
+            <a
+              href="{% url 'core:services' %}#data"
+              class="px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+            >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              Data Collection
+            </a>
+          </li>
+          <li>
+            <a
+              href="{% url 'core:services' %}#research"
+              class="px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+            >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              Research
+            </a>
+          </li>
+
+          <li class="mt-4">
+            <a
+              href="{% url 'core:projects' %}"
+              class="px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+            >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              Projects
+            </a>
+          </li>
+
+          <li class="mt-4 mb-2">
+            <div
+              class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider"
+            >
+              Publications
+            </div>
+          </li>
+          <li>
+            <a
+              href="{% url 'core:publications' %}"
+              class="px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+            >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              All Publications
+            </a>
+          </li>
+          <li>
+            <a
+              href="{% url 'core:publications' %}?category=research_paper"
+              class="px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+            >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              Research Papers
+            </a>
+          </li>
+          <li>
+            <a
+              href="{% url 'core:publications' %}?category=policy_brief"
+              class="px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+            >
+              <span
+                class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+              ></span>
+              Policy Briefs
+            </a>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <!-- Logo for Desktop: Hidden on mobile -->
+    <a
+      href="{% url 'core:home' %}"
+      class="hidden lg:flex items-center p-2 group"
+    >
+      <img
+        src="{% static 'images/dds_logo.png' %}"
+        alt="Development Decision Support Logo"
+        class="h-20 w-auto transition-all duration-300 group-hover:scale-105"
+      />
+    </a>
+  </div>
+
+  <!-- =================================================== -->
+  <!-- NAVBAR-CENTER: Mobile Logo & Desktop Nav Links      -->
+  <!-- =================================================== -->
+  <div class="navbar-center">
+    <!-- Logo for Mobile: Centered and visible only on mobile -->
+    <a
+      href="{% url 'core:home' %}"
+      class="flex lg:hidden items-center p-2 group"
+    >
+      <img
+        src="{% static 'images/dds_logo.png' %}"
+        alt="Development Decision Support Logo"
+        class="h-16 w-auto transition-all duration-300 group-hover:scale-105"
+      />
+    </a>
+
+    <!-- Nav Links for Desktop: Modern dropdown design -->
+    <ul class="menu menu-horizontal px-1 hidden lg:flex space-x-2">
+      <li class="relative group">
+        <details class="dropdown dropdown-hover">
+          <summary
+            class="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-200 cursor-pointer rounded-lg hover:bg-blue-50 flex items-center"
+          >
+            About
+            <svg
+              class="w-4 h-4 ml-1 transition-transform duration-200 group-hover:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </summary>
+          <ul
+            class="dropdown-content menu p-2 shadow-2xl bg-white/95 backdrop-blur-lg rounded-2xl w-48 border border-gray-200/50 mt-2"
+          >
+            <li>
+              <a
+                href="{% url 'core:about' %}"
+                class="px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+              >
+                <span
+                  class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+                ></span>
+                About DDS
+              </a>
+            </li>
+            <li>
+              <a
+                href="{% url 'core:team' %}"
+                class="px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+              >
+                <span
+                  class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+                ></span>
+                Our Team
+              </a>
+            </li>
+          </ul>
+        </details>
+      </li>
+
+      <li class="relative group">
+        <details class="dropdown dropdown-hover">
+          <summary
+            class="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-200 cursor-pointer rounded-lg hover:bg-blue-50 flex items-center"
+          >
+            Services
+            <svg
+              class="w-4 h-4 ml-1 transition-transform duration-200 group-hover:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </summary>
+          <ul
+            class="dropdown-content menu p-2 shadow-2xl bg-white/95 backdrop-blur-lg rounded-2xl w-52 border border-gray-200/50 mt-2"
+          >
+            <li>
+              <a
+                href="{% url 'core:services' %}"
+                class="px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+              >
+                <span
+                  class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+                ></span>
+                All Services
+              </a>
+            </li>
+            <li>
+              <a
+                href="{% url 'core:services' %}#data"
+                class="px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+              >
+                <span
+                  class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+                ></span>
+                Data Collection
+              </a>
+            </li>
+            <li>
+              <a
+                href="{% url 'core:services' %}#research"
+                class="px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+              >
+                <span
+                  class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+                ></span>
+                Research
+              </a>
+            </li>
+            <li>
+              <a
+                href="{% url 'core:services' %}#analytics"
+                class="px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+              >
+                <span
+                  class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+                ></span>
+                Analytics
+              </a>
+            </li>
+          </ul>
+        </details>
+      </li>
+
+      <li>
+        <a
+          href="{% url 'core:projects' %}"
+          class="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-200 rounded-lg hover:bg-blue-50 relative group"
+        >
+          Projects
+          <span
+            class="absolute bottom-0 left-4 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-[calc(100%-2rem)]"
+          ></span>
+        </a>
+      </li>
+
+      <li class="relative group">
+        <details class="dropdown dropdown-hover">
+          <summary
+            class="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-200 cursor-pointer rounded-lg hover:bg-blue-50 flex items-center"
+          >
+            Publications
+            <svg
+              class="w-4 h-4 ml-1 transition-transform duration-200 group-hover:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </summary>
+          <ul
+            class="dropdown-content menu p-2 shadow-2xl bg-white/95 backdrop-blur-lg rounded-2xl w-56 border border-gray-200/50 mt-2"
+          >
+            <li>
+              <a
+                href="{% url 'core:publications' %}"
+                class="px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+              >
+                <span
+                  class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+                ></span>
+                All Publications
+              </a>
+            </li>
+            <li>
+              <a
+                href="{% url 'core:publications' %}?category=research_paper"
+                class="px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+              >
+                <span
+                  class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+                ></span>
+                Research Papers
+              </a>
+            </li>
+            <li>
+              <a
+                href="{% url 'core:publications' %}?category=policy_brief"
+                class="px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+              >
+                <span
+                  class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+                ></span>
+                Policy Briefs
+              </a>
+            </li>
+            <li>
+              <a
+                href="{% url 'core:publications' %}?category=report"
+                class="px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center group"
+              >
+                <span
+                  class="w-0 group-hover:w-2 h-0.5 bg-blue-500 transition-all duration-300 mr-0 group-hover:mr-2"
+                ></span>
+                Reports
+              </a>
+            </li>
+          </ul>
+        </details>
+      </li>
+
+      <li>
+        <a
+          href="#"
+          class="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-200 rounded-lg hover:bg-blue-50 relative group"
+        >
+          News
+          <span
+            class="absolute bottom-0 left-4 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-[calc(100%-2rem)]"
+          ></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ================================= -->
+  <!-- NAVBAR-END: Contact Button        -->
+  <!-- ================================= -->
+  <div class="navbar-end">
+    <!-- Modern gradient contact button -->
+    <a
+      href="{% url 'core:contact' %}"
+      class="btn btn-md bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium border-0 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+    >
+      <span class="flex items-center">
+        Contact
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
+          class="w-4 h-4 ml-1 transition-transform duration-200 group-hover:translate-x-1"
           fill="none"
-          viewBox="0 0 24 24"
           stroke="currentColor"
+          viewBox="0 0 24 24"
         >
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            d="M4 6h16M4 12h8m-8 6h16"
-          />
+            d="M14 5l7 7m0 0l-7 7m7-7H3"
+          ></path>
         </svg>
-      </div>
-      <ul
-        tabindex="0"
-        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-      >
-        <li>
-          <a href="{% url 'core:about' %}">About</a>
-          <ul class="p-2">
-            <li><a href="{% url 'core:about' %}">About DDS</a></li>
-            <li><a href="{% url 'core:team' %}">Team</a></li>
-          </ul>
-        </li>
-        <li>
-          <a>Services</a>
-          <ul class="p-2">
-            <li><a href="{% url 'core:services' %}">All Services</a></li>
-            <li><a href="{% url 'core:services' %}#data">Data</a></li>
-            <li><a href="{% url 'core:services' %}#research">Research</a></li>
-            <li><a href="{% url 'core:services' %}#analytics">Analytics</a></li>
-          </ul>
-        </li>
-        <li><a href="{% url 'core:projects' %}">Projects</a></li>
-        <li>
-          <a>Publications</a>
-          <ul class="p-2">
-            <li>
-              <a href="{% url 'core:publications' %}">All Publications</a>
-            </li>
-            <li>
-              <a href="{% url 'core:publications' %}?category=research_paper"
-                >Research Papers</a
-              >
-            </li>
-            <li>
-              <a href="{% url 'core:publications' %}?category=policy_brief"
-                >Policy Briefs</a
-              >
-            </li>
-            <li>
-              <a href="{% url 'core:publications' %}?category=report"
-                >Reports</a
-              >
-            </li>
-          </ul>
-        </li>
-        <li><a href="{% url 'core:blog' %}">Blog</a></li>
-      </ul>
-    </div>
-    <a
-      href="{% url 'core:home' %}"
-      class="btn btn-ghost text-base md:text-lg lg:text-xl xl:text-2xl"
-    >
-      Development Decision Support (DDS)
+      </span>
     </a>
   </div>
-  <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal px-1">
-      <li>
-        <details>
-          <summary>About</summary>
-          <ul class="p-2 bg-base-100 rounded-t-none">
-            <li><a href="{% url 'core:about' %}">About DSS</a></li>
-            <li><a href="{% url 'core:team' %}">Team</a></li>
-          </ul>
-        </details>
-      </li>
-      <li>
-        <details>
-          <summary>Services</summary>
-          <ul class="p-2 bg-base-100 rounded-t-none">
-            <li><a href="{% url 'core:services' %}">All Services</a></li>
-            <li><a href="{% url 'core:services' %}#data">Data</a></li>
-            <li><a href="{% url 'core:services' %}#research">Research</a></li>
-            <li><a href="{% url 'core:services' %}#analytics">Analytics</a></li>
-          </ul>
-        </details>
-      </li>
-      <li><a href="{% url 'core:projects' %}">Projects</a></li>
-      <li>
-        <details>
-          <summary>Publications</summary>
-          <ul class="p-2 bg-base-100 rounded-t-none">
-            <li>
-              <a href="{% url 'core:publications' %}">All Publications</a>
-            </li>
-            <li>
-              <a href="{% url 'core:publications' %}?category=research_paper"
-                >Research Papers</a
-              >
-            </li>
-            <li>
-              <a href="{% url 'core:publications' %}?category=policy_brief"
-                >Policy Briefs</a
-              >
-            </li>
-            <li>
-              <a href="{% url 'core:publications' %}?category=report"
-                >Reports</a
-              >
-            </li>
-          </ul>
-        </details>
-      </li>
-    </ul>
-  </div>
-  <div class="navbar-end">
-    <a
-      href="{% url 'core:contact' %}"
-      class="btn px-5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300"
-      >Contact</a
-    >
-  </div>
 </div>
-<div class="h-16"></div>
-<!-- Spacer for fixed navbar -->
+
+<script>
+  // Enhanced scroll behavior with smooth transitions
+  document.addEventListener("scroll", function () {
+    const navbar = document.getElementById("navbar");
+    if (window.scrollY > 10) {
+      navbar.classList.add("shadow-xl", "bg-white/98");
+      navbar.classList.remove("bg-white/95");
+    } else {
+      navbar.classList.add("bg-white/95");
+      navbar.classList.remove("shadow-xl", "bg-white/98");
+    }
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function (event) {
+    const dropdowns = document.querySelectorAll("details[open]");
+    dropdowns.forEach((dropdown) => {
+      if (!dropdown.contains(event.target)) {
+        dropdown.removeAttribute("open");
+      }
+    });
+  });
+</script>
