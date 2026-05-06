@@ -1,0 +1,21 @@
+/* ==========================================================================
+   DDS Admin — Minimal Overrides for Unfold Light Theme
+   Only adds polish that complements Unfold's native styling.
+   ========================================================================== */
+
+/* Force light theme class on the HTML element */
+html {
+    color-scheme: light !important;
+}
+
+html.dark {
+    color-scheme: light !important;
+}
+
+/* Ensure dark mode utility classes are neutralized */
+.dark body,
+.dark aside,
+.dark nav {
+    background-color: inherit;
+    color: inherit;
+}

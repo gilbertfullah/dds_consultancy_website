@@ -1,0 +1,408 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Cookie Policy — Development Decision Support (DDS){% endblock %}
+
+{% block extra_css %}
+<style>
+  .policy-hero {
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(160deg, var(--dds-primary-dark) 0%, var(--dds-primary) 40%, #2a4a3a 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .policy-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0);
+    background-size: 28px 28px;
+  }
+
+  .policy-card {
+    background: white;
+    border-radius: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.03);
+    transition: all 0.4s ease;
+  }
+
+  .policy-card:hover {
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.06);
+  }
+
+  .section-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    color: #64748b;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .section-nav-link:hover {
+    background: #f8fafc;
+    color: var(--dds-primary);
+  }
+
+  .section-nav-link.active {
+    background: rgba(90, 156, 106, 0.08);
+    color: var(--dds-accent-dark);
+  }
+
+  .prose h2 {
+    color: var(--dds-primary);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .prose h2::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--dds-accent);
+    border-radius: 50%;
+  }
+
+  .cookie-table-wrapper {
+    background: #f8fafc;
+    border-radius: 1.5rem;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+
+  .cookie-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .cookie-table th {
+    background: var(--dds-primary);
+    color: white;
+    text-align: left;
+    padding: 1rem 1.5rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .cookie-table td {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.875rem;
+    color: #475569;
+  }
+
+  .cookie-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .pref-card {
+    background: white;
+    border: 2px solid #f1f5f9;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .pref-card:hover {
+    border-color: var(--dds-accent-light);
+    background: rgba(90, 156, 106, 0.02);
+  }
+
+  .custom-checkbox {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.5rem;
+    border: 2px solid #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .checkbox-input:checked + .custom-checkbox {
+    background: var(--dds-accent);
+    border-color: var(--dds-accent);
+  }
+
+  .checkbox-input:checked + .custom-checkbox svg {
+    display: block;
+  }
+
+  .checkbox-input:disabled + .custom-checkbox {
+    background: #f1f5f9;
+    border-color: #e2e8f0;
+    cursor: not-allowed;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- ======================= HERO ======================= -->
+<section class="policy-hero">
+  <div class="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full opacity-[0.05]" style="background:radial-gradient(circle,var(--dds-accent-light),transparent 65%)"></div>
+  <div class="container mx-auto px-4 relative z-10 py-20">
+    <div class="max-w-3xl" data-aos="fade-up">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border mb-6" style="color:var(--dds-accent-light);border-color:rgba(90,156,106,0.25);background:rgba(90,156,106,0.08)">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>Privacy Center
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">
+        Cookie <span style="color:var(--dds-accent-light)">Policy</span>
+      </h1>
+      <p class="text-lg text-gray-400 max-w-2xl">
+        Transparency is core to our research. Here is how we use cookies to provide you with a more tailored and efficient browsing experience.
+      </p>
+      <div class="mt-8 flex items-center gap-4 text-sm text-gray-500 font-medium">
+        <span>Last updated: {% now "F j, Y" %}</span>
+        <span class="w-1 h-1 rounded-full bg-gray-700"></span>
+        <span>Version 1.2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CONTENT ======================= -->
+<section class="py-20 bg-slate-50 min-h-screen">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col lg:flex-row gap-12 max-w-7xl mx-auto">
+      
+      <!-- Sidebar Navigation -->
+      <aside class="lg:w-1/4 hidden lg:block">
+        <div class="sticky top-32 space-y-2 p-6 glass-effect rounded-2xl border border-gray-200/50">
+          <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-4 px-4">Legal Menu</h4>
+          <a href="#what-are-cookies" class="section-nav-link active">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            What are Cookies?
+          </a>
+          <a href="#types" class="section-nav-link">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+            Types of Cookies
+          </a>
+          <a href="#preferences" class="section-nav-link">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Manage Preferences
+          </a>
+          <a href="#browsers" class="section-nav-link">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+            Browser Settings
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content Card -->
+      <div class="lg:w-3/4">
+        <div class="policy-card p-8 md:p-12 lg:p-16" data-aos="fade-up">
+          <div class="prose prose-lg max-w-none prose-slate prose-headings:text-slate-900 prose-p:text-slate-600 prose-li:text-slate-600">
+            
+            <section id="what-are-cookies" class="mb-12">
+              <h2>What Are Cookies?</h2>
+              <p class="text-xl font-medium text-slate-700">
+                Small data files, significant impact on your experience.
+              </p>
+              <p>
+                Cookies are small pieces of text sent by your web browser by a website you visit. A cookie file is stored in your web browser and allows the website or a third-party to recognize you and make your next visit easier and more useful to you.
+              </p>
+            </section>
+
+            <section id="types" class="mb-12">
+              <h2>Types of Cookies We Use</h2>
+              <p>We use different categories of cookies to balance functionality with privacy:</p>
+              
+              <div class="cookie-table-wrapper not-prose">
+                <table class="cookie-table">
+                  <thead>
+                    <tr>
+                      <th>Category</th>
+                      <th>Purpose</th>
+                      <th>Lifespan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="font-bold text-slate-900">Essential</td>
+                      <td>Required for security and core site functionality.</td>
+                      <td><span class="px-2 py-1 bg-slate-200 rounded text-[10px] font-bold">SESSION</span></td>
+                    </tr>
+                    <tr>
+                      <td class="font-bold text-slate-900">Functionality</td>
+                      <td>Remembers your settings and language preferences.</td>
+                      <td><span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-[10px] font-bold">1 YEAR</span></td>
+                    </tr>
+                    <tr>
+                      <td class="font-bold text-slate-900">Analytics</td>
+                      <td>Helps us improve our research output and site speed.</td>
+                      <td><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-[10px] font-bold">2 YEARS</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section id="preferences" class="mb-12">
+              <h2>Manage Your Preferences</h2>
+              <p>You can adjust your cookie settings at any time. Your choices are saved instantly for your current and future visits.</p>
+              
+              <div class="not-prose space-y-4 my-8">
+                <!-- Essential (Disabled) -->
+                <div class="pref-card flex items-center justify-between opacity-60">
+                  <div>
+                    <h4 class="font-bold text-slate-900">Essential Cookies</h4>
+                    <p class="text-xs text-slate-500">Necessary for the website to operate securely.</p>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-not-allowed">
+                    <input type="checkbox" checked disabled class="sr-only checkbox-input">
+                    <div class="custom-checkbox">
+                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                  </label>
+                </div>
+
+                <!-- Functionality -->
+                <div class="pref-card flex items-center justify-between">
+                  <div>
+                    <h4 class="font-bold text-slate-900">Functionality Cookies</h4>
+                    <p class="text-xs text-slate-500">Used to remember your UI preferences and settings.</p>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="functionality-cookies" class="sr-only checkbox-input">
+                    <div class="custom-checkbox">
+                      <svg class="hidden w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                  </label>
+                </div>
+
+                <!-- Analytics -->
+                <div class="pref-card flex items-center justify-between">
+                  <div>
+                    <h4 class="font-bold text-slate-900">Analytics Cookies</h4>
+                    <p class="text-xs text-slate-500">Allows us to monitor site performance anonymously.</p>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="analytics-cookies" class="sr-only checkbox-input">
+                    <div class="custom-checkbox">
+                      <svg class="hidden w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="flex justify-end pt-4">
+                  <button onclick="saveCookiePreferences()" class="inline-flex items-center gap-2 px-8 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-emerald-500 transition-all shadow-lg hover:shadow-emerald-500/20">
+                    Save Preferences <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section id="browsers" class="mb-12">
+              <h2>How to Control Cookies via Browsers</h2>
+              <p>Beyond our settings, your browser provides deeper control over how cookies are handled.</p>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose my-8">
+                <div class="p-6 bg-white border border-slate-200 rounded-2xl group hover:border-emerald-500/30 transition-all">
+                  <h4 class="font-bold text-slate-900 mb-3 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm-4-10c0-1.105.895-2 2-2s2 .895 2 2-.895 2-2 2-2-.895-2-2z"/></svg>
+                    Google Chrome
+                  </h4>
+                  <p class="text-sm text-slate-500">Settings > Privacy and Security > Cookies and other site data.</p>
+                </div>
+                <div class="p-6 bg-white border border-slate-200 rounded-2xl group hover:border-orange-500/30 transition-all">
+                  <h4 class="font-bold text-slate-900 mb-3 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.5 17c0-1.381 1.119-2.5 2.5-2.5s2.5 1.119 2.5 2.5-1.119 2.5-2.5 2.5-2.5-1.119-2.5-2.5z"/></svg>
+                    Firefox
+                  </h4>
+                  <p class="text-sm text-slate-500">Menu > Options > Privacy & Security > Cookies and Site Data.</p>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </div>
+
+        <!-- Secondary Navigation -->
+        <div class="mt-12 flex flex-col md:flex-row items-center justify-between gap-6 px-8">
+          <p class="text-sm text-slate-400">© {{ now|date:"Y" }} Development Decision Support. All rights reserved.</p>
+          <div class="flex items-center gap-8">
+            <a href="{% url 'core:privacy' %}" class="text-sm font-bold text-slate-900 hover:text-emerald-600 transition-colors">Privacy Policy</a>
+            <a href="{% url 'core:terms' %}" class="text-sm font-bold text-slate-900 hover:text-emerald-600 transition-colors">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  function saveCookiePreferences() {
+    const functionality = document.getElementById("functionality-cookies").checked;
+    const analytics = document.getElementById("analytics-cookies").checked;
+
+    const preferences = {
+      functionality,
+      analytics,
+      lastUpdated: new Date().toISOString(),
+    };
+    localStorage.setItem("cookiePreferences", JSON.stringify(preferences));
+
+    // Modern feedback instead of alert
+    const btn = event.currentTarget;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = 'Saved Successfully! <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+    btn.classList.add('bg-emerald-600');
+    
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+      btn.classList.remove('bg-emerald-600');
+    }, 2000);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Scroll Spy
+    const links = document.querySelectorAll('.section-nav-link');
+    const sections = document.querySelectorAll('section[id]');
+
+    function updateActiveLink() {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      links.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').substring(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveLink);
+    updateActiveLink();
+
+    // Load saved preferences
+    const savedPreferences = localStorage.getItem("cookiePreferences");
+    if (savedPreferences) {
+      const preferences = JSON.parse(savedPreferences);
+      document.getElementById("functionality-cookies").checked = preferences.functionality;
+      document.getElementById("analytics-cookies").checked = preferences.analytics;
+    }
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Access Forbidden - DDS Research & Consultancy{% endblock %}
+
+{% block content %}
+<section class="min-h-[80vh] flex items-center justify-center relative overflow-hidden bg-white">
+  <div class="absolute inset-0 opacity-[0.02]" style="background-image: radial-gradient(circle at 1px 1px, black 1px, transparent 0); background-size: 40px 40px;"></div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="mb-12 inline-block">
+        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-slate-900 flex items-center justify-center mx-auto mb-6 shadow-2xl">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 md:h-16 md:w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+        </div>
+        <h1 class="text-6xl md:text-8xl font-black text-gray-900 leading-none mb-4 tracking-tighter">403</h1>
+      </div>
+
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">Access <span class="text-slate-900">Restricted.</span></h2>
+      <p class="text-lg text-gray-500 mb-10 leading-relaxed max-w-md mx-auto">
+        You don't have permission to access this research area. Please contact your administrator or return to the main hub.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="{% url 'core:home' %}" class="w-full sm:w-auto px-10 py-4 rounded-2xl text-white font-bold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1" style="background: var(--dds-primary-dark);">
+          Return Home
+        </a>
+        <a href="{% url 'core:contact' %}" class="w-full sm:w-auto px-10 py-4 rounded-2xl text-gray-700 font-bold border-2 border-gray-100 hover:bg-gray-50 hover:border-gray-200 transition-all">
+          Request Access
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

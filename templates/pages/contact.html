@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact Us — Development Decision Support (DDS){% endblock %}
+
+{% block content %}
+
+<!-- ================================================================ -->
+<!-- Hero Banner                                                       -->
+<!-- ================================================================ -->
+<section class="relative isolate overflow-hidden" style="background:linear-gradient(160deg,var(--dds-primary-dark),var(--dds-primary),#2a4a3a)">
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image:radial-gradient(circle at 1px 1px,white 1px,transparent 0);background-size:32px 32px"></div>
+  <div class="absolute top-0 right-0 w-[40rem] h-[40rem] rounded-full opacity-[0.06] blur-[100px]" style="background:radial-gradient(circle,var(--dds-accent-light),transparent 70%)"></div>
+
+  <div class="container mx-auto px-4 py-24 md:py-32 text-center relative z-10">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-[0.2em] border mb-8" data-aos="fade-down"
+         style="color:var(--dds-accent-light);border-color:rgba(90,156,106,0.25);background:rgba(90,156,106,0.08)">
+      <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background:var(--dds-accent-light)"></span>Let's Work Together
+    </div>
+    <h1 class="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-white tracking-tight leading-[1.1] mb-6" data-aos="fade-up">
+      Contact <span style="color:var(--dds-accent-light)">DDS</span>
+    </h1>
+    <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-400 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+      Reach out for a consultation, partnership enquiry, or any information about our services.
+    </p>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- Contact Grid                                                      -->
+<!-- ================================================================ -->
+<section class="relative py-20 md:py-28 bg-slate-50 overflow-hidden">
+
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image:radial-gradient(var(--dds-primary) 1px, transparent 0);background-size:40px 40px"></div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid lg:grid-cols-5 gap-12 items-start max-w-6xl mx-auto">
+
+      <!-- ── Left column: info cards ──────────────────────────────── -->
+      <div class="lg:col-span-2 space-y-6" data-aos="fade-right">
+
+        <!-- Address -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex gap-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+          <div class="flex-shrink-0 h-14 w-14 rounded-xl flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-500" style="background:linear-gradient(135deg,var(--dds-primary),var(--dds-accent))">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-900 mb-1">Our Office</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">58 Fort Street<br>Freetown, Sierra Leone</p>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex gap-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+          <div class="flex-shrink-0 h-14 w-14 rounded-xl flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-500" style="background:linear-gradient(135deg,var(--dds-primary),var(--dds-accent))">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-900 mb-1">Email Us</h3>
+            <a href="mailto:info@ddsconsultancy.org" class="text-sm font-semibold transition-colors" style="color:var(--dds-primary)">
+              info@ddsconsultancy.org
+            </a>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex gap-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+          <div class="flex-shrink-0 h-14 w-14 rounded-xl flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-500" style="background:linear-gradient(135deg,var(--dds-primary),var(--dds-accent))">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-900 mb-1">Call Us</h3>
+            <a href="tel:+23278774585" class="text-sm font-semibold transition-colors" style="color:var(--dds-primary)">
+              +(232) 78 774-585
+            </a>
+          </div>
+        </div>
+
+        <!-- Response time & Socials -->
+        <div class="rounded-2xl p-8 text-white relative overflow-hidden" style="background:linear-gradient(135deg,var(--dds-primary),var(--dds-accent))">
+          <!-- Decorative blur -->
+          <div class="absolute -bottom-10 -right-10 w-32 h-32 rounded-full opacity-30 blur-2xl bg-white"></div>
+          
+          <div class="relative z-10">
+            <div class="flex items-center gap-3 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <h3 class="font-bold text-lg">Quick Response</h3>
+            </div>
+            <p class="text-white/90 text-sm leading-relaxed mb-6">
+              We typically respond to all enquiries within <strong>24 hours</strong> on business days.
+            </p>
+
+            <!-- Socials -->
+            <div class="flex gap-3">
+              <a href="https://twitter.com/DDSGlobal" target="_blank" rel="noopener noreferrer"
+                 class="p-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl transition-all duration-300 hover:-translate-y-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/company/ddsconsultancy" target="_blank" rel="noopener noreferrer"
+                 class="p-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl transition-all duration-300 hover:-translate-y-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Right column: form ────────────────────────────────────── -->
+      <div class="lg:col-span-3" data-aos="fade-left">
+        <div class="bg-white rounded-[2rem] shadow-xl border border-gray-100 p-8 md:p-12 relative overflow-hidden">
+          <!-- Top accent line -->
+          <div class="absolute top-0 left-0 right-0 h-1.5" style="background:linear-gradient(90deg,var(--dds-primary),var(--dds-accent))"></div>
+
+          <h2 class="text-3xl font-extrabold text-gray-900 mb-2 mt-2">Send Us a Message</h2>
+          <p class="text-gray-500 mb-8 text-sm">Fill in the form below and our team will get back to you shortly.</p>
+
+          <!-- Success flash -->
+          {% if messages %}
+            {% for message in messages %}
+            <div class="flex items-start gap-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl p-4 mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span class="text-sm font-bold">{{ message }}</span>
+            </div>
+            {% endfor %}
+          {% endif %}
+
+          <form id="contact-form" method="POST" class="space-y-6">
+            {% csrf_token %}
+
+            <!-- Name & Email row -->
+            <div class="grid sm:grid-cols-2 gap-6">
+              {% for field in form %}
+                {% if field.html_name == 'name' or field.html_name == 'email' %}
+                <div>
+                  <label for="{{ field.id_for_label }}" class="block text-sm font-bold text-gray-700 mb-2">
+                    {{ field.label }}
+                  </label>
+                  <div class="relative">
+                    {{ field }}
+                  </div>
+                  {% if field.errors %}
+                    {% for error in field.errors %}
+                    <p class="mt-1.5 text-xs font-semibold text-red-600">{{ error }}</p>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            <!-- Other fields -->
+            {% for field in form %}
+              {% if field.html_name != 'name' and field.html_name != 'email' %}
+              <div>
+                <label for="{{ field.id_for_label }}" class="block text-sm font-bold text-gray-700 mb-2">
+                  {{ field.label }}
+                </label>
+                {{ field }}
+                {% if field.errors %}
+                  {% for error in field.errors %}
+                  <p class="mt-1.5 text-xs font-semibold text-red-600">{{ error }}</p>
+                  {% endfor %}
+                {% endif %}
+              </div>
+              {% endif %}
+            {% endfor %}
+
+            <div class="pt-4">
+              <button type="submit"
+                class="w-full inline-flex items-center justify-center gap-3 px-8 py-4 text-white font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-2xl focus:outline-none focus:ring-4"
+                style="background:linear-gradient(135deg,var(--dds-primary),var(--dds-accent)); focus-ring-color:rgba(90,156,106,0.3)">
+                Send Message
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = this;
+    const btn = form.querySelector('button[type="submit"]');
+    const originalBtnText = btn.innerHTML;
+    
+    // Disable button and show loading
+    btn.disabled = true;
+    btn.innerHTML = `<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Sending...`;
+
+    const formData = new FormData(form);
+    
+    fetch(window.location.href, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            // Show Success Modal
+            document.getElementById('success-modal').classList.remove('hidden');
+            form.reset();
+        } else {
+            alert('Something went wrong. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error sending your message.');
+    })
+    .finally(() => {
+        btn.disabled = false;
+        btn.innerHTML = originalBtnText;
+    });
+});
+</script>
+
+<!-- Success Modal -->
+<div id="success-modal" class="hidden fixed inset-0 z-[110] flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="this.parentElement.classList.add('hidden')"></div>
+    <div class="relative bg-white rounded-3xl shadow-2xl max-w-sm w-full p-8 text-center animate-in zoom-in duration-300">
+        <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+            </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+        <p class="text-gray-500 mb-8 text-sm">Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+        <button 
+            onclick="document.getElementById('success-modal').classList.add('hidden')"
+            class="w-full py-3 bg-dds-primary text-white font-bold rounded-xl hover:bg-dds-primary-dark transition-colors"
+        >
+            Got it, thanks!
+        </button>
+    </div>
+</div>
+
+<style>
+    .bg-dds-primary { background-color: #2d3a4a; }
+    .hover\:bg-dds-primary-dark:hover { background-color: #1a2533; }
+</style>
+{% endblock %}
+
+
+{% block extra_css %}
+<style>
+  /* Style Django form inputs to match the design */
+  #contact-form input,
+  form input[type="text"],
+  form input[type="email"],
+  form textarea,
+  form select {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 0.75rem;
+    font-size: 0.9375rem;
+    color: #111827;
+    background: #f9fafb;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    outline: none;
+  }
+
+  form input[type="text"]:focus,
+  form input[type="email"]:focus,
+  form textarea:focus,
+  form select:focus {
+    border-color: #3b82f6;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  }
+
+  form textarea {
+    min-height: 140px;
+    resize: vertical;
+  }
+
+  /* CKEditor widget override */
+  .django-ckeditor-widget,
+  .ck-editor__editable {
+    border-radius: 0.75rem !important;
+    border: 1.5px solid #e5e7eb !important;
+  }
+</style>
+{% endblock %}

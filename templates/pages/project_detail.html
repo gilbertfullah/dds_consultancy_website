@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ project.title }} - DDS Research & Consultancy{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative min-h-[60vh] flex items-center overflow-hidden bg-gray-900">
+  <!-- Background Image with Overlay -->
+  <div class="absolute inset-0 z-0">
+    {% if project.image %}
+      <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover opacity-40">
+    {% endif %}
+    <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"></div>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10 py-24 md:py-32">
+    <div class="max-w-4xl" data-aos="fade-right">
+      <!-- Breadcrumb -->
+      <nav class="mb-8 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-white/50">
+        <a href="{% url 'core:home' %}" class="hover:text-white transition-colors">Home</a>
+        <span class="w-1 h-1 rounded-full bg-white/30"></span>
+        <a href="{% url 'core:projects' %}" class="hover:text-white transition-colors">Projects</a>
+      </nav>
+
+      <!-- Badges -->
+      <div class="flex flex-wrap gap-3 mb-8">
+        <span class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest bg-[var(--dds-accent)] text-white shadow-xl">
+          {{ project.client }}
+        </span>
+        <span class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest bg-white/10 text-white backdrop-blur-md border border-white/10">
+          {{ project.date_completed|date:"M Y" }}
+        </span>
+        {% if project.featured %}
+        <span class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest bg-white/10 text-white backdrop-blur-md border border-white/10 flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--dds-accent-light)]"></span>
+          Featured Project
+        </span>
+        {% endif %}
+      </div>
+
+      <h1 class="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tighter">
+        {{ project.title }}
+      </h1>
+
+      <!-- Stats Bar -->
+      <div class="flex flex-wrap items-center gap-8 pt-8 border-t border-white/10">
+        <div>
+          <div class="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] mb-1">Location</div>
+          <div class="text-lg font-bold text-white">{{ project.location }}</div>
+        </div>
+        <div class="w-px h-10 bg-white/10 hidden sm:block"></div>
+        <div>
+          <div class="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] mb-1">Project Category</div>
+          <div class="text-lg font-bold text-white">
+            {{ project.get_category_display }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Content Section -->
+<section class="py-20 md:py-32 bg-white relative">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24">
+      
+      <!-- Main Content -->
+      <div class="lg:col-span-7 space-y-20">
+        <!-- Main Project Image -->
+        {% if project.image %}
+        <div data-aos="fade-up">
+          <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full rounded-[2.5rem] shadow-2xl border border-gray-100">
+        </div>
+        {% endif %}
+
+        <!-- Overview -->
+        <div data-aos="fade-up">
+          <div class="inline-flex items-center gap-3 mb-8">
+            <h2 class="text-3xl font-black text-gray-900 uppercase tracking-tighter">Project Overview</h2>
+          </div>
+          <div class="prose prose-lg prose-slate max-w-none text-gray-600 leading-relaxed font-medium">
+            {{ project.description|safe }}
+          </div>
+        </div>
+
+        <!-- Methodology (Optional) -->
+        {% if project.methodology %}
+        <div data-aos="fade-up">
+          <div class="inline-flex items-center gap-3 mb-8">
+            <h2 class="text-3xl font-black text-gray-900 uppercase tracking-tighter">Methodology</h2>
+          </div>
+          <div class="prose prose-lg prose-slate max-w-none text-gray-600 leading-relaxed font-medium">
+            {{ project.methodology|safe }}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Impact & Results -->
+        {% if project.results %}
+        <div data-aos="fade-up">
+          <div class="inline-flex items-center gap-3 mb-8">
+            <h2 class="text-3xl font-black text-gray-900 uppercase tracking-tighter">Impact & Outcomes</h2>
+          </div>
+          <div class="bg-gray-50 rounded-[3rem] p-10 md:p-16 border border-gray-100 shadow-sm relative overflow-hidden">
+             <div class="absolute top-0 right-0 p-8 opacity-10">
+               <svg class="w-24 h-24 text-[var(--dds-primary)]" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V5C14.017 3.89543 14.9124 3 16.017 3H19.017C21.2261 3 23.017 4.79086 23.017 7V15C23.017 18.3137 20.3307 21 17.017 21H14.017ZM1 15C1 18.3137 3.68629 21 7 21H10V18C10 16.8954 9.10457 16 8 16H5C4.44772 16 4 15.5523 4 15V9C4 8.44772 4.44772 8 5 8H8C9.10457 8 10 7.10457 10 6V5C10 3.89543 9.10457 3 8 3H5C2.79086 3 1 4.79086 1 7V15Z"/></svg>
+             </div>
+             <div class="prose prose-xl prose-slate max-w-none text-gray-800 font-bold leading-relaxed italic relative z-10">
+               {{ project.results|safe }}
+             </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-5">
+        <div class="sticky top-32 space-y-8" data-aos="fade-left">
+          
+          <!-- Project Meta Card -->
+          <div class="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl overflow-hidden">
+            <div class="p-10 space-y-8">
+              <h3 class="text-xl font-black text-gray-900 uppercase tracking-tighter pb-6 border-b border-gray-50">Project At A Glance</h3>
+              
+              <div class="space-y-8">
+                <div class="flex items-start gap-5">
+                  <div class="w-12 h-12 rounded-2xl bg-[var(--dds-primary)]/5 flex items-center justify-center text-[var(--dds-primary)]">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                  </div>
+                  <div>
+                    <div class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-1">Key Stakeholder</div>
+                    <div class="text-base font-bold text-gray-900">{{ project.client }}</div>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-5">
+                  <div class="w-12 h-12 rounded-2xl bg-[var(--dds-primary)]/5 flex items-center justify-center text-[var(--dds-primary)]">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  </div>
+                  <div>
+                    <div class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-1">Timeline</div>
+                    <div class="text-base font-bold text-gray-900">Completed · {{ project.date_completed|date:"M Y" }}</div>
+                  </div>
+                </div>
+
+                {% if project.get_tags_list %}
+                <div class="pt-8 border-t border-gray-50">
+                  <div class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">Focus Disciplines</div>
+                  <div class="flex flex-wrap gap-2">
+                    {% for tag in project.get_tags_list %}
+                    <span class="px-4 py-2 rounded-xl bg-gray-50 text-[10px] font-bold text-gray-600 border border-gray-100 uppercase tracking-widest">{{ tag }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="bg-gray-900 p-10 text-center">
+              <h4 class="text-white font-black text-xl mb-4 tracking-tighter">Need expert analysis?</h4>
+              <p class="text-gray-400 text-sm mb-8 leading-relaxed">Let us apply our methodology to your next development project.</p>
+              <a href="{% url 'core:contact' %}" class="inline-flex items-center justify-center w-full px-8 py-4 bg-[var(--dds-accent)] text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-xl hover:scale-105 transition-transform">
+                Consult With Us
+              </a>
+            </div>
+          </div>
+
+          <!-- Share Toolkit -->
+          <div class="bg-white rounded-[2rem] border border-gray-100 p-6">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Share Impact</span>
+              <div class="flex gap-3">
+                 <button onclick="shareOnLinkedIn()" class="w-10 h-10 rounded-xl border border-gray-50 flex items-center justify-center text-gray-400 hover:text-[var(--dds-primary)] hover:bg-[var(--dds-primary)]/5 transition-all">
+                   <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                 </button>
+                 <button onclick="shareOnTwitter()" class="w-10 h-10 rounded-xl border border-gray-50 flex items-center justify-center text-gray-400 hover:text-[var(--dds-primary)] hover:bg-[var(--dds-primary)]/5 transition-all">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function shareOnLinkedIn(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(window.location.href))}
+function shareOnTwitter(){window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent('Check out this project impact by @DDSAfrica: {{ project.title }}'))}
+function copyLink(){navigator.clipboard.writeText(window.location.href).then(()=>{alert('Link copied!')})}
+</script>
+{% endblock %}

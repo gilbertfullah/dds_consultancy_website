@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }} - News - DDS{% endblock %}
+
+
+{% block extra_js %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "{{ post.title }}",
+  "datePublished": "{{ post.date|date:'c' }}",
+  "dateModified": "{{ post.date|date:'c' }}",
+  "author": {
+    "@type": "Organization",
+    "name": "Development Decision Support (DDS)"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Development Decision Support (DDS)",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/dds_logo.png' %}"
+    }
+  },
+  "description": "{{ post.content|striptags|truncatewords:30 }}"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Article Hero -->
+<section class="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden" style="background: linear-gradient(135deg, var(--dds-primary-dark) 0%, var(--dds-primary) 60%, var(--dds-primary-light) 100%);">
+  <div class="absolute inset-0 opacity-[0.05]" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 32px 32px;"></div>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="max-w-4xl mx-auto">
+      <nav class="mb-8 flex items-center gap-2 text-sm text-gray-400">
+        <a href="{% url 'core:home' %}" class="hover:text-white transition-colors">Home</a>
+        <span class="text-gray-600">/</span>
+        <a href="{% url 'core:news_list' %}" class="hover:text-white transition-colors">News</a>
+        <span class="text-gray-600">/</span>
+        <span class="text-gray-300 truncate">{{ post.title|truncatechars:30 }}</span>
+      </nav>
+      
+      <div class="mb-6 flex flex-wrap items-center gap-4">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border" style="color: var(--dds-accent-light); border-color: rgba(90,156,106,0.3); background: rgba(90,156,106,0.1);">
+          {{ post.date|date:"d M Y" }}
+        </span>
+        {% if post.location %}
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20 bg-white/10 text-white backdrop-blur-sm">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          {{ post.location }}
+        </span>
+        {% endif %}
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-white" 
+              style="background: {% if post.category == 'announcement' %}var(--dds-accent-dark){% elif post.category == 'press_release' %}var(--dds-primary){% elif post.category == 'event' %}#f59e0b{% else %}#64748b{% endif %};">
+          {{ post.get_category_display }}
+        </span>
+      </div>
+      
+      <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-8 leading-tight tracking-tight">
+        {{ post.title }}
+      </h1>
+
+      {% if post.get_tags_list %}
+      <div class="flex flex-wrap gap-2 mb-8">
+        {% for tag in post.get_tags_list %}
+        <span class="px-3 py-1 rounded-lg text-xs font-bold bg-white/10 text-white/80 uppercase tracking-wider border border-white/10 backdrop-blur-sm">
+          #{{ tag }}
+        </span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- News Image Section -->
+{% if post.image %}
+<section class="relative -mt-12 md:-mt-20 z-20">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <div class="rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-auto">
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Article Content -->
+<section class="py-16 md:py-24 bg-white relative">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <!-- Article Body -->
+      <div class="prose prose-lg md:prose-xl max-w-none text-gray-600 leading-relaxed prose-headings:text-gray-900 prose-headings:font-bold prose-a:text-[var(--dds-primary)] hover:prose-a:text-[var(--dds-accent)] transition-colors">
+        {{ post.content|safe }}
+      </div>
+      
+      <!-- Footer Actions -->
+      <div class="mt-16 pt-10 border-t border-gray-100 flex flex-wrap items-center justify-between gap-6">
+        <div class="flex items-center gap-4">
+          <span class="text-sm font-bold text-gray-400 uppercase tracking-wider">Share this story</span>
+          <div class="flex gap-2">
+            <a href="https://twitter.com/intent/tweet?text={{ post.title|urlencode }}&url={{ request.build_absolute_uri }}" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-xl border border-gray-200 text-gray-400 hover:text-white hover:bg-[#1DA1F2] hover:border-[#1DA1F2] transition-all">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ post.title|urlencode }}" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-xl border border-gray-200 text-gray-400 hover:text-white hover:bg-[#0077b5] hover:border-[#0077b5] transition-all">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+        
+        <a href="{% url 'core:news_list' %}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-gray-100 text-sm font-bold text-gray-600 hover:bg-gray-50 hover:border-gray-200 transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 16l-4-4m0 0l4-4m-4 4h18"/></svg>
+          Back to News
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related Articles (Optional) -->
+{% if related_posts %}
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <h3 class="text-2xl font-bold text-gray-900 mb-10">You might also be interested in</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {% for related in related_posts %}
+        <a href="{% url 'core:news_detail' related.slug %}" class="group block bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all">
+          <span class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 block">{{ related.date|date:"d M Y" }}</span>
+          <h4 class="text-lg font-bold text-gray-900 group-hover:text-[var(--dds-primary)] transition-colors mb-2 line-clamp-2">{{ related.title }}</h4>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

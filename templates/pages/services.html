@@ -1,0 +1,225 @@
+{% extends 'base.html' %}{% load static %}{% block title %}Our Services - Development Decision Support (DDS){% endblock %}{% block extra_css %}
+<style>
+  .svc-hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center
+  }
+
+  .svc-card {
+    position: relative;
+    border-radius: 1.25rem;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: all .4s cubic-bezier(.4, 0, .2, 1)
+  }
+
+  .svc-card:hover {
+    box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-6px)
+  }
+
+  .svc-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--dds-primary), var(--dds-accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .4s ease
+  }
+
+  .svc-card:hover::before {
+    transform: scaleX(1)
+  }
+
+  .svc-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--dds-primary), var(--dds-accent));
+    color: white;
+    flex-shrink: 0;
+    transition: transform .3s ease
+  }
+
+  .svc-card:hover .svc-icon {
+    transform: scale(1.1) rotate(-5deg)
+  }
+
+  .svc-check {
+    flex-shrink: 0;
+    width: 1.125rem;
+    height: 1.125rem;
+    border-radius: .375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    background: rgba(74, 124, 89, 0.1)
+  }
+
+  .svc-check svg {
+    width: .625rem;
+    height: .625rem;
+    color: var(--dds-accent)
+  }
+</style>
+{% endblock %}{% block content %}
+
+<!-- Hero -->
+<section class="svc-hero relative overflow-hidden"
+  style="background:linear-gradient(160deg,var(--dds-primary-dark) 0%,var(--dds-primary) 40%,#2a4a3a 100%)">
+  <div class="absolute inset-0 opacity-[0.03]"
+    style="background-image:radial-gradient(circle at 1px 1px,white 1px,transparent 0);background-size:28px 28px"></div>
+  <div class="absolute top-1/4 right-0 w-[600px] h-[600px] rounded-full opacity-[0.07]"
+    style="background:radial-gradient(circle,var(--dds-accent-light),transparent 65%)"></div>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24 md:py-32">
+    <div class="max-w-3xl">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-[0.2em] border mb-8"
+        style="color:var(--dds-accent-light);border-color:rgba(90,156,106,0.25);background:rgba(90,156,106,0.08)">
+        <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background:var(--dds-accent-light)"></span>What We
+        Do
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-white mb-6 leading-[1.1] tracking-tight">
+        Comprehensive <span style="color:var(--dds-accent-light)">Solutions</span> for Development Impact
+      </h1>
+      <p class="text-lg md:text-xl text-gray-400 leading-relaxed max-w-2xl">
+        From research & analysis to capacity building, we deliver end-to-end services that drive measurable outcomes for
+        development projects across Africa.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Services Grid -->
+<section class="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] mb-4"
+        style="color:var(--dds-accent)"><span class="w-8 h-px" style="background:var(--dds-accent)"></span>Our
+        Expertise<span class="w-8 h-px" style="background:var(--dds-accent)"></span></div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Services We <span
+          class="brand-gradient-text">Offer</span></h2>
+      <p class="text-lg text-gray-500 max-w-xl mx-auto">Tailored solutions built on rigorous research and deep local
+        expertise.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+      {% for service in services %}
+      <div class="svc-card p-7 md:p-8" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+        <div class="flex items-start gap-4 mb-5">
+          <div class="svc-icon">
+            {% if service.icon %}
+            <img src="{{ service.icon.url }}" alt="{{ service.title }}" class="w-5 h-5 object-contain brightness-0 invert">
+            {% else %}
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            {% endif %}
+          </div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400">{{ forloop.counter|stringformat:"02d" }}</span>
+            <h3 class="text-lg font-bold text-gray-900 leading-snug">{{ service.title }}</h3>
+          </div>
+        </div>
+        <div class="text-sm text-gray-500 leading-relaxed">{{ service.description|safe }}</div>
+      </div>
+      {% empty %}
+      <div class="col-span-full text-center py-16 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
+        <p class="text-gray-500 text-lg">Services coming soon.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="relative overflow-hidden py-20 md:py-28"
+  style="background:linear-gradient(160deg,var(--dds-primary-dark),var(--dds-primary),#2a4a3a)">
+  <div class="absolute inset-0 opacity-[0.03]"
+    style="background-image:radial-gradient(circle at 1px 1px,white 1px,transparent 0);background-size:28px 28px"></div>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] mb-4"
+        style="color:var(--dds-accent-light)"><span class="w-8 h-px"
+          style="background:var(--dds-accent-light)"></span>Why DDS<span class="w-8 h-px"
+          style="background:var(--dds-accent-light)"></span></div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Why Work <span
+          style="color:var(--dds-accent-light)">With Us</span></h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+      <div
+        class="text-center p-6 rounded-2xl bg-white/[0.06] border border-white/10 hover:bg-white/[0.1] transition-all">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4"
+          style="background:rgba(90,156,106,0.15)"><svg class="w-6 h-6" style="color:var(--dds-accent-light)"
+            fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+          </svg></div>
+        <h3 class="text-sm font-bold text-white mb-1.5">Deep Expertise</h3>
+        <p class="text-xs text-gray-500 leading-relaxed">10+ years of development research across Africa</p>
+      </div>
+      <div
+        class="text-center p-6 rounded-2xl bg-white/[0.06] border border-white/10 hover:bg-white/[0.1] transition-all">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4"
+          style="background:rgba(90,156,106,0.15)"><svg class="w-6 h-6" style="color:var(--dds-accent-light)"
+            fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg></div>
+        <h3 class="text-sm font-bold text-white mb-1.5">Local Context</h3>
+        <p class="text-xs text-gray-500 leading-relaxed">Grounded understanding of African communities</p>
+      </div>
+      <div
+        class="text-center p-6 rounded-2xl bg-white/[0.06] border border-white/10 hover:bg-white/[0.1] transition-all">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4"
+          style="background:rgba(90,156,106,0.15)"><svg class="w-6 h-6" style="color:var(--dds-accent-light)"
+            fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+          </svg></div>
+        <h3 class="text-sm font-bold text-white mb-1.5">Proven Results</h3>
+        <p class="text-xs text-gray-500 leading-relaxed">Track record of successful project delivery</p>
+      </div>
+      <div
+        class="text-center p-6 rounded-2xl bg-white/[0.06] border border-white/10 hover:bg-white/[0.1] transition-all">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4"
+          style="background:rgba(90,156,106,0.15)"><svg class="w-6 h-6" style="color:var(--dds-accent-light)"
+            fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg></div>
+        <h3 class="text-sm font-bold text-white mb-1.5">Expert Team</h3>
+        <p class="text-xs text-gray-500 leading-relaxed">Multidisciplinary professionals dedicated to impact</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 md:py-28 bg-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-5">Ready to Start <span
+          class="brand-gradient-text">Your Project</span>?</h2>
+      <p class="text-lg text-gray-500 mb-10 leading-relaxed">Contact us to discuss how we can help you achieve your
+        research and development objectives.</p>
+      <a href="{% url 'core:contact' %}"
+        class="inline-flex items-center gap-2 px-10 py-4 text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl text-sm"
+        style="background:linear-gradient(135deg,var(--dds-primary),var(--dds-accent))">Get In Touch <svg
+          class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg></a>
+      <p class="text-xs text-gray-400 mt-4">Typical response within 24 hours</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

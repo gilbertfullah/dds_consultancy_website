@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Page Not Found - DDS Research & Consultancy{% endblock %}
+
+{% block content %}
+<section class="min-h-[80vh] flex items-center justify-center relative overflow-hidden bg-white">
+  <!-- Decorative Background Elements -->
+  <div class="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(circle at 1px 1px, var(--dds-primary) 1px, transparent 0); background-size: 40px 40px;"></div>
+  <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full blur-3xl opacity-[0.05]" style="background: var(--dds-accent);"></div>
+  <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full blur-3xl opacity-[0.05]" style="background: var(--dds-primary);"></div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="max-w-2xl mx-auto text-center">
+      <!-- Animated 404 Visual -->
+      <div class="relative mb-12 inline-block">
+        <h1 class="text-[10rem] md:text-[15rem] font-black leading-none tracking-tighter opacity-10 select-none" style="color: var(--dds-primary-dark);">404</h1>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-32 h-32 md:w-48 md:h-48 rounded-3xl rotate-12 flex items-center justify-center shadow-2xl transition-transform hover:rotate-0 duration-500" style="background: linear-gradient(135deg, var(--dds-primary), var(--dds-accent));">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 md:h-24 md:w-24 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 leading-tight">
+        Lost in the <span style="color: var(--dds-primary);">Research?</span>
+      </h2>
+      <p class="text-lg text-gray-500 mb-10 leading-relaxed max-w-md mx-auto">
+        The page you are looking for might have been removed, had its name changed, or is temporarily unavailable. Let's get you back on track.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="{% url 'core:home' %}" class="w-full sm:w-auto px-10 py-4 rounded-2xl text-white font-bold shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 active:scale-95" style="background: linear-gradient(135deg, var(--dds-primary), var(--dds-primary-dark));">
+          Return Home
+        </a>
+        <a href="{% url 'core:contact' %}" class="w-full sm:w-auto px-10 py-4 rounded-2xl text-gray-700 font-bold border-2 border-gray-100 hover:bg-gray-50 hover:border-gray-200 transition-all">
+          Contact Support
+        </a>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="mt-16 pt-10 border-t border-gray-100">
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">Or explore our hub</p>
+        <div class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+          <a href="{% url 'core:news_list' %}" class="text-sm font-semibold text-gray-600 hover:text-[var(--dds-primary)] transition-colors">News</a>
+          <a href="{% url 'core:projects' %}" class="text-sm font-semibold text-gray-600 hover:text-[var(--dds-primary)] transition-colors">Projects</a>
+          <a href="{% url 'core:publications' %}" class="text-sm font-semibold text-gray-600 hover:text-[var(--dds-primary)] transition-colors">Publications</a>
+          <a href="{% url 'core:services' %}" class="text-sm font-semibold text-gray-600 hover:text-[var(--dds-primary)] transition-colors">Services</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

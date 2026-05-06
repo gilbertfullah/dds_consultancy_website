@@ -1,0 +1,553 @@
+{% comment %} File: templates/includes/header.html (MODERN BRAND DESIGN) {% endcomment %}
+{% load static %}
+
+<div
+  id="navbar"
+  class="navbar bg-white/98 backdrop-blur-lg fixed top-0 z-50 transition-all duration-300 px-0 h-32"
+>
+  <!-- Decorative top border using brand colors -->
+  <div
+    class="absolute top-0 left-0 w-full h-[2px]"
+    style="background: linear-gradient(90deg, var(--dds-primary), var(--dds-accent), var(--dds-primary));"
+  ></div>
+
+  <div class="container mx-auto pl-4 sm:pl-6 lg:pl-8 pr-2 sm:pr-3 lg:pr-4 flex items-center justify-between w-full gap-8">
+  <!-- ============================================= -->
+  <!-- NAVBAR-START: Hamburger Menu & Desktop Logo   -->
+  <!-- ============================================= -->
+  <div class="navbar-start flex items-center gap-3 md:gap-4">
+    <!-- Modern hamburger menu for mobile -->
+    <div class="dropdown">
+      <div
+        tabindex="0"
+        role="button"
+        class="btn btn-ghost lg:hidden group relative p-3"
+      >
+        <div class="flex flex-col space-y-1.5">
+          <span
+            class="block w-5 h-0.5 rounded-full transition-all duration-300"
+            style="background: var(--dds-primary);"
+          ></span>
+          <span
+            class="block w-4 h-0.5 rounded-full transition-all duration-300"
+            style="background: var(--dds-primary);"
+          ></span>
+          <span
+            class="block w-5 h-0.5 rounded-full transition-all duration-300"
+            style="background: var(--dds-primary);"
+          ></span>
+        </div>
+      </div>
+
+      <!-- Enhanced mobile dropdown menu -->
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content mt-3 z-[1] p-0 shadow-2xl bg-white/98 backdrop-blur-xl rounded-2xl w-72 border border-gray-200/60 overflow-hidden"
+      >
+        <div
+          class="p-4 border-b border-gray-100"
+          style="background: linear-gradient(135deg, rgba(45,58,74,0.04), rgba(74,124,89,0.04));"
+        >
+          <div class="flex items-center gap-3">
+            <img src="{% static 'images/dds_logo.png' %}" alt="DDS" class="h-8 w-auto" />
+            <div>
+              <h3 class="font-bold text-sm" style="color: var(--dds-primary);">DDS</h3>
+              <p class="text-[10px] text-gray-500">Navigation Menu</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-2.5">
+          <li class="mb-1.5">
+            <div class="px-3 py-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+              About
+            </div>
+          </li>
+          <li>
+            <a href="{% url 'core:about' %}"
+               class="px-3 py-2.5 text-gray-700 rounded-xl transition-all duration-200 flex items-center group text-sm"
+               style="--hover-bg: rgba(45,58,74,0.06);"
+               onmouseover="this.style.background='rgba(45,58,74,0.06)'; this.style.color='var(--dds-primary)'"
+               onmouseout="this.style.background=''; this.style.color=''">
+              <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
+              About DDS
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'core:team' %}"
+               class="px-3 py-2.5 text-gray-700 rounded-xl transition-all duration-200 flex items-center group text-sm"
+               onmouseover="this.style.background='rgba(45,58,74,0.06)'; this.style.color='var(--dds-primary)'"
+               onmouseout="this.style.background=''; this.style.color=''">
+              <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
+              Our Team
+            </a>
+          </li>
+
+
+          <li class="mt-3">
+            <a href="{% url 'core:services' %}"
+               class="px-3 py-2.5 rounded-xl transition-all duration-200 flex items-center group text-sm {% if '/services' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.06)]{% else %}text-gray-700{% endif %}"
+               onmouseover="this.style.background='rgba(45,58,74,0.06)'; this.style.color='var(--dds-primary)'"
+               onmouseout="{% if '/services' in request.path %}this.style.background='rgba(45,58,74,0.06)'; this.style.color='var(--dds-primary)'{% else %}this.style.background=''; this.style.color=''{% endif %}">
+              <span class="h-0.5 rounded-full transition-all duration-300 {% if '/services' in request.path %}w-2 mr-2{% else %}w-0 group-hover:w-2 mr-0 group-hover:mr-2{% endif %}" style="background: var(--dds-accent);"></span>
+              Services
+            </a>
+          </li>
+
+          <li class="mt-3">
+            <a href="{% url 'core:projects' %}"
+               class="px-3 py-2.5 rounded-xl transition-all duration-200 flex items-center group text-sm {% if '/projects' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.06)]{% else %}text-gray-700{% endif %}"
+               onmouseover="this.style.background='rgba(45,58,74,0.06)'; this.style.color='var(--dds-primary)'"
+               onmouseout="{% if '/projects' in request.path %}this.style.background='rgba(45,58,74,0.06)'; this.style.color='var(--dds-primary)'{% else %}this.style.background=''; this.style.color=''{% endif %}">
+              <span class="h-0.5 rounded-full transition-all duration-300 {% if '/projects' in request.path %}w-2 mr-2{% else %}w-0 group-hover:w-2 mr-0 group-hover:mr-2{% endif %}" style="background: var(--dds-accent);"></span>
+              Projects
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'core:news_list' %}"
+               class="px-3 py-2.5 rounded-xl transition-all duration-200 flex items-center group text-sm {% if '/news' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.06)]{% else %}text-gray-700{% endif %}"
+               onmouseover="this.style.background='rgba(45,58,74,0.06)'; this.style.color='var(--dds-primary)'"
+               onmouseout="{% if '/news' in request.path %}this.style.background='rgba(45,58,74,0.06)'; this.style.color='var(--dds-primary)'{% else %}this.style.background=''; this.style.color=''{% endif %}">
+              <span class="h-0.5 rounded-full transition-all duration-300 {% if '/news' in request.path %}w-2 mr-2{% else %}w-0 group-hover:w-2 mr-0 group-hover:mr-2{% endif %}" style="background: var(--dds-accent);"></span>
+              News
+            </a>
+          </li>
+
+          <li class="mt-3 mb-1.5">
+            <div class="px-3 py-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+              Publications
+            </div>
+          </li>
+          <li>
+            <a href="{% url 'core:publications' %}"
+               class="px-3 py-2.5 text-gray-700 rounded-xl transition-all duration-200 flex items-center group text-sm"
+               onmouseover="this.style.background='rgba(45,58,74,0.06)'; this.style.color='var(--dds-primary)'"
+               onmouseout="this.style.background=''; this.style.color=''">
+              <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
+              All Publications
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'core:publications' %}?category=research_paper"
+               class="px-3 py-2.5 text-gray-700 rounded-xl transition-all duration-200 flex items-center group text-sm"
+               onmouseover="this.style.background='rgba(45,58,74,0.06)'; this.style.color='var(--dds-primary)'"
+               onmouseout="this.style.background=''; this.style.color=''">
+              <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
+              Research Papers
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'core:publications' %}?category=policy_brief"
+               class="px-3 py-2.5 text-gray-700 rounded-xl transition-all duration-200 flex items-center group text-sm"
+               onmouseover="this.style.background='rgba(45,58,74,0.06)'; this.style.color='var(--dds-primary)'"
+               onmouseout="this.style.background=''; this.style.color=''">
+              <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
+              Policy Briefs
+            </a>
+          </li>
+
+          <!-- Mobile CTA -->
+          <li class="mt-4">
+            <a href="{% url 'core:contact' %}"
+               class="flex items-center justify-center gap-2 px-4 py-3 text-white font-semibold rounded-xl text-sm transition-all duration-300"
+               style="background: linear-gradient(135deg, var(--dds-primary), var(--dds-accent));">
+              Contact Us
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </a>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <!-- Logo for Desktop: Hidden on mobile -->
+    <a
+      href="{% url 'core:home' %}"
+      class="hidden lg:flex items-center group"
+    >
+      <img
+        src="{% static 'images/dds_logo.png' %}"
+        alt="Development Decision Support Logo"
+        class="h-28 w-auto transition-all duration-300 group-hover:scale-105"
+      />
+    </a>
+  </div>
+
+  <!-- =================================================== -->
+  <!-- NAVBAR-CENTER: Mobile Logo & Desktop Nav Links      -->
+  <!-- =================================================== -->
+  <div class="navbar-center flex items-center justify-center">
+    <!-- Logo for Mobile: Centered and visible only on mobile -->
+    <a
+      href="{% url 'core:home' %}"
+      class="flex lg:hidden items-center group"
+    >
+      <img
+        src="{% static 'images/dds_logo.png' %}"
+        alt="Development Decision Support Logo"
+        class="h-16 w-auto transition-all duration-300 group-hover:scale-105"
+      />
+    </a>
+
+    <!-- Nav Links for Desktop -->
+    <ul class="hidden lg:flex items-center space-x-2 md:space-x-4">
+      <li class="relative group">
+        <details class="dropdown dropdown-hover">
+          <summary
+            class="nav-link px-5 py-3 font-bold text-lg transition-all duration-200 cursor-pointer rounded-lg flex items-center {% if '/about' in request.path or '/team' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+            style="--nav-hover: var(--dds-primary);"
+            onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
+            onmouseout="{% if '/about' in request.path or '/team' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}"
+          >
+            About
+            <svg class="w-4 h-4 ml-1.5 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <ul
+            class="dropdown-content menu p-2 shadow-2xl bg-white rounded-2xl w-52 border border-gray-200 mt-2 z-[100]"
+          >
+            <li>
+              <a href="{% url 'core:about' %}"
+                 class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
+                 onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
+                 onmouseout="this.style.background=''; this.style.color=''">
+                <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
+                About DDS
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'core:team' %}"
+                 class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
+                 onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
+                 onmouseout="this.style.background=''; this.style.color=''">
+                <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
+                Our Team
+              </a>
+            </li>
+          </ul>
+        </details>
+      </li>
+
+      <li>
+        <a
+          href="{% url 'core:services' %}"
+          class="px-5 py-3 font-bold text-lg transition-all duration-200 rounded-lg relative group {% if '/services' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+          onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
+          onmouseout="{% if '/services' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}"
+        >
+          Services
+          <span class="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 rounded-full transition-all duration-300 {% if '/services' in request.path %}w-1/2{% else %}w-0 group-hover:w-1/2{% endif %}" style="background: var(--dds-accent)"></span>
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="{% url 'core:projects' %}"
+          class="px-5 py-3 font-bold text-lg transition-all duration-200 rounded-lg relative group {% if '/projects' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+          onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
+          onmouseout="{% if '/projects' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}"
+        >
+          Projects
+          <span
+            class="absolute bottom-0 left-4 w-0 h-0.5 rounded-full transition-all duration-300 group-hover:w-[calc(100%-2rem)]"
+            style="background: var(--dds-accent);"
+          ></span>
+        </a>
+      </li>
+
+      <li class="relative group">
+        <details class="dropdown dropdown-hover">
+          <summary
+            class="nav-link px-5 py-3 font-bold text-lg transition-all duration-200 cursor-pointer rounded-lg flex items-center {% if '/publications' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+            onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
+            onmouseout="{% if '/publications' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}"
+          >
+            Publications
+            <svg class="w-4 h-4 ml-1.5 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <ul
+            class="dropdown-content menu p-2 shadow-2xl bg-white rounded-2xl w-64 border border-gray-200 mt-2 z-[100]"
+          >
+            <li>
+              <a href="{% url 'core:publications' %}"
+                 class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
+                 onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
+                 onmouseout="this.style.background=''; this.style.color=''">
+                <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
+                All Publications
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'core:publications' %}?category=research_paper"
+                 class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
+                 onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
+                 onmouseout="this.style.background=''; this.style.color=''">
+                <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
+                Research Papers
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'core:publications' %}?category=policy_brief"
+                 class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
+                 onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
+                 onmouseout="this.style.background=''; this.style.color=''">
+                <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
+                Policy Briefs
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'core:publications' %}?category=report"
+                 class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
+                 onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
+                 onmouseout="this.style.background=''; this.style.color=''">
+                <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
+                Reports
+              </a>
+            </li>
+          </ul>
+        </details>
+      </li>
+
+      <li>
+        <a
+          href="{% url 'core:news_list' %}"
+          class="px-5 py-3 font-bold text-lg transition-all duration-200 rounded-lg relative group {% if '/news' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+          onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
+          onmouseout="{% if '/news' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}"
+        >
+          News
+          <span
+            class="absolute bottom-0 left-4 w-0 h-0.5 rounded-full transition-all duration-300 group-hover:w-[calc(100%-2rem)]"
+            style="background: var(--dds-accent);"
+          ></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ================================= -->
+  <!-- NAVBAR-END: Contact Button        -->
+  <!-- ================================= -->
+  <div class="navbar-end flex justify-end items-center gap-3 md:gap-4 lg:gap-6">
+    <!-- Premium Search Button -->
+    <button 
+      onclick="openSearch()"
+      class="group relative flex items-center justify-center w-12 h-12 rounded-full text-gray-700 hover:text-white transition-all duration-500 overflow-hidden bg-gray-50/50 hover:shadow-inner"
+      aria-label="Open search"
+    >
+      <span class="absolute inset-0 bg-dds-primary scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full"></span>
+      <svg class="relative w-6 h-6 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+    </button>
+
+    <!-- Brand gradient contact button -->
+    <a
+      href="{% url 'core:contact' %}"
+      class="btn btn-md text-white font-medium border-0 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+      style="background: linear-gradient(135deg, var(--dds-primary), var(--dds-accent)); --tw-ring-color: var(--dds-primary);"
+    >
+      <span class="flex items-center gap-1.5">
+        Contact
+        <svg
+          class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M14 5l7 7m0 0l-7 7m7-7H3"
+          ></path>
+        </svg>
+      </span>
+    </a>
+  </div>
+  </div>
+</div>
+
+<script>
+  // Enhanced scroll behavior with smooth transitions
+  document.addEventListener("scroll", function () {
+    const navbar = document.getElementById("navbar");
+    if (window.scrollY > 10) {
+      navbar.classList.add("shadow-xl", "bg-white/98");
+      navbar.classList.remove("bg-white/95");
+    } else {
+      navbar.classList.add("bg-white/95");
+      navbar.classList.remove("shadow-xl", "bg-white/98");
+    }
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function (event) {
+    const dropdowns = document.querySelectorAll("details[open]");
+    dropdowns.forEach((dropdown) => {
+      if (!dropdown.contains(event.target)) {
+        dropdown.removeAttribute("open");
+      }
+    });
+  });
+</script>
+
+<!-- Search Modal -->
+<div id="search-modal" class="hidden fixed inset-0 z-[100] overflow-hidden bg-white/98 backdrop-blur-2xl transition-all duration-500 animate-in fade-in zoom-in duration-300">
+  <div class="absolute top-8 right-8">
+    <button 
+      onclick="document.getElementById('search-modal').classList.add('hidden')"
+      class="btn btn-ghost btn-circle btn-lg text-gray-900 hover:text-dds-primary transition-all hover:rotate-90 duration-300"
+    >
+      <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div class="h-full flex flex-col items-center justify-start pt-32 px-4">
+    <div class="w-full max-w-4xl">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight" data-aos="fade-down">Search DDS</h2>
+        <p class="text-gray-600 text-lg md:text-xl font-medium" data-aos="fade-up" data-aos-delay="50">Discover research, projects, and impact stories.</p>
+      </div>
+
+      <div class="relative group" data-aos="fade-up" data-aos-delay="100">
+        <form action="{% url 'core:global_search' %}" method="GET">
+          <input 
+            id="search-input"
+            type="text" 
+            name="q" 
+            autocomplete="off"
+            placeholder="What are you looking for?" 
+            class="w-full text-2xl md:text-5xl py-8 bg-transparent border-b-4 border-gray-900/10 focus:border-dds-primary outline-none transition-all duration-300 placeholder:text-gray-300 font-bold text-gray-900"
+          >
+          <div id="search-spinner" class="hidden absolute right-16 top-1/2 -translate-y-1/2">
+            <svg class="animate-spin h-8 w-8 text-dds-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </div>
+          <button type="submit" class="absolute right-0 top-1/2 -translate-y-1/2 p-4 text-gray-400 hover:text-dds-primary transition-all hover:scale-110">
+            <svg class="w-10 h-10 md:w-14 md:h-14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+        </form>
+
+        <!-- Live Results Dropdown -->
+        <div id="quick-results" class="hidden absolute left-0 right-0 top-full mt-6 bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl border border-gray-200/50 overflow-hidden z-50 animate-in slide-in-from-top-8 duration-500">
+          <div class="p-5 border-b border-gray-100 bg-gray-50/50 flex justify-between items-center">
+            <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Quick Results</span>
+            <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-dds-accent animate-pulse"></span>
+                <span class="text-[10px] font-bold text-gray-300 uppercase">Real-time indexing</span>
+            </div>
+          </div>
+          <div id="results-list" class="max-h-[450px] overflow-y-auto p-3 space-y-1">
+            <!-- Results injected here -->
+          </div>
+          <div class="p-4 bg-gray-50/80 border-t border-gray-100 text-center">
+            <p class="text-[11px] text-gray-500 font-medium">Press <kbd class="px-2 py-1 bg-white border border-gray-200 rounded text-gray-900 shadow-sm font-bold">Enter</kbd> for full results page</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 flex flex-wrap justify-center gap-6 text-gray-900 font-bold" data-aos="fade-up" data-aos-delay="200">
+        <span class="text-gray-400 font-medium">Popular:</span>
+        <a href="{% url 'core:global_search' %}?q=Governance" class="hover:text-dds-primary transition-colors border-b-2 border-transparent hover:border-dds-primary">Governance</a>
+        <a href="{% url 'core:global_search' %}?q=Research" class="hover:text-dds-primary transition-colors border-b-2 border-transparent hover:border-dds-primary">Research</a>
+        <a href="{% url 'core:global_search' %}?q=GIS" class="hover:text-dds-primary transition-colors border-b-2 border-transparent hover:border-dds-primary">GIS Mapping</a>
+        <a href="{% url 'core:global_search' %}?q=Data" class="hover:text-dds-primary transition-colors border-b-2 border-transparent hover:border-dds-primary">Data Collection</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchModal = document.getElementById('search-modal');
+    const searchInput = document.getElementById('search-input');
+    const quickResults = document.getElementById('quick-results');
+    const resultsList = document.getElementById('results-list');
+    const spinner = document.getElementById('search-spinner');
+    let debounceTimer;
+
+    // Open Modal and Focus
+    window.openSearch = function() {
+      searchModal.classList.remove('hidden');
+      setTimeout(() => searchInput.focus(), 100);
+    };
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !searchModal.classList.contains('hidden')) {
+        searchModal.classList.add('hidden');
+      }
+    });
+
+    // AJAX Suggestions
+    searchInput.addEventListener('input', function() {
+      const query = this.value.trim();
+      
+      clearTimeout(debounceTimer);
+      if (query.length < 2) {
+        quickResults.classList.add('hidden');
+        return;
+      }
+
+      spinner.classList.remove('hidden');
+      
+      debounceTimer = setTimeout(() => {
+        fetch(`{% url 'core:search_suggestions' %}?q=${encodeURIComponent(query)}`)
+          .then(response => response.json())
+          .then(data => {
+            spinner.classList.add('hidden');
+            if (data.results.length > 0) {
+              renderResults(data.results, query);
+              quickResults.classList.remove('hidden');
+            } else {
+              quickResults.classList.add('hidden');
+            }
+          })
+          .catch(err => {
+            console.error('Search error:', err);
+            spinner.classList.add('hidden');
+          });
+      }, 300);
+    });
+
+    function renderResults(results, query) {
+      resultsList.innerHTML = results.map(item => `
+        <a href="${item.url}" class="group flex items-center gap-4 p-4 rounded-2xl hover:bg-dds-primary transition-all duration-300 border border-transparent hover:border-white/10">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-400 group-hover:bg-white/10 group-hover:text-white transition-all duration-300">
+            ${getTypeIcon(item.type)}
+          </div>
+          <div class="flex-grow">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-[9px] font-black uppercase tracking-[0.15em] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 group-hover:bg-dds-accent group-hover:text-white transition-all">
+                ${item.type}
+              </span>
+            </div>
+            <p class="text-gray-900 font-bold leading-tight group-hover:text-white transition-colors text-sm md:text-base">
+              ${highlightMatch(item.title, query)}
+            </p>
+          </div>
+          <div class="text-gray-300 group-hover:text-dds-accent transform group-hover:translate-x-1 transition-all duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    function getTypeIcon(type) {
+      if (type === 'news') return '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+      if (type === 'project') return '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+      return '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+    }
+
+    function highlightMatch(text, query) {
+      const regex = new RegExp(`(${query})`, 'gi');
+      return text.replace(regex, '<span class="text-dds-primary underline decoration-dds-accent/30">$1</span>');
+    }
+  });
+</script>
+

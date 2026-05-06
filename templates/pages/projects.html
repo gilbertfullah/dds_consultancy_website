@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Projects - Development Decision Support (DDS){% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative overflow-hidden" style="background: linear-gradient(135deg, var(--dds-primary-dark) 0%, var(--dds-primary) 60%, var(--dds-primary-light) 100%);">
+  <div class="absolute inset-0 opacity-[0.05]" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 32px 32px;"></div>
+  <div class="absolute -top-40 -right-40 w-80 h-80 rounded-full opacity-10" style="background: radial-gradient(circle, var(--dds-accent-light), transparent 70%);"></div>
+  <div class="absolute -bottom-20 -left-20 w-60 h-60 rounded-full opacity-10" style="background: radial-gradient(circle, var(--dds-accent), transparent 70%);"></div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 md:py-28">
+    <div class="max-w-3xl">
+      <div class="mb-6" data-aos="fade-down">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border" style="color: var(--dds-accent-light); border-color: rgba(90,156,106,0.3); background: rgba(90,156,106,0.1);">
+          <span class="w-1.5 h-1.5 rounded-full" style="background: var(--dds-accent-light);"></span>
+          Our Portfolio
+        </span>
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight" data-aos="fade-right">
+        Projects & <span style="color: var(--dds-accent-light);">Impact</span>
+      </h1>
+      <p class="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl" data-aos="fade-up">
+        Discover our impactful research and data collection projects across Africa. Each project represents our commitment to evidence-based solutions.
+      </p>
+      <!-- Stats mini-bar -->
+      <div class="flex items-center gap-8 mt-10" data-aos="fade-up" data-aos-delay="200">
+        <div>
+          <div class="text-3xl font-extrabold text-white">30+</div>
+          <div class="text-xs text-gray-400 uppercase tracking-wider font-medium mt-0.5">Projects Delivered</div>
+        </div>
+        <div class="w-px h-10 bg-white/10"></div>
+        <div>
+          <div class="text-3xl font-extrabold text-white">16</div>
+          <div class="text-xs text-gray-400 uppercase tracking-wider font-medium mt-0.5">Districts Covered</div>
+        </div>
+        <div class="w-px h-10 bg-white/10"></div>
+        <div>
+          <div class="text-3xl font-extrabold text-white">10+</div>
+          <div class="text-xs text-gray-400 uppercase tracking-wider font-medium mt-0.5">Years Active</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Filters Section -->
+<section class="sticky top-[68px] z-30 bg-white/95 backdrop-blur-lg border-b border-gray-200/60 shadow-sm">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <form method="get" id="filterForm" class="flex flex-col md:flex-row gap-3 items-center justify-between py-4">
+      <div class="relative w-full md:w-auto md:flex-1 md:max-w-md">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <input type="text" name="search" placeholder="Search projects..."
+               class="w-full pl-11 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50/80 focus:outline-none focus:ring-2 focus:bg-white transition-all duration-200 placeholder-gray-400"
+               style="--tw-ring-color: var(--dds-accent);"
+               value="{{ request.GET.search }}">
+      </div>
+
+      <div class="flex gap-3 w-full md:w-auto">
+        <select class="flex-1 md:flex-none px-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50/80 focus:outline-none focus:ring-2 transition-all duration-200 appearance-none cursor-pointer"
+                style="--tw-ring-color: var(--dds-accent); background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22 fill=%22%236b7280%22><path fill-rule=%22evenodd%22 d=%22M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z%22 clip-rule=%22evenodd%22/></svg>'); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1rem; padding-right: 2.5rem;"
+                name="location" onchange="document.getElementById('filterForm').submit()">
+          <option value="">All Locations</option>
+          {% for loc in locations %}
+          <option value="{{ loc }}" {% if request.GET.location == loc %}selected{% endif %}>{{ loc }}</option>
+          {% endfor %}
+        </select>
+
+        <select class="flex-1 md:flex-none px-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50/80 focus:outline-none focus:ring-2 transition-all duration-200 appearance-none cursor-pointer"
+                style="--tw-ring-color: var(--dds-accent); background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22 fill=%22%236b7280%22><path fill-rule=%22evenodd%22 d=%22M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z%22 clip-rule=%22evenodd%22/></svg>'); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1rem; padding-right: 2.5rem;"
+                name="category" onchange="document.getElementById('filterForm').submit()">
+          <option value="">All Categories</option>
+          {% for cat_val, cat_label in categories %}
+          <option value="{{ cat_val }}" {% if request.GET.category == cat_val %}selected{% endif %}>{{ cat_label }}</option>
+          {% endfor %}
+        </select>
+
+        <select class="flex-1 md:flex-none px-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50/80 focus:outline-none focus:ring-2 transition-all duration-200 appearance-none cursor-pointer"
+                style="--tw-ring-color: var(--dds-accent); background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22 fill=%22%236b7280%22><path fill-rule=%22evenodd%22 d=%22M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z%22 clip-rule=%22evenodd%22/></svg>'); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1rem; padding-right: 2.5rem;"
+                name="year" onchange="document.getElementById('filterForm').submit()">
+          <option value="">All Years</option>
+          {% for yr in years %}
+          <option value="{{ yr }}" {% if request.GET.year == yr|stringformat:"d" %}selected{% endif %}>{{ yr }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Projects Grid -->
+<section class="bg-gradient-to-b from-gray-50 to-white py-12 md:py-20 min-h-[60vh]">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    {% if request.GET.search or request.GET.location or request.GET.year or request.GET.category %}
+    <div class="flex items-center justify-between mb-10">
+      <p class="text-sm text-gray-500">
+        Found <span class="font-bold text-gray-900">{{ projects|length }}</span> result{{ projects|length|pluralize }}
+      </p>
+      <a href="{% url 'core:projects' %}" class="text-xs font-black uppercase tracking-widest text-[var(--dds-accent)] hover:underline">Clear filters</a>
+    </div>
+    {% endif %}
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+      {% for project in projects %}
+      <div class="group h-full" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+        <a href="{% url 'core:project_detail' project.slug %}" class="block h-full relative">
+          <div class="bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full">
+            
+            <!-- Featured Ribbon -->
+            {% if project.featured %}
+            <div class="absolute top-0 right-0 z-20">
+              <div class="bg-[var(--dds-accent)] text-white text-[10px] font-black px-6 py-1.5 rotate-45 translate-x-4 translate-y-3 shadow-lg uppercase tracking-widest">
+                Featured
+              </div>
+            </div>
+            {% endif %}
+
+            <!-- Image Section -->
+            <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
+              {% if project.image %}
+              <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+              {% else %}
+              <div class="w-full h-full flex items-center justify-center bg-gray-100">
+                <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              </div>
+              {% endif %}
+
+              <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between z-10">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-[10px] font-bold bg-black/40 backdrop-blur-md text-white border border-white/10 uppercase tracking-wider">
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  {{ project.location }}
+                </span>
+                <span class="px-3 py-1 rounded-lg text-[10px] font-bold bg-white/90 backdrop-blur-md text-gray-900 border border-gray-100 uppercase tracking-wider">
+                  {{ project.date_completed|date:"M Y" }}
+                </span>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60"></div>
+            </div>
+
+            <!-- Content Section -->
+            <div class="p-8 flex flex-col flex-grow">
+              <div class="flex flex-wrap items-center gap-3 mb-4">
+                <span class="text-[10px] font-black text-[var(--dds-accent-dark)] uppercase tracking-[0.2em]">{{ project.client }}</span>
+                <div class="w-1 h-1 rounded-full bg-gray-300"></div>
+                <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">{{ project.get_category_display }}</span>
+                <div class="w-1 h-1 rounded-full bg-gray-300"></div>
+                {% if project.get_tags_list %}
+                  {% for tag in project.get_tags_list|slice:":2" %}
+                  <span class="text-[9px] font-bold text-gray-400 uppercase tracking-wider bg-gray-50 px-2 py-0.5 rounded border border-gray-100">{{ tag }}</span>
+                  {% endfor %}
+                {% endif %}
+              </div>
+
+              <h3 class="text-xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-[var(--dds-primary)] transition-colors line-clamp-2">
+                {{ project.title }}
+              </h3>
+
+              <p class="text-gray-500 text-sm leading-relaxed mb-8 line-clamp-3 flex-grow">
+                {{ project.description|striptags|truncatewords:25 }}
+              </p>
+
+              <div class="pt-6 border-t border-gray-50 flex items-center justify-between">
+                <span class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[var(--dds-primary)] group-hover:gap-3 transition-all">
+                  Read More
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% empty %}
+      <div class="col-span-full py-20 text-center">
+        <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mx-auto mb-6 border border-gray-100">
+          <svg class="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">No projects found</h3>
+        <p class="text-gray-500 mb-8 max-w-sm mx-auto">We couldn't find any projects matching your current filters. Try resetting them.</p>
+        <a href="{% url 'core:projects' %}" class="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl hover:scale-105 transition-transform">Reset Filters</a>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <div class="flex justify-center mt-20">
+      <nav class="inline-flex items-center gap-2" aria-label="Pagination">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.location %}&location={{ request.GET.location }}{% endif %}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}" class="w-12 h-12 flex items-center justify-center rounded-2xl border border-gray-100 bg-white text-gray-400 hover:text-[var(--dds-primary)] transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </a>
+        {% endif %}
+
+        <span class="px-6 h-12 flex items-center justify-center rounded-2xl bg-gray-900 text-white text-xs font-black tracking-widest">
+          {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.location %}&location={{ request.GET.location }}{% endif %}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}" class="w-12 h-12 flex items-center justify-center rounded-2xl border border-gray-100 bg-white text-gray-400 hover:text-[var(--dds-primary)] transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+        {% endif %}
+      </nav>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-24 bg-gray-900 relative overflow-hidden">
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[var(--dds-accent)] rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-[var(--dds-primary)] rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
+  </div>
+  <div class="container mx-auto px-4 relative z-10 text-center">
+    <h2 class="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">Ready to Start?</h2>
+    <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">Partner with us for world-class research and consultancy tailored to your mission.</p>
+    <a href="{% url 'core:contact' %}" class="inline-flex items-center gap-3 px-10 py-5 bg-[var(--dds-accent)] text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
+      Get Started Today
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+    </a>
+  </div>
+</section>
+{% endblock %}

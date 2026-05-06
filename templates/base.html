@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary meta -->
+    <title>{% block title %}Development Decision Support (DDS) — Evidence-Based Insights. Sustainable Impact.{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Development Decision Support (DDS): Evidence-Based Insights. Sustainable Impact. Leading research and consultancy firm specialising in governance, GIS, data collection, and M&E across Africa.{% endblock %}" />
+    <meta name="keywords" content="DDS, development, research, consultancy, Sierra Leone, governance, data collection, monitoring evaluation, GIS" />
+    <meta name="author" content="Development Decision Support (DDS)" />
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Development Decision Support (DDS)" />
+    <meta property="og:title" content="{% block og_title %}Development Decision Support (DDS) — Research & Consultancy{% endblock %}" />
+    <meta property="og:description" content="{% block og_description %}Leading research and consultancy firm specialising in governance, GIS, data collection, and M&amp;E across Africa.{% endblock %}" />
+    <meta property="og:image" content="{% block og_image %}{% static 'images/dds_logo.png' %}{% endblock %}" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{% block twitter_title %}Development Decision Support (DDS){% endblock %}" />
+    <meta name="twitter:description" content="{% block twitter_description %}Research and consultancy firm specialising in governance, GIS, and M&E across Africa.{% endblock %}" />
+    <meta name="twitter:image" content="{% static 'images/dds_logo.png' %}" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ request.build_absolute_uri }}" />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- DaisyUI for additional components -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- Swiper.js for Modern Carousel -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <!-- AOS (Animate on Scroll) for dynamic effects -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+
+    <!-- Heroicons for better icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/heroicons/2.1.3/24/outline/css/heroicons.min.css"
+    />
+
+
+    {% block extra_css %}{% endblock %}
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Development Decision Support (DDS)",
+      "url": "{{ request.build_absolute_uri }}",
+      "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/dds_logo.png' %}",
+      "description": "Leading research and consultancy firm specialising in governance, GIS, data collection, and M&E across Africa.",
+      "sameAs": [
+        "https://twitter.com/dds_consultancy",
+        "https://linkedin.com/company/dds_consultancy"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+232-00-000000",
+        "contactType": "customer service",
+        "areaServed": "Africa",
+        "availableLanguage": "English"
+      }
+    }
+    </script>
+  </head>
+  <body class="bg-white flex flex-col min-h-screen">
+    <!-- Navbar -->
+    {% include 'includes/header.html' %}
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-32">
+      <!-- pt-16 is a spacer for the fixed navbar -->
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    {% include 'includes/footer.html' %}
+
+    <!-- Scripts -->
+    <!-- Swiper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom Main JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <script>
+      // Initialize AOS on all pages
+      AOS.init({
+        duration: 800, // values from 0 to 3000, with step 50ms
+        once: true, // whether animation should happen only once - while scrolling down
+      });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

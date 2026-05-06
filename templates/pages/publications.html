@@ -1,0 +1,171 @@
+{% extends 'base.html' %}{% load static %}{% block title %}Publications - Development Decision Support (DDS){% endblock %}{% block extra_css %}
+<style>
+.pub-hero{min-height:60vh;display:flex;align-items:center}
+.pub-card{border-radius:1.25rem;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.06);transition:all .4s cubic-bezier(.4,0,.2,1)}
+.pub-card:hover{box-shadow:0 24px 48px -12px rgba(0,0,0,0.1);transform:translateY(-5px)}
+.pub-card .pub-img{overflow:hidden;position:relative}
+.pub-card .pub-img img{transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.pub-card:hover .pub-img img{transform:scale(1.05)}
+.cat-badge{display:inline-flex;align-items:center;gap:.375rem;padding:.25rem .75rem;border-radius:.5rem;font-size:.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.cat-research{background:rgba(74,124,89,0.1);color:var(--dds-accent-dark)}
+.cat-policy{background:rgba(45,58,74,0.08);color:var(--dds-primary)}
+.cat-report{background:rgba(180,120,60,0.1);color:#8b6914}
+.cat-default{background:rgba(100,100,100,0.08);color:#555}
+.keyword-tag{display:inline-block;padding:.2rem .6rem;border-radius:.375rem;font-size:.6875rem;font-weight:500;border:1px solid rgba(0,0,0,0.08);color:#666;background:rgba(0,0,0,0.02);transition:all .2s}
+.keyword-tag:hover{border-color:var(--dds-accent);color:var(--dds-accent)}
+.filter-select{appearance:none;background-image:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="%236b7280"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>');background-repeat:no-repeat;background-position:right .75rem center;background-size:1rem;padding-right:2.5rem}
+.featured-slide{border-radius:1.25rem;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,0.06)}
+</style>
+{% endblock %}{% block content %}
+
+<!-- Hero -->
+<section class="pub-hero relative overflow-hidden" style="background:linear-gradient(160deg,var(--dds-primary-dark) 0%,var(--dds-primary) 40%,#2a4a3a 100%)">
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image:radial-gradient(circle at 1px 1px,white 1px,transparent 0);background-size:28px 28px"></div>
+  <div class="absolute top-1/4 right-0 w-[500px] h-[500px] rounded-full opacity-[0.07]" style="background:radial-gradient(circle,var(--dds-accent-light),transparent 65%)"></div>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24 md:py-32">
+    <div class="max-w-3xl">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-[0.2em] border mb-8" style="color:var(--dds-accent-light);border-color:rgba(90,156,106,0.25);background:rgba(90,156,106,0.08)">
+        <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background:var(--dds-accent-light)"></span>Knowledge Hub
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-white mb-6 leading-[1.1] tracking-tight">
+        Publications & <span style="color:var(--dds-accent-light)">Research</span>
+      </h1>
+      <p class="text-lg md:text-xl text-gray-400 leading-relaxed max-w-2xl">
+        Explore our research papers, policy briefs, and reports — evidence-based insights driving development across Africa.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Featured -->
+{% if featured_publications %}
+<section class="py-16 md:py-20 bg-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between mb-10">
+      <div>
+        <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] mb-2" style="color:var(--dds-accent)"><span class="w-6 h-px" style="background:var(--dds-accent)"></span>Highlighted</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900">Featured Publications</h2>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for pub in featured_publications %}
+      <a href="{% url 'core:publication_detail' pub.slug %}" class="group block">
+        <div class="featured-slide shadow-sm hover:shadow-xl transition-all hover:-translate-y-1.5 duration-300">
+          <div class="relative h-48 overflow-hidden" style="background:linear-gradient(135deg,var(--dds-primary),var(--dds-accent))">
+            {% if pub.cover_image %}<img src="{{ pub.cover_image.url }}" alt="{{ pub.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'"/>{% endif %}
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+            <div class="absolute top-3 left-3"><span class="cat-badge cat-{% if pub.category == 'research_paper' %}research{% elif pub.category == 'policy_brief' %}policy{% elif pub.category == 'report' %}report{% else %}default{% endif %}">★ Featured</span></div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center justify-between mb-2"><span class="cat-badge cat-{% if pub.category == 'research_paper' %}research{% elif pub.category == 'policy_brief' %}policy{% elif pub.category == 'report' %}report{% else %}default{% endif %}">{{ pub.get_category_display }}</span><span class="text-xs text-gray-400">{{ pub.publication_date|date:"M Y" }}</span></div>
+            <h3 class="text-base font-bold text-gray-900 mb-1.5 leading-snug group-hover:text-[var(--dds-primary)] transition-colors line-clamp-2">{{ pub.title }}</h3>
+            <p class="text-xs text-gray-500 mb-2">{{ pub.authors|truncatewords:8 }}</p>
+            <div class="flex items-center text-xs font-semibold gap-1 group-hover:gap-2 transition-all" style="color:var(--dds-primary)">Read More <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></div>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Filters -->
+<section class="sticky top-[68px] z-30 bg-white/95 backdrop-blur-lg border-y border-gray-200/60 shadow-sm">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <form method="get" id="pubFilter" class="flex flex-col md:flex-row gap-3 items-center justify-between py-4">
+      <div class="relative w-full md:flex-1 md:max-w-md">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg></div>
+        <input type="text" name="search" placeholder="Search publications..." class="w-full pl-11 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50/80 focus:outline-none focus:ring-2 focus:bg-white transition-all placeholder-gray-400" style="--tw-ring-color:var(--dds-accent)" value="{{ request.GET.search }}">
+      </div>
+      <div class="flex gap-3 w-full md:w-auto">
+        <select name="category" class="filter-select flex-1 md:flex-none px-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50/80 focus:outline-none focus:ring-2 transition-all cursor-pointer" style="--tw-ring-color:var(--dds-accent)" onchange="document.getElementById('pubFilter').submit()">
+          <option value="">All Categories</option>
+          {% for cat_value, cat_label in categories %}<option value="{{ cat_value }}" {% if request.GET.category == cat_value %}selected{% endif %}>{{ cat_label }}</option>{% endfor %}
+        </select>
+        <select name="year" class="filter-select flex-1 md:flex-none px-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50/80 focus:outline-none focus:ring-2 transition-all cursor-pointer" style="--tw-ring-color:var(--dds-accent)" onchange="document.getElementById('pubFilter').submit()">
+          <option value="">All Years</option>
+          {% for year in years %}<option value="{{ year|date:'Y' }}" {% if request.GET.year == year|date:'Y' %}selected{% endif %}>{{ year|date:'Y' }}</option>{% endfor %}
+        </select>
+        <button type="submit" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white rounded-xl transition-all hover:shadow-md" style="background:linear-gradient(135deg,var(--dds-primary),var(--dds-accent))">Search</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Publications Grid -->
+<section class="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    {% if request.GET.search or request.GET.category or request.GET.year %}
+    <div class="flex items-center justify-between mb-8">
+      <p class="text-sm text-gray-500">Showing <span class="font-semibold text-gray-900">{{ publications|length }}</span> result{{ publications|length|pluralize }}</p>
+      <a href="{% url 'core:publications' %}" class="text-sm font-medium transition-colors hover:underline" style="color:var(--dds-accent)">Clear filters</a>
+    </div>
+    {% endif %}
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {% for publication in publications %}
+      <a href="{% url 'core:publication_detail' publication.slug %}" class="group block">
+        <div class="pub-card">
+          <div class="pub-img h-48" style="background:linear-gradient(135deg,var(--dds-primary),var(--dds-accent))">
+            {% if publication.cover_image %}<img src="{{ publication.cover_image.url }}" alt="{{ publication.title }}" class="w-full h-full object-cover" onerror="this.style.display='none'"/>{% endif %}
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            <div class="absolute top-3 left-3"><span class="cat-badge cat-{% if publication.category == 'research_paper' %}research{% elif publication.category == 'policy_brief' %}policy{% elif publication.category == 'report' %}report{% else %}default{% endif %}">{{ publication.get_category_display }}</span></div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-medium text-gray-400">{{ publication.publication_date|date:"d M Y" }}</span>
+            </div>
+            <h3 class="text-base font-bold text-gray-900 mb-2 leading-snug group-hover:text-[var(--dds-primary)] transition-colors line-clamp-2">{{ publication.title }}</h3>
+            {% if publication.authors %}<p class="text-xs text-gray-500 mb-3 line-clamp-1">{{ publication.authors }}</p>{% endif %}
+            <p class="text-sm text-gray-500 leading-relaxed mb-4 line-clamp-2">{{ publication.abstract|truncatewords:20 }}</p>
+            {% if publication.get_keywords_list %}
+            <div class="flex flex-wrap gap-1.5 mb-4">{% for keyword in publication.get_keywords_list|slice:":3" %}<span class="keyword-tag">{{ keyword }}</span>{% endfor %}</div>
+            {% endif %}
+            <div class="flex items-center text-sm font-semibold gap-1 group-hover:gap-2 transition-all" style="color:var(--dds-primary)">Read Publication <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></div>
+          </div>
+        </div>
+      </a>
+      {% empty %}
+      <div class="col-span-full">
+        <div class="text-center py-20 px-8 bg-white rounded-2xl border-2 border-dashed border-gray-200">
+          <div class="w-16 h-16 mx-auto mb-5 rounded-2xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(45,58,74,0.08),rgba(74,124,89,0.08))"><svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color:var(--dds-primary)" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">No publications found</h3>
+          <p class="text-gray-500 max-w-md mx-auto mb-6">Try adjusting your search criteria or browse all our publications.</p>
+          <a href="{% url 'core:publications' %}" class="inline-flex items-center gap-2 px-6 py-3 text-white font-semibold rounded-xl text-sm" style="background:linear-gradient(135deg,var(--dds-primary),var(--dds-accent))">View All Publications</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <div class="flex justify-center mt-12">
+      <nav class="inline-flex items-center gap-1.5">
+        {% if page_obj.has_previous %}
+        <a href="?page=1{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}" class="flex items-center justify-center w-10 h-10 rounded-xl border border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50 transition-all text-sm font-medium">«</a>
+        <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}" class="flex items-center justify-center w-10 h-10 rounded-xl border border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50 transition-all text-sm font-medium">‹</a>
+        {% endif %}
+        <span class="flex items-center justify-center h-10 px-5 rounded-xl text-sm font-bold text-white" style="background:linear-gradient(135deg,var(--dds-primary),var(--dds-accent))">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}" class="flex items-center justify-center w-10 h-10 rounded-xl border border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50 transition-all text-sm font-medium">›</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}" class="flex items-center justify-center w-10 h-10 rounded-xl border border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50 transition-all text-sm font-medium">»</a>
+        {% endif %}
+      </nav>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="relative overflow-hidden" style="background:linear-gradient(160deg,var(--dds-primary-dark),var(--dds-primary),#2a4a3a)">
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image:radial-gradient(circle at 1px 1px,white 1px,transparent 0);background-size:28px 28px"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30rem] h-[30rem] rounded-full opacity-[0.06]" style="background:radial-gradient(circle,var(--dds-accent-light),transparent 60%)"></div>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 md:py-24 text-center">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-5">Need Custom <span style="color:var(--dds-accent-light)">Research</span>?</h2>
+    <p class="max-w-xl mx-auto text-gray-400 mb-10 text-lg">Let us conduct tailored research to support your development objectives.</p>
+    <a href="{% url 'core:contact' %}" class="inline-flex items-center gap-2 px-10 py-4 text-white font-bold rounded-full transition-all hover:scale-105 shadow-lg hover:shadow-2xl text-sm" style="background:linear-gradient(135deg,var(--dds-accent),var(--dds-accent-light))">Get In Touch <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a>
+  </div>
+</section>
+{% endblock %}
