@@ -14,7 +14,7 @@
           <img
             src="{% static 'images/dds.jpg' %}"
             alt="Development Decision Support (DDS)"
-            class="h-44 w-auto rounded-lg transition-all duration-300 group-hover:scale-105"
+            class="h-32 md:h-44 w-auto rounded-lg transition-all duration-300 group-hover:scale-105"
           />
         </a>
         <p class="text-gray-400 leading-relaxed text-sm">
@@ -81,6 +81,12 @@
             <a href="{% url 'core:news_list' %}" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm flex items-center group">
               <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
               News
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm flex items-center group">
+              <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
+              Macro-Fiscal Dashboard
             </a>
           </li>
         </ul>
@@ -177,15 +183,15 @@
 
     <!-- Newsletter Subscription -->
     <div class="border-t pt-12 pb-12" style="border-color: rgba(255,255,255,0.08);">
-      <div class="max-w-2xl mx-auto text-center">
+      <div class="max-w-2xl mx-auto text-left md:text-center">
         <div class="mb-6">
-          <h3 class="text-2xl font-bold mb-3 text-white">Stay Connected</h3>
+          <h3 class="text-xl md:text-2xl font-bold mb-3 text-white">Stay Connected</h3>
           <p class="text-gray-400 text-sm leading-relaxed">
             Subscribe to our newsletter for the latest research insights,
             project updates, and industry developments across Africa.
           </p>
         </div>
-        <form class="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+        <form class="flex flex-col sm:flex-row gap-3 justify-start md:justify-center max-w-md md:mx-auto">
           <div class="relative flex-1">
             <input
               type="email"
@@ -207,11 +213,11 @@
 
     <!-- Bottom Footer -->
     <div class="pt-8 pb-6" style="border-top: 1px solid rgba(255,255,255,0.06);">
-      <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-        <div class="text-sm text-gray-500">
+      <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+        <div class="text-sm text-gray-500 text-center md:text-left">
           © {% now "Y" %} Development Decision Support (DDS). All rights reserved.
         </div>
-        <div class="flex flex-wrap justify-center gap-6 text-sm">
+        <div class="flex flex-col sm:flex-row flex-wrap justify-center sm:justify-end items-center gap-4 sm:gap-6 text-sm text-center sm:text-left">
           <a href="{% url 'core:privacy' %}" class="text-gray-500 hover:text-white transition-colors duration-300 relative group">
             Privacy Policy
             <span class="absolute bottom-0 left-0 w-0 h-0.5 rounded-full transition-all duration-300 group-hover:w-full" style="background: var(--dds-accent);"></span>
