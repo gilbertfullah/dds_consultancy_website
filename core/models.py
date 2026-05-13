@@ -205,3 +205,38 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.subject}"
+
+class JobVacancy(models.Model):
+    JOB_TYPE_CHOICES = (
+        ('full_time', 'Full-time'),
+        ('contract', 'Contract'),
+        ('short_contract', 'Short Contract'),
+        ('internship', 'Internship'),
+        ('part_time', 'Part-time'),
+    )
+
+    title = models.CharField(max_length=200)
+    description = RichTextField()
+    application_form = models.URLField(blank=True, null=True, help_text="Link to the Google Form for applications")
+    job_description_pdf = CloudinaryField('pdf', folder='job_descriptions', resource_type='raw', blank=True, null=True, help_text="Upload the full job description PDF")
+    slug = models.SlugField(unique=True, blank=True)
+    location = models.CharField(max_length=100, default='Freetown, Sierra Leone')
+    job_type = models.CharField(max_length=20, choices=JOB_TYPE_CHOICES, default='full_time')
+    closing_date = models.DateField()
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name_plural = "Job Vacancies"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('core:job_detail', kwargs={'slug': self.slug})

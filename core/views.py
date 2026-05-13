@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, TemplateView
 from django.contrib import messages
 from django.core.mail import send_mail
-from .models import Service, TeamMember, Project, BlogPost, Contact, NewsPost
+from .models import Service, TeamMember, Project, BlogPost, Contact, NewsPost, JobVacancy
 from django.db.models.functions import ExtractYear
 from django.conf import settings
 from .forms import ContactForm
@@ -342,6 +342,25 @@ class TermsOfServiceView(TemplateView):
 
 class CookiePolicyView(TemplateView):
     template_name = 'pages/cookie_policy.html'
+
+class CareersView(TemplateView):
+    template_name = 'pages/careers.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['vacancies'] = JobVacancy.objects.filter(is_active=True).order_by('-closing_date')
+        return context
+
+class JobDetailView(DetailView):
+    model = JobVacancy
+    template_name = 'pages/job_detail.html'
+    context_object_name = 'job'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Build the full URL for sharing
+        context['full_url'] = self.request.build_absolute_uri()
+        return context
 
 class GlobalSearchView(ListView):
     template_name = 'pages/search_results.html'

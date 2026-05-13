@@ -1,345 +1,401 @@
 {% comment %} File: templates/includes/header.html (MODERN BRAND DESIGN) {% endcomment %}
 {% load static %}
 
-<div
-  id="navbar"
-  class="navbar bg-white/98 backdrop-blur-lg fixed top-0 z-50 transition-all duration-500 px-0 h-24 lg:h-32"
->
+<div id="navbar"
+  class="navbar bg-white/98 backdrop-blur-lg fixed top-0 z-50 transition-all duration-500 px-0 h-24 lg:h-32">
   <!-- Decorative top border using brand colors -->
+  <div class="absolute top-0 left-0 w-full h-[2px]"
+    style="background: linear-gradient(90deg, var(--dds-primary), var(--dds-accent), var(--dds-primary));"></div>
+
   <div
-    class="absolute top-0 left-0 w-full h-[2px]"
-    style="background: linear-gradient(90deg, var(--dds-primary), var(--dds-accent), var(--dds-primary));"
-  ></div>
+    class="container mx-auto pl-4 sm:pl-6 lg:pl-8 pr-2 sm:pr-3 lg:pr-4 flex items-center justify-between w-full h-full gap-8">
+    <!-- ============================================= -->
+    <!-- NAVBAR-START: Hamburger Menu & Desktop Logo   -->
+    <!-- ============================================= -->
+    <div class="navbar-start flex items-center gap-3 md:gap-4">
+      <!-- Modern hamburger menu for mobile -->
+      <div class="lg:hidden">
+        <button onclick="toggleMobileMenu()" class="btn btn-ghost group relative p-3 transition-all duration-300"
+          aria-label="Toggle menu">
+          <div id="hamburger-icon" class="flex flex-col space-y-1.5">
+            <span class="block w-6 h-0.5 rounded-full bg-gray-900 transition-all duration-300"></span>
+            <span class="block w-4 h-0.5 rounded-full bg-gray-900 transition-all duration-300"></span>
+            <span class="block w-6 h-0.5 rounded-full bg-gray-900 transition-all duration-300"></span>
+          </div>
+        </button>
+      </div>
 
-  <div class="container mx-auto pl-4 sm:pl-6 lg:pl-8 pr-2 sm:pr-3 lg:pr-4 flex items-center justify-between w-full h-full gap-8">
-  <!-- ============================================= -->
-  <!-- NAVBAR-START: Hamburger Menu & Desktop Logo   -->
-  <!-- ============================================= -->
-  <div class="navbar-start flex items-center gap-3 md:gap-4">
-    <!-- Modern hamburger menu for mobile -->
-    <div class="lg:hidden">
-      <button
-        onclick="toggleMobileMenu()"
-        class="btn btn-ghost group relative p-3 transition-all duration-300"
-        aria-label="Toggle menu"
-      >
-        <div id="hamburger-icon" class="flex flex-col space-y-1.5">
-          <span class="block w-6 h-0.5 rounded-full bg-gray-900 transition-all duration-300"></span>
-          <span class="block w-4 h-0.5 rounded-full bg-gray-900 transition-all duration-300"></span>
-          <span class="block w-6 h-0.5 rounded-full bg-gray-900 transition-all duration-300"></span>
-        </div>
-      </button>
+      <!-- Logo for Desktop: Hidden on mobile -->
+      <a href="{% url 'core:home' %}" class="hidden lg:flex items-center group">
+        <img src="{% static 'images/dds_logo.png' %}" alt="Development Decision Support Logo"
+          class="h-20 lg:h-28 w-auto transition-all duration-500 group-hover:scale-105" />
+      </a>
     </div>
 
-    <!-- Logo for Desktop: Hidden on mobile -->
-    <a
-      href="{% url 'core:home' %}"
-      class="hidden lg:flex items-center group"
-    >
-      <img
-        src="{% static 'images/dds_logo.png' %}"
-        alt="Development Decision Support Logo"
-        class="h-20 lg:h-28 w-auto transition-all duration-500 group-hover:scale-105"
-      />
-    </a>
-  </div>
 
+    <!-- =================================================== -->
+    <!-- NAVBAR-CENTER: Mobile Logo & Desktop Nav Links      -->
+    <!-- =================================================== -->
+    <div class="navbar-center">
+      <!-- Logo for Mobile: Absolutely centered and prominent -->
+      <a href="{% url 'core:home' %}"
+        class="lg:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center group">
+        <img src="{% static 'images/dds_logo.png' %}" alt="Development Decision Support Logo"
+          class="h-20 w-auto transition-all duration-500 group-hover:scale-105" />
+      </a>
 
-  <!-- =================================================== -->
-  <!-- NAVBAR-CENTER: Mobile Logo & Desktop Nav Links      -->
-  <!-- =================================================== -->
-  <div class="navbar-center">
-    <!-- Logo for Mobile: Absolutely centered and prominent -->
-    <a
-      href="{% url 'core:home' %}"
-      class="lg:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center group"
-    >
-      <img
-        src="{% static 'images/dds_logo.png' %}"
-        alt="Development Decision Support Logo"
-        class="h-20 w-auto transition-all duration-500 group-hover:scale-105"
-      />
-    </a>
+      <!-- Nav Links for Desktop -->
+      <ul class="hidden lg:flex items-center space-x-2 md:space-x-4">
+        <li class="relative group">
+          <details class="dropdown dropdown-hover">
+            <summary
+              class="nav-link px-5 py-3 font-bold text-lg transition-all duration-200 cursor-pointer rounded-lg flex items-center {% if '/about' in request.path or '/team' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+              style="--nav-hover: var(--dds-primary);"
+              onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
+              onmouseout="{% if '/about' in request.path or '/team' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}">
+              About
+              <svg class="w-4 h-4 ml-1.5 transition-transform duration-200 group-hover:rotate-180" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </summary>
+            <ul
+              class="dropdown-content menu p-2 shadow-2xl bg-white rounded-2xl w-52 border border-gray-200 mt-2 z-[100]">
+              <li>
+                <a href="{% url 'core:about' %}"
+                  class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
+                  onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
+                  onmouseout="this.style.background=''; this.style.color=''">
+                  <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2"
+                    style="background: var(--dds-accent);"></span>
+                  About DDS
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'core:team' %}"
+                  class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
+                  onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
+                  onmouseout="this.style.background=''; this.style.color=''">
+                  <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2"
+                    style="background: var(--dds-accent);"></span>
+                  Our Team
+                </a>
+              </li>
+            </ul>
+          </details>
+        </li>
 
-    <!-- Nav Links for Desktop -->
-    <ul class="hidden lg:flex items-center space-x-2 md:space-x-4">
-      <li class="relative group">
-        <details class="dropdown dropdown-hover">
-          <summary
-            class="nav-link px-5 py-3 font-bold text-lg transition-all duration-200 cursor-pointer rounded-lg flex items-center {% if '/about' in request.path or '/team' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
-            style="--nav-hover: var(--dds-primary);"
+        <li>
+          <a href="{% url 'core:services' %}"
+            class="px-5 py-3 font-bold text-lg transition-all duration-200 rounded-lg relative group {% if '/services' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
             onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
-            onmouseout="{% if '/about' in request.path or '/team' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}"
-          >
-            About
-            <svg class="w-4 h-4 ml-1.5 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-          </summary>
-          <ul
-            class="dropdown-content menu p-2 shadow-2xl bg-white rounded-2xl w-52 border border-gray-200 mt-2 z-[100]"
-          >
-            <li>
-              <a href="{% url 'core:about' %}"
-                 class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
-                 onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
-                 onmouseout="this.style.background=''; this.style.color=''">
-                <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
-                About DDS
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'core:team' %}"
-                 class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
-                 onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
-                 onmouseout="this.style.background=''; this.style.color=''">
-                <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
-                Our Team
-              </a>
-            </li>
-          </ul>
-        </details>
-      </li>
+            onmouseout="{% if '/services' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}">
+            Services
+            <span
+              class="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 rounded-full transition-all duration-300 {% if '/services' in request.path %}w-1/2{% else %}w-0 group-hover:w-1/2{% endif %}"
+              style="background: var(--dds-accent)"></span>
+          </a>
+        </li>
 
-      <li>
-        <a
-          href="{% url 'core:services' %}"
-          class="px-5 py-3 font-bold text-lg transition-all duration-200 rounded-lg relative group {% if '/services' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
-          onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
-          onmouseout="{% if '/services' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}"
-        >
-          Services
-          <span class="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 rounded-full transition-all duration-300 {% if '/services' in request.path %}w-1/2{% else %}w-0 group-hover:w-1/2{% endif %}" style="background: var(--dds-accent)"></span>
-        </a>
-      </li>
-
-      <li>
-        <a
-          href="{% url 'core:projects' %}"
-          class="px-5 py-3 font-bold text-lg transition-all duration-200 rounded-lg relative group {% if '/projects' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
-          onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
-          onmouseout="{% if '/projects' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}"
-        >
-          Projects
-          <span
-            class="absolute bottom-0 left-4 w-0 h-0.5 rounded-full transition-all duration-300 group-hover:w-[calc(100%-2rem)]"
-            style="background: var(--dds-accent);"
-          ></span>
-        </a>
-      </li>
-
-      <li class="relative group">
-        <details class="dropdown dropdown-hover">
-          <summary
-            class="nav-link px-5 py-3 font-bold text-lg transition-all duration-200 cursor-pointer rounded-lg flex items-center {% if '/publications' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+        <li>
+          <a href="{% url 'core:projects' %}"
+            class="px-5 py-3 font-bold text-lg transition-all duration-200 rounded-lg relative group {% if '/projects' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
             onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
-            onmouseout="{% if '/publications' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}"
-          >
-            Publications
-            <svg class="w-4 h-4 ml-1.5 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-          </summary>
-          <ul
-            class="dropdown-content menu p-2 shadow-2xl bg-white rounded-2xl w-64 border border-gray-200 mt-2 z-[100]"
-          >
-            <li>
-              <a href="{% url 'core:publications' %}"
-                 class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
-                 onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
-                 onmouseout="this.style.background=''; this.style.color=''">
-                <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
-                All Publications
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'core:publications' %}?category=research_paper"
-                 class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
-                 onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
-                 onmouseout="this.style.background=''; this.style.color=''">
-                <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
-                Research Papers
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'core:publications' %}?category=policy_brief"
-                 class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
-                 onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
-                 onmouseout="this.style.background=''; this.style.color=''">
-                <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
-                Policy Briefs
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'core:publications' %}?category=report"
-                 class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
-                 onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
-                 onmouseout="this.style.background=''; this.style.color=''">
-                <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2" style="background: var(--dds-accent);"></span>
-                Reports
-              </a>
-            </li>
-          </ul>
-        </details>
-      </li>
+            onmouseout="{% if '/projects' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}">
+            Projects
+            <span
+              class="absolute bottom-0 left-4 w-0 h-0.5 rounded-full transition-all duration-300 group-hover:w-[calc(100%-2rem)]"
+              style="background: var(--dds-accent);"></span>
+          </a>
+        </li>
 
-      <li>
-        <a
-          href="{% url 'core:news_list' %}"
-          class="px-5 py-3 font-bold text-lg transition-all duration-200 rounded-lg relative group {% if '/news' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
-          onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
-          onmouseout="{% if '/news' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}"
-        >
-          News
-          <span
-            class="absolute bottom-0 left-4 w-0 h-0.5 rounded-full transition-all duration-300 group-hover:w-[calc(100%-2rem)]"
-            style="background: var(--dds-accent);"
-          ></span>
-        </a>
-      </li>
+        <li class="relative group">
+          <details class="dropdown dropdown-hover">
+            <summary
+              class="nav-link px-5 py-3 font-bold text-lg transition-all duration-200 cursor-pointer rounded-lg flex items-center {% if '/publications' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+              onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
+              onmouseout="{% if '/publications' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}">
+              Publications
+              <svg class="w-4 h-4 ml-1.5 transition-transform duration-200 group-hover:rotate-180" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </summary>
+            <ul
+              class="dropdown-content menu p-2 shadow-2xl bg-white rounded-2xl w-64 border border-gray-200 mt-2 z-[100]">
+              <li>
+                <a href="{% url 'core:publications' %}"
+                  class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
+                  onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
+                  onmouseout="this.style.background=''; this.style.color=''">
+                  <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2"
+                    style="background: var(--dds-accent);"></span>
+                  All Publications
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'core:publications' %}?category=research_paper"
+                  class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
+                  onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
+                  onmouseout="this.style.background=''; this.style.color=''">
+                  <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2"
+                    style="background: var(--dds-accent);"></span>
+                  Research Papers
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'core:publications' %}?category=policy_brief"
+                  class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
+                  onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
+                  onmouseout="this.style.background=''; this.style.color=''">
+                  <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2"
+                    style="background: var(--dds-accent);"></span>
+                  Policy Briefs
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'core:publications' %}?category=report"
+                  class="px-4 py-3 text-gray-900 rounded-xl transition-all duration-200 flex items-center group text-base font-semibold"
+                  onmouseover="this.style.background='rgba(45,58,74,0.05)'; this.style.color='var(--dds-primary)'"
+                  onmouseout="this.style.background=''; this.style.color=''">
+                  <span class="w-0 group-hover:w-2 h-0.5 rounded-full transition-all duration-300 mr-0 group-hover:mr-2"
+                    style="background: var(--dds-accent);"></span>
+                  Reports
+                </a>
+              </li>
+            </ul>
+          </details>
+        </li>
+
+        <li>
+          <a href="{% url 'core:news_list' %}"
+            class="px-5 py-3 font-bold text-lg transition-all duration-200 rounded-lg relative group {% if '/news' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+            onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
+            onmouseout="{% if '/news' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}">
+            News
+            <span
+              class="absolute bottom-0 left-4 w-0 h-0.5 rounded-full transition-all duration-300 group-hover:w-[calc(100%-2rem)]"
+              style="background: var(--dds-accent);"></span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{% url 'core:careers' %}"
+            class="px-5 py-3 font-bold text-lg transition-all duration-200 rounded-lg relative group {% if '/careers' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+            onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
+            onmouseout="{% if '/careers' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}">
+            Careers
+            <span
+              class="absolute bottom-0 left-4 w-0 h-0.5 rounded-full transition-all duration-300 group-hover:w-[calc(100%-2rem)]"
+              style="background: var(--dds-accent);"></span>
+          </a>
+        </li>
 
 
-    </ul>
-  </div>
+      </ul>
+    </div>
 
-  <!-- ================================= -->
-  <!-- NAVBAR-END: Action Buttons        -->
-  <!-- ================================= -->
-  <div class="navbar-end flex justify-end items-center gap-3 md:gap-4 lg:gap-6">
-    <a
-      href="#"
-      class="hidden lg:flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 font-bold text-[13px] transition-all duration-300 group hover:bg-[var(--dds-primary)] hover:text-white"
-      style="border-color: rgba(45,58,74,0.15); color: var(--dds-primary);"
-    >
-      <svg class="w-4 h-4 text-[var(--dds-accent)] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-      </svg>
-      Macro-Fiscal Dashboard
-    </a>
-
-    <!-- Brand gradient contact button -->
-    <a
-      href="{% url 'core:contact' %}"
-      class="btn btn-md text-white font-medium border-0 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
-      style="background: linear-gradient(135deg, var(--dds-primary), var(--dds-accent)); --tw-ring-color: var(--dds-primary);"
-    >
-      <span class="flex items-center gap-1.5">
-        Contact
-        <svg
-          class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M14 5l7 7m0 0l-7 7m7-7H3"
-          ></path>
+    <!-- ================================= -->
+    <!-- NAVBAR-END: Action Buttons        -->
+    <!-- ================================= -->
+    <div class="navbar-end flex justify-end items-center gap-3 md:gap-4 lg:gap-6">
+      <a href="#"
+        class="hidden lg:flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 font-bold text-[13px] transition-all duration-300 group hover:bg-[var(--dds-primary)] hover:text-white"
+        style="border-color: rgba(45,58,74,0.15); color: var(--dds-primary);">
+        <svg class="w-4 h-4 text-[var(--dds-accent)] group-hover:text-white transition-colors" fill="none"
+          stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+          </path>
         </svg>
-      </span>
-    </a>
-  </div>
-</div>
-</div>
+        MacroEconomic Dashboard
+      </a>
 
-  <!-- Full-screen Mobile Overlay Menu -->
-  <div id="mobile-menu-overlay" class="fixed inset-0 z-[200] bg-white hidden overflow-y-auto">
-    <!-- Header in Overlay -->
-    <div class="sticky top-0 bg-white/80 backdrop-blur-xl z-10 px-6 py-6 flex items-center justify-between border-b border-gray-100">
-      <div class="flex items-center gap-3">
-        <img src="{% static 'images/dds_logo.png' %}" alt="DDS" class="h-10 w-auto" />
-        <div>
-          <h3 class="font-bold text-lg leading-tight" style="color: var(--dds-primary);">DDS</h3>
-          <p class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Development Decision Support</p>
-        </div>
-      </div>
-      <button onclick="toggleMobileMenu()" class="btn btn-ghost btn-circle text-gray-900">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-      </button>
-    </div>
-
-    <div class="px-6 py-8 space-y-10 pb-32">
-      <!-- Section: Navigation -->
-      <div class="space-y-2">
-        <div class="px-2 pb-2 text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">Navigations</div>
-        <a href="{% url 'core:home' %}" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
-          <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-          </div>
-          <span class="text-lg font-bold text-gray-900">Home</span>
-        </a>
-        <a href="{% url 'core:services' %}" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
-          <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-          </div>
-          <span class="text-lg font-bold text-gray-900">Services</span>
-        </a>
-        <a href="{% url 'core:projects' %}" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
-          <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-          </div>
-          <span class="text-lg font-bold text-gray-900">Projects</span>
-        </a>
-      </div>
-
-      <!-- Section: Our Firm -->
-      <div class="space-y-2">
-        <div class="px-2 pb-2 text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">Our Firm</div>
-        <a href="{% url 'core:about' %}" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
-          <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-          </div>
-          <span class="text-lg font-bold text-gray-900">About DDS</span>
-        </a>
-        <a href="{% url 'core:team' %}" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
-          <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-          </div>
-          <span class="text-lg font-bold text-gray-900">Our Team</span>
-        </a>
-      </div>
-
-      <!-- Section: Insights -->
-      <div class="space-y-2">
-        <div class="px-2 pb-2 text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">Insights</div>
-        <div class="flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
-          <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-          </div>
-          <div class="flex flex-col flex-grow">
-            <a href="{% url 'core:publications' %}" class="text-lg font-bold text-gray-900 hover:text-[var(--dds-primary)] transition-colors">Publications</a>
-            <div class="flex flex-wrap gap-x-4 gap-y-1 mt-1">
-              <a href="{% url 'core:publications' %}?category=research_paper" class="text-xs text-gray-500 hover:text-[var(--dds-primary)] underline decoration-gray-200">Research Papers</a>
-              <a href="{% url 'core:publications' %}?category=policy_brief" class="text-xs text-gray-500 hover:text-[var(--dds-primary)] underline decoration-gray-200">Policy Briefs</a>
-            </div>
-          </div>
-        </div>
-        <a href="{% url 'core:news_list' %}" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
-          <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
-          </div>
-          <span class="text-lg font-bold text-gray-900">News & Updates</span>
-        </a>
-        <a href="#" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
-          <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-          </div>
-          <span class="text-lg font-bold text-gray-900">Macro-Fiscal Dashboard</span>
-        </a>
-      </div>
-
-      <!-- CTA Section -->
-      <div class="pt-6">
-        <a href="{% url 'core:contact' %}" class="flex items-center justify-between p-6 rounded-3xl text-white shadow-xl shadow-[var(--dds-primary)]/20 transition-all hover:scale-[1.02] active:scale-[0.98]" style="background: linear-gradient(135deg, var(--dds-primary), var(--dds-accent));">
-          <div class="space-y-1">
-            <span class="text-lg font-black block">Get in Touch</span>
-            <span class="text-xs text-white/80 block">Start your journey with DDS</span>
-          </div>
-          <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-md">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-          </div>
-        </a>
-      </div>
+      <!-- Brand gradient contact button -->
+      <a href="{% url 'core:contact' %}"
+        class="btn btn-md text-white font-medium border-0 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+        style="background: linear-gradient(135deg, var(--dds-primary), var(--dds-accent)); --tw-ring-color: var(--dds-primary);">
+        <span class="flex items-center gap-1.5">
+          Contact
+          <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none"
+            stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </span>
+      </a>
     </div>
   </div>
+</div>
+
+<!-- Full-screen Mobile Overlay Menu -->
+<div id="mobile-menu-overlay" class="fixed inset-0 z-[200] bg-white hidden overflow-y-auto">
+  <!-- Header in Overlay -->
+  <div
+    class="sticky top-0 bg-white/80 backdrop-blur-xl z-10 px-6 py-6 flex items-center justify-between border-b border-gray-100">
+    <div class="flex items-center gap-3">
+      <img src="{% static 'images/dds_logo.png' %}" alt="DDS" class="h-10 w-auto" />
+      <div>
+        <h3 class="font-bold text-lg leading-tight" style="color: var(--dds-primary);">DDS</h3>
+        <p class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Development Decision Support</p>
+      </div>
+    </div>
+    <button onclick="toggleMobileMenu()" class="btn btn-ghost btn-circle text-gray-900">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div class="px-6 py-8 space-y-10 pb-32">
+    <!-- Section: Navigation -->
+    <div class="space-y-2">
+      <div class="px-2 pb-2 text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">Navigations</div>
+      <a href="{% url 'core:home' %}"
+        class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
+        <div
+          class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+            </path>
+          </svg>
+        </div>
+        <span class="text-lg font-bold text-gray-900">Home</span>
+      </a>
+      <a href="{% url 'core:services' %}"
+        class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
+        <div
+          class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+            </path>
+          </svg>
+        </div>
+        <span class="text-lg font-bold text-gray-900">Services</span>
+      </a>
+      <a href="{% url 'core:projects' %}"
+        class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
+        <div
+          class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+            </path>
+          </svg>
+        </div>
+        <span class="text-lg font-bold text-gray-900">Projects</span>
+      </a>
+      <a href="{% url 'core:careers' %}"
+        class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
+        <div
+          class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+            </path>
+          </svg>
+        </div>
+        <span class="text-lg font-bold text-gray-900">Careers</span>
+      </a>
+    </div>
+
+    <!-- Section: Our Firm -->
+    <div class="space-y-2">
+      <div class="px-2 pb-2 text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">Our Firm</div>
+      <a href="{% url 'core:about' %}"
+        class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
+        <div
+          class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <span class="text-lg font-bold text-gray-900">About DDS</span>
+      </a>
+      <a href="{% url 'core:team' %}"
+        class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
+        <div
+          class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+            </path>
+          </svg>
+        </div>
+        <span class="text-lg font-bold text-gray-900">Our Team</span>
+      </a>
+    </div>
+
+    <!-- Section: Insights -->
+    <div class="space-y-2">
+      <div class="px-2 pb-2 text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">Insights</div>
+      <div class="flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
+        <div
+          class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+            </path>
+          </svg>
+        </div>
+        <div class="flex flex-col flex-grow">
+          <a href="{% url 'core:publications' %}"
+            class="text-lg font-bold text-gray-900 hover:text-[var(--dds-primary)] transition-colors">Publications</a>
+          <div class="flex flex-wrap gap-x-4 gap-y-1 mt-1">
+            <a href="{% url 'core:publications' %}?category=research_paper"
+              class="text-xs text-gray-500 hover:text-[var(--dds-primary)] underline decoration-gray-200">Research
+              Papers</a>
+            <a href="{% url 'core:publications' %}?category=policy_brief"
+              class="text-xs text-gray-500 hover:text-[var(--dds-primary)] underline decoration-gray-200">Policy
+              Briefs</a>
+          </div>
+        </div>
+      </div>
+      <a href="{% url 'core:news_list' %}"
+        class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
+        <div
+          class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z">
+            </path>
+          </svg>
+        </div>
+        <span class="text-lg font-bold text-gray-900">News & Updates</span>
+      </a>
+      <a href="#" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
+        <div
+          class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+            </path>
+          </svg>
+        </div>
+        <span class="text-lg font-bold text-gray-900">MacroEconomic Dashboard</span>
+      </a>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="pt-6">
+      <a href="{% url 'core:contact' %}"
+        class="flex items-center justify-between p-6 rounded-3xl text-white shadow-xl shadow-[var(--dds-primary)]/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
+        style="background: linear-gradient(135deg, var(--dds-primary), var(--dds-accent));">
+        <div class="space-y-1">
+          <span class="text-lg font-black block">Get in Touch</span>
+          <span class="text-xs text-white/80 block">Start your journey with DDS</span>
+        </div>
+        <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-md">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
 
 
 <script>
@@ -347,7 +403,7 @@
   function toggleMobileMenu() {
     const overlay = document.getElementById("mobile-menu-overlay");
     const body = document.body;
-    
+
     if (overlay.classList.contains("hidden")) {
       overlay.classList.remove("hidden");
       overlay.style.opacity = "0";
@@ -380,4 +436,3 @@
     }
   });
 </script>
-

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Service, TeamMember, Project, BlogPost, Contact, NewsPost, Publication
+from .models import Service, TeamMember, Project, BlogPost, Contact, NewsPost, Publication, JobVacancy
 from unfold.admin import ModelAdmin
 
 # ── Site-level branding ────────────────────────────────────────────────────
@@ -272,3 +272,47 @@ class ContactAdmin(ModelAdmin):
         if obj.responded:
             return _status_badge("Responded", "green")
         return _status_badge("Pending", "amber")
+
+
+# ── JobVacancy ─────────────────────────────────────────────────────────────
+@admin.register(JobVacancy)
+class JobVacancyAdmin(ModelAdmin):
+    list_display = ("title", "job_type_badge", "location", "closing_date", "is_active", "status_badge")
+    list_editable = ("is_active",)
+    list_filter = ("is_active", "job_type", "closing_date")
+    search_fields = ("title", "description", "location")
+    prepopulated_fields = {"slug": ("title",)}
+    date_hierarchy = "closing_date"
+    ordering = ("-closing_date",)
+
+    fieldsets = (
+        ("Job Details", {
+            "fields": ("title", "slug", "job_type", "location", "closing_date", "is_active"),
+        }),
+        ("Files", {
+            "fields": ("application_form", "job_description_pdf"),
+        }),
+        ("Content", {
+            "fields": ("description",),
+        }),
+    )
+
+    TYPE_COLORS = {
+        "full_time": "blue",
+        "contract": "amber",
+        "short_contract": "slate",
+        "internship": "green",
+        "part_time": "slate",
+    }
+
+    @admin.display(description="Job Type", ordering="job_type")
+    def job_type_badge(self, obj):
+        label = dict(JobVacancy.JOB_TYPE_CHOICES).get(obj.job_type, obj.job_type)
+        color = self.TYPE_COLORS.get(obj.job_type, "slate")
+        return _status_badge(label, color)
+
+    @admin.display(description="Status", ordering="is_active")
+    def status_badge(self, obj):
+        if obj.is_active:
+            return _status_badge("Active", "green")
+        return _status_badge("Closed", "red")
