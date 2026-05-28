@@ -90,8 +90,8 @@
     {% include 'includes/header.html' %}
 
     <!-- Main Content -->
-    <main class="flex-grow pt-24 lg:pt-32">
-      <!-- pt-20 lg:pt-32 is a spacer for the fixed navbar -->
+    <main class="flex-grow pt-20 lg:pt-24">
+      <!-- spacer matches fixed navbar height: h-20 mobile, h-24 desktop -->
       {% block content %}{% endblock %}
     </main>
 
