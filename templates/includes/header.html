@@ -29,7 +29,7 @@
       <a href="{% url 'core:home' %}" class="hidden lg:flex items-center flex-shrink-0 group">
         <img src="{% static 'images/dds_logo.png' %}"
              alt="Development Decision Support Logo"
-             class="h-14 lg:h-18 w-auto max-w-[160px] object-contain transition-transform duration-300 group-hover:scale-105" />
+             class="h-16 lg:h-20 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-105" />
       </a>
     </div>
 
@@ -51,7 +51,7 @@
         <li class="relative group">
           <details class="dropdown dropdown-hover">
             <summary
-              class="nav-link px-3 py-2 font-semibold text-sm transition-all duration-200 cursor-pointer rounded-lg flex items-center {% if '/about' in request.path or '/team' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+              class="nav-link px-4 py-2 font-semibold text-[15px] transition-all duration-200 cursor-pointer rounded-lg flex items-center {% if '/about' in request.path or '/team' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
               style="--nav-hover: var(--dds-primary);"
               onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
               onmouseout="{% if '/about' in request.path or '/team' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}">
@@ -89,7 +89,7 @@
 
         <li>
           <a href="{% url 'core:services' %}"
-            class="px-3 py-2 font-semibold text-sm transition-all duration-200 rounded-lg relative group {% if '/services' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+            class="px-4 py-2 font-semibold text-[15px] transition-all duration-200 rounded-lg relative group {% if '/services' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
             onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
             onmouseout="{% if '/services' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}">
             Services
@@ -101,7 +101,7 @@
 
         <li>
           <a href="{% url 'core:projects' %}"
-            class="px-3 py-2 font-semibold text-sm transition-all duration-200 rounded-lg relative group {% if '/projects' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+            class="px-4 py-2 font-semibold text-[15px] transition-all duration-200 rounded-lg relative group {% if '/projects' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
             onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
             onmouseout="{% if '/projects' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}">
             Projects
@@ -114,7 +114,7 @@
         <li class="relative group">
           <details class="dropdown dropdown-hover">
             <summary
-              class="nav-link px-3 py-2 font-semibold text-sm transition-all duration-200 cursor-pointer rounded-lg flex items-center {% if '/publications' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+              class="nav-link px-4 py-2 font-semibold text-[15px] transition-all duration-200 cursor-pointer rounded-lg flex items-center {% if '/publications' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
               onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
               onmouseout="{% if '/publications' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}">
               Publications
@@ -171,7 +171,7 @@
 
         <li>
           <a href="{% url 'core:news_list' %}"
-            class="px-3 py-2 font-semibold text-sm transition-all duration-200 rounded-lg relative group {% if '/news' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+            class="px-4 py-2 font-semibold text-[15px] transition-all duration-200 rounded-lg relative group {% if '/news' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
             onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
             onmouseout="{% if '/news' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}">
             News
@@ -183,7 +183,7 @@
 
         <li>
           <a href="{% url 'core:careers' %}"
-            class="px-3 py-2 font-semibold text-sm transition-all duration-200 rounded-lg relative group {% if '/careers' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
+            class="px-4 py-2 font-semibold text-[15px] transition-all duration-200 rounded-lg relative group {% if '/careers' in request.path %}text-[var(--dds-primary)] bg-[rgba(45,58,74,0.05)]{% else %}text-gray-700{% endif %}"
             onmouseover="this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'"
             onmouseout="{% if '/careers' in request.path %}this.style.color='var(--dds-primary)'; this.style.background='rgba(45,58,74,0.05)'{% else %}this.style.color=''; this.style.background=''{% endif %}">
             Careers
