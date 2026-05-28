@@ -26,9 +26,10 @@
       </div>
 
       <!-- Logo for Desktop: Hidden on mobile -->
-      <a href="{% url 'core:home' %}" class="hidden lg:flex items-center group">
-        <img src="{% static 'images/dds_logo.png' %}" alt="Development Decision Support Logo"
-          class="h-20 lg:h-28 w-auto transition-all duration-500 group-hover:scale-105" />
+      <a href="{% url 'core:home' %}" class="hidden lg:flex items-center flex-shrink-0 group">
+        <img src="{% static 'images/dds_logo.png' %}"
+             alt="Development Decision Support Logo"
+             class="h-20 lg:h-24 w-auto max-w-[200px] object-contain transition-transform duration-300 group-hover:scale-105" />
       </a>
     </div>
 
@@ -37,11 +38,12 @@
     <!-- NAVBAR-CENTER: Mobile Logo & Desktop Nav Links      -->
     <!-- =================================================== -->
     <div class="navbar-center">
-      <!-- Logo for Mobile: Absolutely centered and prominent -->
+      <!-- Logo for Mobile: Absolutely centered -->
       <a href="{% url 'core:home' %}"
-        class="lg:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center group">
-        <img src="{% static 'images/dds_logo.png' %}" alt="Development Decision Support Logo"
-          class="h-20 w-auto transition-all duration-500 group-hover:scale-105" />
+         class="lg:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center flex-shrink-0 group">
+        <img src="{% static 'images/dds_logo.png' %}"
+             alt="Development Decision Support Logo"
+             class="h-16 sm:h-20 w-auto max-w-[160px] object-contain transition-transform duration-300 group-hover:scale-105" />
       </a>
 
       <!-- Nav Links for Desktop -->
@@ -199,17 +201,150 @@
     <!-- NAVBAR-END: Action Buttons        -->
     <!-- ================================= -->
     <div class="navbar-end flex justify-end items-center gap-3 md:gap-4 lg:gap-6">
-      <a href="#"
-        class="hidden lg:flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 font-bold text-[13px] transition-all duration-300 group hover:bg-[var(--dds-primary)] hover:text-white"
-        style="border-color: rgba(45,58,74,0.15); color: var(--dds-primary);">
-        <svg class="w-4 h-4 text-[var(--dds-accent)] group-hover:text-white transition-colors" fill="none"
-          stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
-          </path>
+      <!-- MacroEconomic Dashboard — premium pill button -->
+      <a href="https://national-macrofiscal-dashboard.onrender.com/"
+         target="_blank" rel="noopener noreferrer"
+         class="dashboard-pill hidden lg:flex items-center gap-3 group"
+         title="Open National MacroEconomic Dashboard">
+
+        <!-- Animated icon container -->
+        <div class="dashboard-pill__icon">
+          <!-- Pulse ring -->
+          <span class="dashboard-pill__ring"></span>
+          <!-- Bar-chart icon -->
+          <svg class="w-4 h-4 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+               stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2z"/>
+            <path d="M15 19V9a2 2 0 00-2-2h-2a2 2 0 00-2 2v10a2 2 0 002 2h2a2 2 0 002-2z"/>
+            <path d="M21 19V5a2 2 0 00-2-2h-2a2 2 0 00-2 2v14a2 2 0 002 2h2a2 2 0 002-2z"/>
+          </svg>
+        </div>
+
+        <!-- Text block -->
+        <div class="flex flex-col leading-none">
+          <span class="dashboard-pill__eyebrow">National Data</span>
+          <span class="dashboard-pill__label">MacroEconomic Dashboard</span>
+        </div>
+
+        <!-- External-link arrow -->
+        <svg class="dashboard-pill__arrow w-3.5 h-3.5" fill="none" stroke="currentColor"
+             viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 17L17 7M17 7H7M17 7v10"/>
         </svg>
-        MacroEconomic Dashboard
       </a>
+
+      <style>
+        /* ── Dashboard pill ───────────────────────────────────────── */
+        .dashboard-pill {
+          position: relative;
+          padding: 8px 14px 8px 10px;
+          border-radius: 14px;
+          background: #ffffff;
+          /* gradient border via box-shadow + pseudo */
+          box-shadow:
+            0 0 0 1.5px rgba(74,124,89,0.25),
+            0 2px 8px rgba(45,58,74,0.06);
+          transition: box-shadow .25s ease, transform .25s ease, background .25s ease;
+          text-decoration: none !important;
+        }
+
+        .dashboard-pill::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 14px;
+          padding: 1.5px;
+          background: linear-gradient(135deg, var(--dds-primary), var(--dds-accent));
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          opacity: 0;
+          transition: opacity .25s ease;
+        }
+
+        .dashboard-pill:hover {
+          background: linear-gradient(135deg, var(--dds-primary), var(--dds-accent));
+          box-shadow:
+            0 0 0 1.5px transparent,
+            0 8px 24px rgba(45,58,74,0.22);
+          transform: translateY(-2px);
+        }
+
+        .dashboard-pill:hover::before { opacity: 0; }
+
+        /* Icon circle */
+        .dashboard-pill__icon {
+          position: relative;
+          width: 34px;
+          height: 34px;
+          border-radius: 10px;
+          background: linear-gradient(135deg, var(--dds-primary), var(--dds-accent));
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #ffffff;
+          flex-shrink: 0;
+          transition: transform .3s ease;
+        }
+
+        .dashboard-pill:hover .dashboard-pill__icon {
+          background: rgba(255,255,255,0.2);
+          transform: scale(1.08);
+        }
+
+        /* Pulse ring */
+        .dashboard-pill__ring {
+          position: absolute;
+          inset: -3px;
+          border-radius: 13px;
+          border: 1.5px solid var(--dds-accent);
+          opacity: 0;
+          animation: dashRing 2.4s ease-out infinite;
+        }
+
+        @keyframes dashRing {
+          0%   { inset: -3px; opacity: .7; }
+          100% { inset: -10px; opacity: 0; }
+        }
+
+        /* Eyebrow */
+        .dashboard-pill__eyebrow {
+          font-size: 9px;
+          font-weight: 700;
+          letter-spacing: .12em;
+          text-transform: uppercase;
+          color: var(--dds-accent);
+          margin-bottom: 2px;
+          transition: color .25s;
+        }
+
+        .dashboard-pill:hover .dashboard-pill__eyebrow { color: rgba(255,255,255,.7); }
+
+        /* Main label */
+        .dashboard-pill__label {
+          font-size: 12.5px;
+          font-weight: 700;
+          color: var(--dds-primary);
+          white-space: nowrap;
+          transition: color .25s;
+        }
+
+        .dashboard-pill:hover .dashboard-pill__label { color: #ffffff; }
+
+        /* Arrow icon */
+        .dashboard-pill__arrow {
+          color: var(--dds-accent);
+          flex-shrink: 0;
+          transition: color .25s, transform .25s;
+          margin-left: 2px;
+        }
+
+        .dashboard-pill:hover .dashboard-pill__arrow {
+          color: rgba(255,255,255,.85);
+          transform: translate(2px, -2px);
+        }
+      </style>
 
       <!-- Brand gradient contact button -->
       <a href="{% url 'core:contact' %}"
@@ -233,7 +368,7 @@
   <div
     class="sticky top-0 bg-white/80 backdrop-blur-xl z-10 px-6 py-6 flex items-center justify-between border-b border-gray-100">
     <div class="flex items-center gap-3">
-      <img src="{% static 'images/dds_logo.png' %}" alt="DDS" class="h-10 w-auto" />
+      <img src="{% static 'images/dds_logo.png' %}" alt="DDS" class="h-10 w-auto max-w-[120px] object-contain flex-shrink-0" />
       <div>
         <h3 class="font-bold text-lg leading-tight" style="color: var(--dds-primary);">DDS</h3>
         <p class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Development Decision Support</p>
@@ -365,7 +500,8 @@
         </div>
         <span class="text-lg font-bold text-gray-900">News & Updates</span>
       </a>
-      <a href="#" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
+      <a href="https://national-macrofiscal-dashboard.onrender.com/" target="_blank" rel="noopener noreferrer"
+         class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group">
         <div
           class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-[var(--dds-primary)] group-hover:text-white transition-all">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

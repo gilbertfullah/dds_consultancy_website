@@ -12,6 +12,45 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ── Responsive image defaults ─────────────────────────────────
+   Prevents any image from overflowing its container or stretching
+   beyond its natural aspect ratio.
+   ─────────────────────────────────────────────────────────── */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Logo images: never stretch — maintain natural ratio */
+img[alt*="Logo"],
+img[alt*="logo"],
+img[alt*="DDS"],
+.site-logo img,
+.brand-logo img {
+  object-fit: contain;
+  width: auto;
+}
+
+/* Content fill images (cards, heroes, team photos): crop cleanly */
+.aspect-square img,
+.aspect-video img,
+.aspect-\[4\/5\] img,
+.aspect-\[4\/3\] img,
+.overflow-hidden > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Partner / institution logos: contain, never distort */
+.partner-logo img,
+[alt*="Council"] img,
+[alt*="Ministry"] img,
+[alt*="Authority"] img {
+  object-fit: contain;
+}
+
 /* Brand colors from DDS logo */
 :root {
   --dds-primary: #2d3a4a;       /* Dark charcoal-navy from logo circle */
