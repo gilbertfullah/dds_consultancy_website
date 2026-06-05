@@ -176,9 +176,10 @@ class NewsPost(models.Model):
     slug = models.SlugField(unique=True, max_length=255, blank=True) 
     date = models.DateField(blank=True, null=True)
     content = RichTextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = [models.F('date').desc(nulls_last=True)]
+        ordering = ['-created_at']
 
     def save(self, *args, **kwargs):
         if not self.slug:

@@ -241,13 +241,10 @@ class NewsListView(ListView):
     model = NewsPost
     template_name = 'pages/news_list.html' 
     context_object_name = 'news_posts'    
-    paginate_by = 5                      
+    paginate_by = 9
 
     def get_queryset(self):
-        """
-        Override the default queryset to only return posts with 'published' status.
-        """
-        return NewsPost.objects.filter(status='published').order_by('-date')
+        return NewsPost.objects.filter(status='published').order_by('-created_at')
     
 class NewsDetailView(DetailView):
     """
