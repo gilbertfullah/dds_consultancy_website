@@ -10,8 +10,8 @@
   "@context": "https://schema.org",
   "@type": "NewsArticle",
   "headline": "{{ post.title }}",
-  "datePublished": "{{ post.date|date:'c' }}",
-  "dateModified": "{{ post.date|date:'c' }}",
+  {% if post.date %}"datePublished": "{{ post.date|date:'c' }}",
+  "dateModified": "{{ post.date|date:'c' }}",{% endif %}
   "author": {
     "@type": "Organization",
     "name": "Development Decision Support (DDS)"
@@ -44,9 +44,11 @@
       </nav>
       
       <div class="mb-6 flex flex-wrap items-center gap-4">
+        {% if post.date %}
         <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border" style="color: var(--dds-accent-light); border-color: rgba(90,156,106,0.3); background: rgba(90,156,106,0.1);">
           {{ post.date|date:"d M Y" }}
         </span>
+        {% endif %}
         {% if post.location %}
         <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20 bg-white/10 text-white backdrop-blur-sm">
           <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -130,7 +132,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {% for related in related_posts %}
         <a href="{% url 'core:news_detail' related.slug %}" class="group block bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all">
-          <span class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 block">{{ related.date|date:"d M Y" }}</span>
+          {% if related.date %}<span class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 block">{{ related.date|date:"d M Y" }}</span>{% endif %}
           <h4 class="text-lg font-bold text-gray-900 group-hover:text-[var(--dds-primary)] transition-colors mb-2 line-clamp-2">{{ related.title }}</h4>
         </a>
         {% endfor %}

@@ -174,11 +174,11 @@ class NewsPost(models.Model):
     tags = models.CharField(max_length=255, blank=True, help_text="Comma-separated tags")
     image = CloudinaryField('image', folder='news', blank=True, null=True)
     slug = models.SlugField(unique=True, max_length=255, blank=True) 
-    date = models.DateField()
+    date = models.DateField(blank=True, null=True)
     content = RichTextField(blank=True, null=True)
 
     class Meta:
-        ordering = ['-date']
+        ordering = [models.F('date').desc(nulls_last=True)]
 
     def save(self, *args, **kwargs):
         if not self.slug:
