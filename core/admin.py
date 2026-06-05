@@ -184,37 +184,26 @@ class NewsPostAdmin(ModelAdmin):
         return form
 
     def save_model(self, request, obj, form, change):
-        """
-        Safety net: if the DB column is still NOT NULL (migration pending),
-        catch the IntegrityError and surface a friendly message instead of
-        a 500 crash.  Once migration 0017 runs this guard becomes a no-op.
-        """
         import datetime
-        from django.db import IntegrityError
-        from django.contrib import messages as dj_messages
+        # If no date entered, store the sentinel 1900-01-01 so the NOT NULL
+        # constraint is satisfied.  The has_date property on the model returns
+        # False for this sentinel, so templates never display it.
+        if not obj.date:
+            obj.date = datetime.date(1900, 1, 1)
+        super().save_model(request, obj, form, change)
 
-        if obj.date is None:
-            # Temporarily hold the sentinel so we can attempt the save.
-            # If the column is already nullable the sentinel won't be written
-            # because we raise before super() — see the except block.
-            _no_date = True
-            obj.date = datetime.date(1900, 1, 1)  # sentinel
-        else:
-            _no_date = False
+    def get_changeform_initial_data(self, request):
+        return {}
 
-        try:
-            super().save_model(request, obj, form, change)
-            # If sentinel was used AND the column is now nullable, clear it.
-            if _no_date:
-                obj.date = None
-                obj.save(update_fields=["date"])
-        except IntegrityError:
-            dj_messages.error(
-                request,
-                "Could not save without a date — the database migration is still "
-                "pending. Please add a date for now, or wait for the next deploy "
-                "to complete."
-            )
+    def get_form(self, request, obj=None, **kwargs):
+        import datetime
+        form = super().get_form(request, obj, **kwargs)
+        form.base_fields["date"].required = False
+        form.base_fields["date"].help_text = "Leave blank if no specific date applies."
+        # Show the date field as empty in the admin when the sentinel is stored.
+        if obj and obj.date and obj.date == datetime.date(1900, 1, 1):
+            form.base_fields["date"].initial = None
+        return form
 
     CATEGORY_COLORS = {
         "announcement": "blue",

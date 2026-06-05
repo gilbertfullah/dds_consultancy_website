@@ -10,7 +10,7 @@
   "@context": "https://schema.org",
   "@type": "NewsArticle",
   "headline": "{{ post.title }}",
-  {% if post.date %}"datePublished": "{{ post.date|date:'c' }}",
+  {% if post.has_date %}"datePublished": "{{ post.date|date:'c' }}",
   "dateModified": "{{ post.date|date:'c' }}",{% endif %}
   "author": {
     "@type": "Organization",
@@ -44,7 +44,7 @@
       </nav>
       
       <div class="mb-6 flex flex-wrap items-center gap-4">
-        {% if post.date %}
+        {% if post.has_date %}
         <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border" style="color: var(--dds-accent-light); border-color: rgba(90,156,106,0.3); background: rgba(90,156,106,0.1);">
           {{ post.date|date:"d M Y" }}
         </span>
@@ -132,7 +132,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {% for related in related_posts %}
         <a href="{% url 'core:news_detail' related.slug %}" class="group block bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all">
-          {% if related.date %}<span class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 block">{{ related.date|date:"d M Y" }}</span>{% endif %}
+          {% if related.has_date %}<span class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 block">{{ related.date|date:"d M Y" }}</span>{% endif %}
           <h4 class="text-lg font-bold text-gray-900 group-hover:text-[var(--dds-primary)] transition-colors mb-2 line-clamp-2">{{ related.title }}</h4>
         </a>
         {% endfor %}

@@ -191,10 +191,16 @@ class NewsPost(models.Model):
     def get_tags_list(self):
         return [tag.strip() for tag in self.tags.split(',')] if self.tags else []
 
+    @property
+    def has_date(self):
+        """True only when a real date is stored (not None, not the 1900-01-01 sentinel)."""
+        import datetime
+        return bool(self.date) and self.date != datetime.date(1900, 1, 1)
+
     def __str__(self):
         return self.title
 
-    
+
 class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
