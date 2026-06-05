@@ -26,7 +26,7 @@ class HomeView(TemplateView):
         # --- CORRECTED LINE FOR NEWS TICKER ---
         # The news ticker template looks for the 'latest_news' variable.
         # This line fetches the 5 latest published news posts and adds them to the context.
-        context['latest_news'] = NewsPost.objects.filter(status='published').order_by('-date')[:5]
+        context['latest_news'] = NewsPost.objects.filter(status='published').order_by('-id')[:5]
 
         # Add the services list for the template
         context['services_list'] = [
