@@ -183,6 +183,39 @@ class NewsPostAdmin(ModelAdmin):
         form.base_fields["date"].help_text = "Leave blank if no specific date applies."
         return form
 
+    def save_model(self, request, obj, form, change):
+        """
+        Safety net: if the DB column is still NOT NULL (migration pending),
+        catch the IntegrityError and surface a friendly message instead of
+        a 500 crash.  Once migration 0017 runs this guard becomes a no-op.
+        """
+        import datetime
+        from django.db import IntegrityError
+        from django.contrib import messages as dj_messages
+
+        if obj.date is None:
+            # Temporarily hold the sentinel so we can attempt the save.
+            # If the column is already nullable the sentinel won't be written
+            # because we raise before super() — see the except block.
+            _no_date = True
+            obj.date = datetime.date(1900, 1, 1)  # sentinel
+        else:
+            _no_date = False
+
+        try:
+            super().save_model(request, obj, form, change)
+            # If sentinel was used AND the column is now nullable, clear it.
+            if _no_date:
+                obj.date = None
+                obj.save(update_fields=["date"])
+        except IntegrityError:
+            dj_messages.error(
+                request,
+                "Could not save without a date — the database migration is still "
+                "pending. Please add a date for now, or wait for the next deploy "
+                "to complete."
+            )
+
     CATEGORY_COLORS = {
         "announcement": "blue",
         "press_release": "green",
