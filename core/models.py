@@ -179,7 +179,7 @@ class NewsPost(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['-id']   # safe fallback; views use order_by('-created_at') explicitly
 
     def save(self, *args, **kwargs):
         if not self.slug:

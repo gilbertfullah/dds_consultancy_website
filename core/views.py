@@ -244,7 +244,12 @@ class NewsListView(ListView):
     paginate_by = 9
 
     def get_queryset(self):
-        return NewsPost.objects.filter(status='published').order_by('-created_at')
+        from django.db import ProgrammingError
+        qs = NewsPost.objects.filter(status='published')
+        try:
+            return qs.order_by('-created_at')
+        except ProgrammingError:
+            return qs.order_by('-id')
     
 class NewsDetailView(DetailView):
     """

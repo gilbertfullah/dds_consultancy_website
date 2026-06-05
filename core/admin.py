@@ -158,13 +158,13 @@ class BlogPostAdmin(ModelAdmin):
 # ── NewsPost ───────────────────────────────────────────────────────────────
 @admin.register(NewsPost)
 class NewsPostAdmin(ModelAdmin):
-    list_display  = ("title", "category_badge", "location", "date", "created_at", "status", "status_badge")
+    list_display  = ("title", "category_badge", "location", "date", "status", "status_badge")
     list_editable = ("status",)
     list_filter   = ("status", "category", "location")
     search_fields = ("title", "content", "tags", "location")
     prepopulated_fields = {"slug": ("title",)}
     readonly_fields = ("created_at",)
-    ordering      = ("-created_at",)
+    ordering      = ("-id",)
 
     fieldsets = (
         ("News Post Details", {
