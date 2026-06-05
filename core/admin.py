@@ -160,11 +160,10 @@ class BlogPostAdmin(ModelAdmin):
 class NewsPostAdmin(ModelAdmin):
     list_display  = ("title", "category_badge", "location", "date", "status", "status_badge")
     list_editable = ("status",)
-    list_filter   = ("status", "category", "date", "location")
+    list_filter   = ("status", "category", "location")
     search_fields = ("title", "content", "tags", "location")
     prepopulated_fields = {"slug": ("title",)}
-    date_hierarchy = "date"
-    ordering      = ("-date",)
+    ordering      = ("-id",)  # date is now nullable; use id as stable fallback
 
     fieldsets = (
         ("News Post Details", {
@@ -177,6 +176,12 @@ class NewsPostAdmin(ModelAdmin):
             "fields": ("content",),
         }),
     )
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        form.base_fields["date"].required = False
+        form.base_fields["date"].help_text = "Leave blank if no specific date applies."
+        return form
 
     CATEGORY_COLORS = {
         "announcement": "blue",
