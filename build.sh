@@ -5,4 +5,5 @@ set -o errexit
 pip install -r requirements.txt
 
 python manage.py collectstatic --no-input
-python manage.py migrate
+# NOTE: migrate is intentionally run in the startCommand (render.yaml)
+# so it always executes with DATABASE_URL fully injected at runtime.
