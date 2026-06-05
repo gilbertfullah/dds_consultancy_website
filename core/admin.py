@@ -163,7 +163,6 @@ class NewsPostAdmin(ModelAdmin):
     list_filter   = ("status", "category", "location")
     search_fields = ("title", "content", "tags", "location")
     prepopulated_fields = {"slug": ("title",)}
-    readonly_fields = ("created_at",)
     ordering      = ("-id",)
 
     fieldsets = (
@@ -175,10 +174,6 @@ class NewsPostAdmin(ModelAdmin):
         }),
         ("Content", {
             "fields": ("content",),
-        }),
-        ("Timestamps", {
-            "fields": ("created_at",),
-            "classes": ("collapse",),
         }),
     )
 
